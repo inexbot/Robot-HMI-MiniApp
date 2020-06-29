@@ -19,7 +19,9 @@ class Teach extends Component {
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  componentDidShow() {
+
+  }
 
   componentDidHide() {}
 

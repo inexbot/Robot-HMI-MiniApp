@@ -5,12 +5,15 @@ import { connect } from "@tarojs/redux";
 import ConnectState from "./connectstate"
 
 class Connect extends Component {
+  constructor(props){
+    super(props)
+  }
   config = {
     navigationBarTitleText: "首页"
   };
 
   componentDidMount(){
-
+    
   }
 
   componentWillUnmount() {}
@@ -24,7 +27,7 @@ class Connect extends Component {
   render() {
     return (
       <View className="index">
-        <ConnectState />
+        <ConnectState ip={this.$router.params.ip}/>
       </View>
     );
   }

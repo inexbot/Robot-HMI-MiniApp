@@ -10,6 +10,12 @@ const mapStateToProps = state => {
   };
 };
 class Index extends Component {
+  constructor(props){
+    super(props);
+    state:{
+      ip:'192.168.0.0'
+    }
+  }
   config = {
     navigationBarTitleText: "首页"
   };
@@ -23,9 +29,14 @@ class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
-  onSubmit() {
+  onChange(value){
+    this.setState({
+      ip:value
+    })
+  }
+  onSubmit(event) {
     Taro.navigateTo({
-      url:'/pages/connect/index'
+      url:'/pages/connect/index'+'?ip='+this.state.ip
     })
     return;
   }
@@ -33,7 +44,7 @@ class Index extends Component {
     return (
       <View className="index">
         <AtForm onSubmit={this.onSubmit.bind(this)}>
-          <AtInput name="IP" title="IP" placeholder="例:192.168.1.11"></AtInput>
+          <AtInput name="IP" title="IP" placeholder="例:192.168.1.11" onChange={this.onChange.bind(this)}></AtInput>
           <AtButton type="primary" formType="submit">
             连接
           </AtButton>

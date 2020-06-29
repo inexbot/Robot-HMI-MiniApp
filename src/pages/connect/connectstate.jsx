@@ -8,20 +8,16 @@ const mapStateToProps = state => {
     };
   };
 
-function ConnectState(){
+function ConnectState(props){
 const [connectState,setConnectState] = useState("正在连接...")
 const [display1,setDisplay1] = useState("none")
 const [display2,setDisplay2] = useState("none")
 useEffect(()=>{
-    setTimeout(()=>{
-        setConnectState("连接成功")
-    },1000)
-    setTimeout(()=>{
-        setDisplay1("block")
-    },1000)
-    setTimeout(()=>{
-        setDisplay2("block")
-    },1000)
+    let IP = "wss://"+props.ip
+    console.log(IP)
+    Taro.connectSocket({
+        url:IP
+    })
 },[])
     return(
 <View>
