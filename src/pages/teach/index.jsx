@@ -1,6 +1,7 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
+import Header from "../../component/header"
 import { connect } from "@tarojs/redux";
 
 const mapStateToProps = state => {
@@ -28,7 +29,7 @@ class Teach extends Component {
   render() {
     return (
       <View className="index">
-        
+        <Header />
       </View>
     );
   }

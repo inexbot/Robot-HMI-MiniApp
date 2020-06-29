@@ -15,9 +15,12 @@ const [display2,setDisplay2] = useState("none")
 useEffect(()=>{
     let IP = "wss://"+props.ip
     console.log(IP)
-    Taro.connectSocket({
+    /* Taro.connectSocket({
         url:IP
-    })
+    }) */
+    setTimeout(() => {
+        Taro.navigateTo({url:"/pages/teach/index"})
+    }, 2000);
 },[])
     return(
 <View>
