@@ -1,14 +1,9 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput } from "taro-ui";
+import { View } from "@tarojs/components";
+import ProjectIndex from "./project"
 import Header from "../../component/header"
-import { connect } from "@tarojs/redux";
+import "./index.less"
 
-const mapStateToProps = state => {
-  return {
-    hh: state.robotStatus.pos
-  };
-};
 class Program extends Component {
   config = {
     navigationBarTitleText: "程序"
@@ -30,9 +25,10 @@ class Program extends Component {
     return (
       <View className="index">
         <Header />
+        <ProjectIndex />
       </View>
     );
   }
 }
 
-export default connect(mapStateToProps)(Program);
+export default Program

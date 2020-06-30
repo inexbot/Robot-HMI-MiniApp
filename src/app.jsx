@@ -33,11 +33,11 @@ class App extends Component {
     ],
     window: {
       backgroundTextStyle: "light",
-      navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
-      navigationBarTextStyle: "black"
+      navigationBarBackgroundColor: "#6190E8",
+      navigationBarTitleText: "纳博特",
+      navigationBarTextStyle: "white"
     },
-    /* tabBar: {
+    tabBar: {
       color: "#666",
       selectedColor: "#b4282d",
       backgroundColor: "#fafafa",
@@ -45,30 +45,30 @@ class App extends Component {
       list: [
         {
           pagePath: "pages/teach/index",
-          iconPath: "./assets/tab-bar/home.png",
-          selectedIconPath: "./assets/tab-bar/home-active.png",
+          iconPath: "./assets/tab-bar/teach.png",
+          selectedIconPath: "./assets/tab-bar/teachActived.png",
           text: "示教"
         },
         {
           pagePath: "pages/program/index",
-          iconPath: "./assets/tab-bar/cate.png",
-          selectedIconPath: "./assets/tab-bar/cate-active.png",
+          iconPath: "./assets/tab-bar/program.png",
+          selectedIconPath: "./assets/tab-bar/programActived.png",
           text: "程序"
         },
         {
           pagePath: "pages/monitor/index",
-          iconPath: "./assets/tab-bar/cart.png",
-          selectedIconPath: "./assets/tab-bar/cart-active.png",
+          iconPath: "./assets/tab-bar/monitor.png",
+          selectedIconPath: "./assets/tab-bar/monitorActived.png",
           text: "监控"
         },
         {
           pagePath: "pages/setup/index",
-          iconPath: "./assets/tab-bar/user.png",
-          selectedIconPath: "./assets/tab-bar/user-active.png",
+          iconPath: "./assets/tab-bar/setup.png",
+          selectedIconPath: "./assets/tab-bar/setupActived.png",
           text: "设置"
         }
       ]
-    } */
+    }
   };
 
   componentDidMount() {}

@@ -28,8 +28,11 @@ class SetUp extends Component {
 
   render() {
     return (
-      <View className="index">
+      <View className="setup">
         <Header />
+        <View className="setup-index">
+
+        </View>
       </View>
     );
   }

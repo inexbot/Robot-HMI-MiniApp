@@ -1,6 +1,6 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput } from "taro-ui";
+import { View, Button, Text,Navigator } from "@tarojs/components";
+import { AtForm, AtButton, AtInput, AtIcon } from "taro-ui";
 import { connect } from "@tarojs/redux";
 
 import "./index.less";
@@ -43,11 +43,18 @@ class Index extends Component {
   render() {
     return (
       <View className="index">
-        <AtForm onSubmit={this.onSubmit.bind(this)}>
-          <AtInput name="IP" title="IP" placeholder="例:192.168.1.11" onChange={this.onChange.bind(this)}></AtInput>
-          <AtButton type="primary" formType="submit">
+        <Navigator url="/pages/teach/index" openType="reLaunch">示教</Navigator>
+        <AtForm onSubmit={this.onSubmit.bind(this)} className="index-index">
+          <AtInput name="IP" title="IP" placeholder="例:192.168.1.11" onChange={this.onChange.bind(this)} className="index-index-input"></AtInput>
+          <AtButton type="primary" formType="submit" className="index-index-button">
             连接
           </AtButton>
+          <Text>最近连接</Text>
+          <AtButton type="secondary">192.168.1.1</AtButton>
+          <AtButton type="secondary">192.168.1.2</AtButton>
+          <AtButton type="secondary">192.168.1.3</AtButton>
+          <AtButton type="secondary">192.168.1.4</AtButton>
+          <AtButton type="secondary">192.168.1.5</AtButton>
         </AtForm>
       </View>
     );

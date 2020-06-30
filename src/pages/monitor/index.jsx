@@ -28,7 +28,7 @@ class Monitor extends Component {
 
   render() {
     return (
-      <View className="index">
+      <View className="monitor">
         <Header />
       </View>
     );

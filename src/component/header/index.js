@@ -19,7 +19,7 @@ function Header(props) {
 
   }, []);
   return (
-    <View>
+    <View className="header">
       <View className="status">
         <View className="status-con">
           <Text>连接</Text>
