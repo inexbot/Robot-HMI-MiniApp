@@ -19,7 +19,7 @@ useEffect(()=>{
         url:IP
     }) */
     setTimeout(() => {
-        Taro.navigateTo({url:"/pages/teach/index"})
+        Taro.reLaunch({url:"/pages/teach/index"})
     }, 2000);
 },[])
     return(

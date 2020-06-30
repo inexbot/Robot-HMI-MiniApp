@@ -17,19 +17,58 @@ import "taro-ui/dist/style/index.scss";
 
 const dvaApp = dva.createApp({
   initialState: {},
-  models: models,
+  models: models
 });
 const store = dvaApp.getStore();
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index", "pages/connect/index","pages/teach/index"],
+    pages: [
+      "pages/index/index",
+      "pages/connect/index",
+      "pages/teach/index",
+      "pages/program/index",
+      "pages/monitor/index",
+      "pages/setup/index",
+    ],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
       navigationBarTitleText: "WeChat",
-      navigationBarTextStyle: "black",
+      navigationBarTextStyle: "black"
     },
+    /* tabBar: {
+      color: "#666",
+      selectedColor: "#b4282d",
+      backgroundColor: "#fafafa",
+      borderStyle: "black",
+      list: [
+        {
+          pagePath: "pages/teach/index",
+          iconPath: "./assets/tab-bar/home.png",
+          selectedIconPath: "./assets/tab-bar/home-active.png",
+          text: "示教"
+        },
+        {
+          pagePath: "pages/program/index",
+          iconPath: "./assets/tab-bar/cate.png",
+          selectedIconPath: "./assets/tab-bar/cate-active.png",
+          text: "程序"
+        },
+        {
+          pagePath: "pages/monitor/index",
+          iconPath: "./assets/tab-bar/cart.png",
+          selectedIconPath: "./assets/tab-bar/cart-active.png",
+          text: "监控"
+        },
+        {
+          pagePath: "pages/setup/index",
+          iconPath: "./assets/tab-bar/user.png",
+          selectedIconPath: "./assets/tab-bar/user-active.png",
+          text: "设置"
+        }
+      ]
+    } */
   };
 
   componentDidMount() {}

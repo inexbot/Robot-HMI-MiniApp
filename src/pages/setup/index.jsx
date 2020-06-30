@@ -2,7 +2,6 @@ import Taro, { Component } from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
 import Header from "../../component/header"
-import {MenuBar} from "../../component/bottom/"
 import { connect } from "@tarojs/redux";
 
 const mapStateToProps = state => {
@@ -10,9 +9,9 @@ const mapStateToProps = state => {
     hh: state.robotStatus.pos
   };
 };
-class Teach extends Component {
+class SetUp extends Component {
   config = {
-    navigationBarTitleText: "示教"
+    navigationBarTitleText: "设置"
   };
 
   componentWillReceiveProps(nextProps) {
@@ -31,10 +30,9 @@ class Teach extends Component {
     return (
       <View className="index">
         <Header />
-        <MenuBar />
       </View>
     );
   }
 }
 
-export default connect(mapStateToProps)(Teach);
+export default connect(mapStateToProps)(SetUp);
