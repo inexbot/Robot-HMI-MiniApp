@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "djosjo",
-	"description": "hhj",
+	"projectname": "Robot-HMI-MiniApp",
+	"description": "协作机器人控制小程序",
 	"appid": "touristappid",
 	"setting": {
 		"urlCheck": true,

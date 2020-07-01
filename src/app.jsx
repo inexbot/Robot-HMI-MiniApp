@@ -89,6 +89,19 @@ class App extends Component {
           "safe",
           "slave"
         ]
+      },
+      {
+        root: "pages/teach/teachindex",
+        name: "示教页面",
+        pages: [
+          "drag/index",
+          "drag/dragprocess/draging",
+          "drag/dragprocess/pause",
+          "drag/dragprocess/save",
+          "drag/dragprocess/stop",
+          "drag/playback/index",
+          "jog/index"
+        ]
       }
     ]
   };

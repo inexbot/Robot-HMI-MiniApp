@@ -3,22 +3,36 @@ import { View, Button, Text } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
 import { AtTabBar } from "taro-ui";
 
+const mapStateToProps = state => {
+  return {
+    hh: state.robotStatus.pos
+  };
+};
+
 function TeachBar(props) {
+  const [servoState, setServoState] = useState("伺服准备");
+  const [deadmanState, setDeadmanState] = useState("使能");
   useEffect(() => {}, []);
-  const tabList = [
-    { title: "待办事项", iconType: "bullet-list", text: "new" },
-    { title: "拍照", iconType: "camera" },
-    { title: "文件夹", iconType: "folder", text: "100", max: 99 }
-  ];
-  const handleClick = () => {
+  const tabList = [{ title: servoState }, { title: deadmanState }];
+  const handleClick = val => {
+    switch (val) {
+      case 0:
+        console.log("切换伺服状态");
+        break;
+      case 1:
+        console.log("使能");
+        break;
+      default:
+        break;
+    }
     return;
   };
 
   return (
     <View>
-      <AtTabBar fixed tabList={tabList} onClick={handleClick} />
+      <AtTabBar fixed tabList={tabList} onClick={handleClick} current={3} />
     </View>
   );
 }
 
-export default TeachBar;
+export default connect(mapStateToProps)(TeachBar);

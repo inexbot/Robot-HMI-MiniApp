@@ -1,10 +1,10 @@
 import Taro, { Component, setTabBarItem, hideTabBar } from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
-import Header from "../../component/header"
+import Header from "../../component/header";
 import { connect } from "@tarojs/redux";
-import {TeachBar } from "../../component/footer"
-import "./index.less"
+import { TeachBar } from "../../component/footer";
+import "./index.less";
 
 const mapStateToProps = state => {
   return {
@@ -20,25 +20,35 @@ class Teach extends Component {
     console.log(this.props, nextProps);
   }
 
-  componentWillUnmount() {}
-
-  componentDidShow() {
-    
+  handleClick = value => {
+    let URL = "/pages/teach/teachindex/" + value;
+    Taro.navigateTo({
+      url: URL
+    });
+    return;
   }
-
-  componentDidHide() {}
 
   render() {
     return (
       <View className="teach">
         <Header />
         <View className="teach-index">
-          <AtButton type="secondary" className="teach-index-button">拖拽</AtButton>
-          <AtButton type="secondary" className="teach-index-button">点动</AtButton>
+          <AtButton
+            type="secondary"
+            className="teach-index-button"
+            onClick={this.handleClick.bind(this, "drag/index")}
+          >
+            拖拽
+          </AtButton>
+          <AtButton
+            type="secondary"
+            className="teach-index-button"
+            onClick={this.handleClick.bind(this, "jog/index")}
+          >
+            点动
+          </AtButton>
         </View>
-        <TeachBar />
       </View>
-      
     );
   }
 }
