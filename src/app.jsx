@@ -29,7 +29,7 @@ class App extends Component {
       "pages/teach/index",
       "pages/program/index",
       "pages/monitor/index",
-      "pages/setup/index",
+      "pages/setup/index"
     ],
     window: {
       backgroundTextStyle: "light",
@@ -68,7 +68,29 @@ class App extends Component {
           text: "设置"
         }
       ]
-    }
+    },
+    subPackages: [
+      {
+        root: "pages/monitor/monitorindex",
+        name: "监控页面",
+        pages: ["io", "position", "torque"]
+      },
+      {
+        root: "pages/setup/setupindex",
+        name: "设置页面",
+        pages: [
+          "about",
+          "cartesian",
+          "connect",
+          "dh",
+          "force",
+          "joint",
+          "net",
+          "safe",
+          "slave"
+        ]
+      }
+    ]
   };
 
   componentDidMount() {}
