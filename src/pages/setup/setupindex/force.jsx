@@ -14,18 +14,6 @@ class ForcePara extends Component {
     navigationBarTitleText: "力学参数"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {
-
-  }
-
-  componentDidHide() {}
-
   render() {
     return (
       <View className="setup">

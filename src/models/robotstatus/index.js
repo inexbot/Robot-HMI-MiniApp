@@ -68,7 +68,6 @@ export default {
     robot4OpenedProgram: false,
     robot4CurrentProgram: ""
   },
-
   reducers: {
     save(state, { payload }) {
       return { ...state, ...payload };

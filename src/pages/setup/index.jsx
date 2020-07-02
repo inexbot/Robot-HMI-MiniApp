@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import Taro from "@tarojs/taro"
-import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput, AtList, AtListItem } from "taro-ui";
+import React, { Component } from "react";
+import Taro from "@tarojs/taro";
+import { View } from "@tarojs/components";
+import { AtList, AtListItem } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    hh: state.robotStatus.pos
+    hh: state.robotStatus.pos,
   };
 };
 class SetUp extends Component {
-  handleClick = value => {
+  handleClick = (value) => {
     let URL = "/pages/setup/setupindex/" + value;
     Taro.navigateTo({
-      url: URL
+      url: URL,
     });
   };
 

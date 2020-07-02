@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Button, Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { connect } from "react-redux";
 import { AtTabBar } from "taro-ui";
 

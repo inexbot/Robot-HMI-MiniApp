@@ -12,9 +12,6 @@ const mapStateToProps = state => {
   };
 };
 class SaveTrajectory extends Component {
-  config = {
-    navigationBarTitleText: "拖拽"
-  };
 
   render() {
     return (

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { View } from "@tarojs/components";
-import ProjectIndex from "./project"
-import Header from "../../component/header"
-import "./index.less"
+import ProjectIndex from "./project";
+import Header from "../../component/header";
+import "./index.less";
 
 class Program extends Component {
   render() {
@@ -15,4 +15,4 @@ class Program extends Component {
   }
 }
 
-export default Program
+export default Program;

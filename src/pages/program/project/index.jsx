@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Button, Text, ScrollView } from "@tarojs/components";
-import { AtForm, AtIndexes } from "taro-ui";
+import { View, ScrollView } from "@tarojs/components";
+import { AtIndexes } from "taro-ui";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    projectList: state.project
+    projectList: state.project,
   };
 };
 function ProjectIndex(props) {
@@ -15,13 +15,13 @@ function ProjectIndex(props) {
       key: "no",
       items: [
         {
-          name: "无程序"
+          name: "无程序",
           // 此处可加其他业务字段
-        }
-      ]
-    }
+        },
+      ],
+    },
   ]);
-  const onClick = value => {
+  const onClick = (value) => {
     console.log(value);
   };
   useEffect(() => {
@@ -35,13 +35,13 @@ function ProjectIndex(props) {
       let pll = ppl.length;
       for (let ix = 0; ix < pll; ix++) {
         innerList.push({
-          name: ppl[ix].name
+          name: ppl[ix].name,
         });
       }
       innerObject = {
         title: pl[i].name,
         key: pl[i].name,
-        items: innerList
+        items: innerList,
       };
       newList.push(innerObject);
     }

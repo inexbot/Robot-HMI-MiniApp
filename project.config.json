@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "newtaro",
 	"description": "newtaro",
-	"appid": "touristappid",
+	"appid": "wx3a8dd313f490237f",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

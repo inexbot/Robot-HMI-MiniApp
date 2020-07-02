@@ -14,10 +14,6 @@ class PositionMonitor extends Component {
     navigationBarTitleText: "监控"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
   render() {
     return (
       <View className="monitor">

@@ -1,4 +1,4 @@
-import Taro from "@tarojs/taro"
+import React from "react"
 import {AtButton} from "taro-ui"
 
 function EmergencyStopButton (){

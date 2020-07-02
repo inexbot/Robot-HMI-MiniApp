@@ -1,34 +1,26 @@
-import React, { Component } from 'react'
-import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput } from "taro-ui";
-import { connect } from "react-redux";
-import ConnectState from "./connectstate"
+import React, { useState, useEffect } from "react";
+import { getCurrentInstance } from "@tarojs/taro";
+import { View } from "@tarojs/components";
+import ConnectState from "./connectstate";
 
-class Connect extends Component {
+function Connect() {
+  const [ip, setIP] = useState("");
+  const [port, setPort] = useState("");
+  useEffect(() => {
+    let routerIp = getCurrentInstance().router.params.ip;
+    let routerPort = getCurrentInstance().router.params.port;
+    console.log(routerIp, routerPort);
+    setIP(routerIp);
+    setPort(routerPort);
+  }, []);
 
-  config = {
-    navigationBarTitleText: "首页"
-  };
-
-  componentDidMount(){
-    
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-  onSubmit() {
-    return;
-  }
-  render() {
-    return (
+  return (
+    ip !== "" && (
       <View className="index">
-        <ConnectState ip={this.$router.params.ip}/>
+        <ConnectState ip={ip} port={port} />
       </View>
-    );
-  }
+    )
+  );
 }
 
 export default Connect;

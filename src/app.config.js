@@ -5,13 +5,13 @@ export default {
     "pages/teach/index",
     "pages/program/index",
     "pages/monitor/index",
-    "pages/setup/index"
+    "pages/setup/index",
   ],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#6190E8",
     navigationBarTitleText: "纳博特",
-    navigationBarTextStyle: "white"
+    navigationBarTextStyle: "white",
   },
   tabBar: {
     color: "#666",
@@ -23,33 +23,33 @@ export default {
         pagePath: "pages/teach/index",
         iconPath: "./assets/tab-bar/teach.png",
         selectedIconPath: "./assets/tab-bar/teachActived.png",
-        text: "示教"
+        text: "示教",
       },
       {
         pagePath: "pages/program/index",
         iconPath: "./assets/tab-bar/program.png",
         selectedIconPath: "./assets/tab-bar/programActived.png",
-        text: "程序"
+        text: "程序",
       },
       {
         pagePath: "pages/monitor/index",
         iconPath: "./assets/tab-bar/monitor.png",
         selectedIconPath: "./assets/tab-bar/monitorActived.png",
-        text: "监控"
+        text: "监控",
       },
       {
         pagePath: "pages/setup/index",
         iconPath: "./assets/tab-bar/setup.png",
         selectedIconPath: "./assets/tab-bar/setupActived.png",
-        text: "设置"
-      }
-    ]
+        text: "设置",
+      },
+    ],
   },
   subPackages: [
     {
       root: "pages/monitor/monitorindex",
       name: "监控页面",
-      pages: ["io", "position", "torque"]
+      pages: ["io", "position", "torque"],
     },
     {
       root: "pages/setup/setupindex",
@@ -63,8 +63,8 @@ export default {
         "joint",
         "net",
         "safe",
-        "slave"
-      ]
+        "slave",
+      ],
     },
     {
       root: "pages/teach/teachindex",
@@ -76,8 +76,8 @@ export default {
         "drag/dragprocess/save",
         "drag/dragprocess/stop",
         "drag/playback/index",
-        "jog/index"
-      ]
-    }
-  ]
-}
+        "jog/index",
+      ],
+    },
+  ],
+};

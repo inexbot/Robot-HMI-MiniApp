@@ -1,59 +1,64 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Taro from "@tarojs/taro"
 import { View, Button, Text,Navigator } from '@tarojs/components'
-import { AtForm, AtButton, AtInput, AtIcon } from "taro-ui";
-import { connect } from 'react-redux'
-
+import { AtButton, AtInput, AtMessage, AtDivider, AtNoticebar } from "taro-ui";
 import './index.less'
 
-class Start extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      ip:'192.168.0.0'
-    }
-  }
+function Start () {
+const [ip,setIp] = useState("");
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
+const [port,setPort] = useState("8443");
 
-  componentWillUnmount() {}
+ const changeIP=(IP)=>{
+    setIp(IP)
+  };
 
-  componentDidShow() {}
+ const changePort=(PORT)=>{
+    setPort(PORT)
+  };
 
-  componentDidHide() {}
-
-  onChange(value){
-    this.setState({
-      ip:value
-    })
-  }
-  onSubmit(event) {
+ const onSubmit=(event)=> {
+   let exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+   let reg = ip.match(exp);
+   if(reg === null || ip === ""){
+     Taro.atMessage({
+       message:"IP地址不合法！",
+       type:"error"
+     })
+   }else{
     Taro.navigateTo({
-      url:'/pages/connect/index'+'?ip='+this.state.ip
-    })
+      url:'/pages/connect/index'+'?ip='+ip+'&port='+port
+    })}
     return;
   }
-  render() {
+
     return (
       <View className="index">
-        <Navigator url="/pages/teach/index" openType="reLaunch">示教</Navigator>
-        <AtForm onSubmit={this.onSubmit.bind(this)} className="index-index">
-          <AtInput name="IP" title="IP" placeholder="例:192.168.1.11" onChange={this.onChange.bind(this)} className="index-index-input"></AtInput>
-          <AtButton type="primary" formType="submit" className="index-index-button">
+        <AtMessage />
+        {/* 说明部分，要删掉的 */}
+        <View>
+          <AtNoticebar>分割线上面的内容为测试使用。当前只是完成了部分页面，加入了websocket连接机制，还没有加入具体的逻辑，所以所有按钮点击均可跳转。页面样式也没做。</AtNoticebar>
+          <View style={{display:"flex",flexFlow:"row",marginLeft:"auto",marginRight:"auto"}}>
+        <Navigator url="/pages/teach/index" openType="reLaunch"><AtButton size="small" type="secondary" >示教</AtButton></Navigator>
+        <Navigator url="/pages/program/index" openType="reLaunch"><AtButton size="small" type="secondary" >程序</AtButton></Navigator>
+        <Navigator url="/pages/monitor/index" openType="reLaunch"><AtButton size="small" type="secondary" >监控</AtButton></Navigator>
+        <Navigator url="/pages/setup/index" openType="reLaunch"><AtButton size="small" type="secondary" >设置</AtButton></Navigator></View>
+        </View>
+        {/* 删到这里 */}
+        <AtDivider content="分割线" />
+          <AtInput name="ip" title="IP" placeholder="例:192.168.1.11" onChange={changeIP} className="index-index-input" value={ip}></AtInput>
+          <AtInput name="port" title="Port" placeholder="默认8443" onChange={changePort} className="index-index-input" value={port}></AtInput>
+          <AtButton type="primary" className="index-index-button" onClick={onSubmit}>
             连接
           </AtButton>
-          <Text>最近连接</Text>
+          <Text>最近连接（假的）</Text>
           <AtButton type="secondary">192.168.1.1</AtButton>
           <AtButton type="secondary">192.168.1.2</AtButton>
           <AtButton type="secondary">192.168.1.3</AtButton>
           <AtButton type="secondary">192.168.1.4</AtButton>
           <AtButton type="secondary">192.168.1.5</AtButton>
-        </AtForm>
       </View>
     );
-  }
 }
 
 export default Start

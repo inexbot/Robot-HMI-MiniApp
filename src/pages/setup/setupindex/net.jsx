@@ -13,17 +13,6 @@ class NetPara extends Component {
   config = {
     navigationBarTitleText: "网络设置"
   };
-
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
   render() {
     return (
       <View className="setup">

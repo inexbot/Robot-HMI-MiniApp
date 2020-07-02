@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { View, Button, Text } from "@tarojs/components";
-import { connect } from "react-redux";
+import React from "react";
+import { View } from "@tarojs/components";
 import { AtTabBar } from "taro-ui";
 
 function ProjectBar(props) {
-  useEffect(() => {}, []);
   const tabList = [
     { title: '待办事项', iconType: 'bullet-list', text: 'new' },
     { title: '拍照', iconType: 'camera' },

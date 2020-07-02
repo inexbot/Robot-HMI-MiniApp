@@ -1,33 +1,19 @@
-import React, { Component } from 'react'
-import Taro from "@tarojs/taro"
-import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput } from "taro-ui";
+import React, { Component } from "react";
+import Taro from "@tarojs/taro";
+import { View } from "@tarojs/components";
+import { AtButton } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
-import { TeachBar } from "../../component/footer";
 import "./index.less";
 
-const mapStateToProps = state => {
-  return {
-    hh: state.robotStatus.pos
-  };
-};
 class Teach extends Component {
-  config = {
-    navigationBarTitleText: "示教"
-  };
-
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  handleClick = value => {
+  handleClick = (value) => {
     let URL = "/pages/teach/teachindex/" + value;
     Taro.navigateTo({
-      url: URL
+      url: URL,
     });
     return;
-  }
+  };
 
   render() {
     return (
@@ -54,4 +40,4 @@ class Teach extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Teach);
+export default Teach;

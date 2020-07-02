@@ -14,18 +14,6 @@ class JointPara extends Component {
     navigationBarTitleText: "关节参数"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {
-
-  }
-
-  componentDidHide() {}
-
   render() {
     return (
       <View className="setup">

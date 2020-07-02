@@ -1,9 +1,5 @@
+import Taro from "@tarojs/taro";
 import { CommandList } from "./commandlist";
-
-var URL = `ws://192.168.0.1`;
-var getLength = require("utf8-byte-length");
-
-export const ws = new WebSocket(URL);
 // 发送数据到控制器,command是命令字，data是要发送的数据，data为JSON格式，command为CommandList里面的元素名
 export async function sendMSGtoController(command, data) {
   let message = [];
@@ -19,15 +15,9 @@ export async function sendMSGtoController(command, data) {
   if (data !== "") {
     message.push(JSON.stringify(data));
   }
-  try {
-    if (ws.readyState === 1) {
-      ws.send(message);
-      console.log("发送数据到控制器", message);
-    } 
-  } catch (e) {
-    // 遇到错误了
-    alert(e);
-  }
+
+  Taro.sendSocketMessage({data:message.toString()});
+  console.log("发送数据到控制器", message);
 }
 
 // 发送数据到server,command是命令字，data是要发送的数据，data为JSON格式，command为CommandList里面的元素名
@@ -42,20 +32,13 @@ export async function sendMSGtoServer(command, data) {
   message.push(0x67);
   message.push(dataLength);
   message.push(commandString);
-  console.log(message)
+  console.log(message);
   data === ""
     ? console.error("发送数据为空")
     : message.push(JSON.stringify(data));
 
-    try {
-      if (ws.readyState === 1) {
-        ws.send(message);
-        console.log("发送到服务端", message);
-      }
-    } catch (e) {
-      // 遇到错误了
-      alert(e);
-    }
+  Taro.sendSocketMessage({data:message.toString()});
+  console.log("发送到服务端", message);
 }
 // 解析收到的数据，返回的值为数组，[command,data]，command为字符串，data为json
 export async function comeMessage(message) {

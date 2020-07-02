@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Button, Text } from "@tarojs/components";
+import { View,  Text } from "@tarojs/components";
 import { connect } from "react-redux";
 import "./index.less"
 const mapStateToProps = state => {
@@ -9,9 +9,6 @@ const mapStateToProps = state => {
 };
 
 function Header(props) {
-  const [connectState, setConnectState] = useState("正在连接...");
-  const [display1, setDisplay1] = useState("none");
-  const [display2, setDisplay2] = useState("none");
   const [connectStatusCircle,setConnectStatusCircle] = useState("green");
   const [servoStatusCircle,setServoStatusCircle] = useState("white");
   const [deadmanStatusCircle,setDeadmanStatusCircle] = useState("green");

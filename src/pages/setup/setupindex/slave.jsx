@@ -14,10 +14,6 @@ class SlavePara extends Component {
     navigationBarTitleText: "从站配置"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
   componentWillUnmount() {}
 
   componentDidShow() {}

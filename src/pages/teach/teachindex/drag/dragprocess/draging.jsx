@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Taro from "@tarojs/taro"
 import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput } from "taro-ui";
+import {  AtButton } from "taro-ui";
 import Header from "../../../../../component/header";
 import { connect } from "react-redux";
 import { TeachBar } from "../../../../../component/footer";

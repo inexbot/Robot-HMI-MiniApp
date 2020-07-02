@@ -1,35 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Taro from "@tarojs/taro"
-import { View, Button, Text } from "@tarojs/components";
-import {connect} from "react-redux"
+import Taro from "@tarojs/taro";
+import { View, Text } from "@tarojs/components";
 
-const mapStateToProps = state => {
-    return {
-      hh: state.robotStatus.pos
-    };
-  };
-
-function ConnectState(props){
-const [connectState,setConnectState] = useState("正在连接...")
-const [display1,setDisplay1] = useState("none")
-const [display2,setDisplay2] = useState("none")
-useEffect(()=>{
-    let IP = "wss://"+props.ip
-    console.log(IP)
-    /* Taro.connectSocket({
-        url:IP
-    }) */
+function ConnectState(props) {
+  const [connectState, setConnectState] = useState("正在连接...");
+  const [display1, setDisplay1] = useState("none");
+  const [display2, setDisplay2] = useState("none");
+  useEffect(() => {
+    let IP = "ws://" + props.ip + ":" + props.port;
+    console.log(IP);
+    Taro.connectSocket({
+      url: IP,
+    });
     setTimeout(() => {
-        Taro.reLaunch({url:"/pages/teach/index"})
+      Taro.reLaunch({ url: "/pages/teach/index" });
     }, 2000);
-},[])
-    return(
-<View>
-    <View>{connectState}</View>
-    <View style={{display:display1}}><Text>正在获取数据...</Text></View>
-    <View style={{display:display2}}><Text>获取成功</Text><Text>正在跳转</Text></View>
-</View>
-    );
+  }, []);
+  return (
+    <View>
+      <View>{connectState}</View>
+      <View style={{ display: display1 }}>
+        <Text>正在获取数据...</Text>
+      </View>
+      <View style={{ display: display2 }}>
+        <Text>获取成功</Text>
+        <Text>正在跳转</Text>
+      </View>
+    </View>
+  );
 }
 
-export default connect(mapStateToProps)(ConnectState)
+export default ConnectState;

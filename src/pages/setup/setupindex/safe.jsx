@@ -14,18 +14,6 @@ class SafePara extends Component {
     navigationBarTitleText: "安全参数"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {
-
-  }
-
-  componentDidHide() {}
-
   render() {
     return (
       <View className="setup">
