@@ -1,7 +1,7 @@
-import Taro, { useEffect, useState } from "@tarojs/taro";
+import React, { useState, useEffect } from "react";
 import { View, Button, Text, ScrollView } from "@tarojs/components";
 import { AtForm, AtIndexes } from "taro-ui";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {

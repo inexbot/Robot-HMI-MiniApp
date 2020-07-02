@@ -1,8 +1,9 @@
-import Taro, { Component, setTabBarItem, hideTabBar } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro"
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
 import Header from "../../component/header";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 import { TeachBar } from "../../component/footer";
 import "./index.less";
 

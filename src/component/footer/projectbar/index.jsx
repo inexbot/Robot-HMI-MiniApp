@@ -1,6 +1,6 @@
-import Taro, { useState, useEffect } from "@tarojs/taro";
+import React, { useState, useEffect } from "react";
 import { View, Button, Text } from "@tarojs/components";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 import { AtTabBar } from "taro-ui";
 
 function ProjectBar(props) {

@@ -1,14 +1,11 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro"
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
 import Header from "../../component/header"
 import "./index.less"
 
 class Monitor extends Component {
-  config = {
-    navigationBarTitleText: "监控"
-  };
-
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps);
   }

@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "Robot-HMI-MiniApp",
-	"description": "协作机器人控制小程序",
+	"projectname": "newtaro",
+	"description": "newtaro",
 	"appid": "touristappid",
 	"setting": {
 		"urlCheck": true,

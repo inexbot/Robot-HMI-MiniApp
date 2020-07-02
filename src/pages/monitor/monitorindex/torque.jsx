@@ -1,7 +1,7 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {
@@ -12,10 +12,6 @@ class TorqueMonitor extends Component {
   config = {
     navigationBarTitleText: "监控"
   };
-
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
 
   render() {
     return (

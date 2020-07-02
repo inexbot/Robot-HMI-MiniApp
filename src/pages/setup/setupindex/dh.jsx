@@ -1,8 +1,8 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
 import Header from "../../../component/header"
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {
@@ -14,17 +14,6 @@ class DhPara extends Component {
     navigationBarTitleText: "DH参数"
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {
-
-  }
-
-  componentDidHide() {}
 
   render() {
     return (

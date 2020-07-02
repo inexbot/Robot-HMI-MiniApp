@@ -1,8 +1,8 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
-import { connect } from "@tarojs/redux";
-import Header from "../../component/header"
+import { connect } from "react-redux";
+import Header from "../../../component/header"
 
 const mapStateToProps = state => {
   return {

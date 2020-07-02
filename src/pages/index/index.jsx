@@ -1,24 +1,18 @@
-import Taro, { Component } from "@tarojs/taro";
-import { View, Button, Text,Navigator } from "@tarojs/components";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro"
+import { View, Button, Text,Navigator } from '@tarojs/components'
 import { AtForm, AtButton, AtInput, AtIcon } from "taro-ui";
-import { connect } from "@tarojs/redux";
+import { connect } from 'react-redux'
 
-import "./index.less";
-const mapStateToProps = state => {
-  return {
-    hh: state.robotStatus.pos
-  };
-};
-class Index extends Component {
+import './index.less'
+
+class Start extends Component {
   constructor(props){
-    super(props);
-    state:{
+    super(props)
+    this.state={
       ip:'192.168.0.0'
     }
   }
-  config = {
-    navigationBarTitleText: "开始"
-  };
 
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps);
@@ -29,6 +23,7 @@ class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
+
   onChange(value){
     this.setState({
       ip:value
@@ -61,4 +56,4 @@ class Index extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Index);
+export default Start

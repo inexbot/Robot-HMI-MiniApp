@@ -1,13 +1,9 @@
-import Taro, {
-  Component,
-  setTabBarItem,
-  hideTabBar,
-  useState
-} from "@tarojs/taro";
+import React, { useState, useEffect } from "react";
+import Taro from "@tarojs/taro"
 import { View, Button, Text, Picker } from "@tarojs/components";
 import { AtForm, AtButton, AtList, AtListItem,AtSlider } from "taro-ui";
 import Header from "../../../../component/header";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 import { TeachBar } from "../../../../component/footer";
 import { EmergencyStopButton } from "../../../../component/buttons";
 import "./index.less";

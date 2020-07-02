@@ -1,8 +1,9 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro"
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput, AtList, AtListItem } from "taro-ui";
 import Header from "../../component/header";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {
@@ -10,14 +11,6 @@ const mapStateToProps = state => {
   };
 };
 class SetUp extends Component {
-  config = {
-    navigationBarTitleText: "设置"
-  };
-
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
   handleClick = value => {
     let URL = "/pages/setup/setupindex/" + value;
     Taro.navigateTo({

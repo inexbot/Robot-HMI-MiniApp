@@ -1,13 +1,11 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput } from "taro-ui";
-import { connect } from "@tarojs/redux";
+import { connect } from "react-redux";
 import ConnectState from "./connectstate"
 
 class Connect extends Component {
-  constructor(props){
-    super(props)
-  }
+
   config = {
     navigationBarTitleText: "首页"
   };
