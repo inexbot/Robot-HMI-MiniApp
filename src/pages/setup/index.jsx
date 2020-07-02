@@ -55,18 +55,6 @@ class SetUp extends Component {
               arrow="right"
               onClick={this.handleClick.bind(this, "cartesian")}
             />
-            <AtListItem
-              title="从站配置"
-              className="setup-index-list-item"
-              arrow="right"
-              onClick={this.handleClick.bind(this, "slave")}
-            />
-            <AtListItem
-              title="网络设置"
-              className="setup-index-list-item"
-              arrow="right"
-              onClick={this.handleClick.bind(this, "net")}
-            />
             <AtListItem title="系统" className="setup-index-list-title" />
             <AtListItem
               title="连接设置"
