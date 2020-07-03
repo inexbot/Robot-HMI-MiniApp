@@ -19,6 +19,7 @@ function Header(props) {
     <View className="header">
       <View className="status">
         <View className="status-con">
+          
           <Text>连接</Text>
           <View className="circle-status" style={{background:connectStatusCircle}}></View>
         </View>
