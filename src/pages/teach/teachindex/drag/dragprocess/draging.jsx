@@ -6,6 +6,7 @@ import Header from "../../../../../component/header";
 import { connect } from "react-redux";
 import { TeachBar } from "../../../../../component/footer";
 import { EmergencyStopButton } from "../../../../../component/buttons";
+import "../index.less"
 
 const mapStateToProps = state => {
   return {
@@ -23,17 +24,20 @@ function Draging(props) {
     <View className="teach">
       <Header />
       <View className="teach-index">
+        <View className="teach-circle">
         <AtButton
           type="primary"
           className="teach-index-button"
-          customStyle={{ background: "#555555", color: "white" }}
+          customStyle={{ background: "#fff",color:"#ff463d",border:"1px solid #ff463d", width:"180px",height:"180px",borderRadius:90,fontSize:"18px",padding:70}}
           onClick={handlePauseButton}
         >
           暂停拖拽
         </AtButton>
+        </View>
+
       </View>
       <View className="emergency">
-        <EmergencyStopButton />
+        <EmergencyStopButton/>
       </View>
       <TeachBar />
     </View>

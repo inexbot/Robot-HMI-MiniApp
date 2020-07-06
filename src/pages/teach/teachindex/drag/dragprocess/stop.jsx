@@ -56,7 +56,7 @@ function StopDrag(props) {
   return (
     <View className="teach">
       <Header />
-      <View className="teach-index">
+      <View className="teach-index" style="margin-top:10vh">
         <Text>速度：{speed}</Text>
         <AtSlider
           step={5}
@@ -72,13 +72,13 @@ function StopDrag(props) {
         </AtButton> */}
         <Button onLongPress={backPoint} onTouchEnd={stopBackPoint}>回到起点（持续按住）</Button>
         <Button onLongPress={backTrajectory} onTouchEnd={stopBackTrajectory}>回放轨迹（持续按住）</Button>
-        <AtButton type="primary" className="teach-index-button" onClick={saveTrajectory}>
+        <AtButton type="primary" className="teach-index-button" customStyle={{background:"#55d676", color: "white",border:"1px solid #39b659"}} onClick={saveTrajectory}>
           保存轨迹
         </AtButton>
         <AtButton
           type="secondary"
           className="teach-index-button"
-          customStyle={{ background: "#555555", color: "white" }}
+          customStyle={{ background: "#fff",color:"#ff463d",border:"1px solid #ff463d"}}
           onClick={giveupTrajectory}
         >
           放弃轨迹

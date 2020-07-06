@@ -33,6 +33,7 @@ function Pause() {
         <AtButton
           type="primary"
           className="teach-index-button"
+          customStyle={{background:"#55d676", color: "white",border:"1px solid #39b659"}}
           onClick={handleContinueDrag}
         >
           继续拖拽
@@ -40,7 +41,7 @@ function Pause() {
         <AtButton
           type="secondary"
           className="teach-index-button"
-          customStyle={{ background: "#555555", color: "white" }}
+          customStyle={{ background: "#fff",color:"#ff463d",border:"1px solid #ff463d"}}
           onClick={handleStopDrag}
         >
           停止拖拽

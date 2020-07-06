@@ -17,10 +17,10 @@ class SaveTrajectory extends Component {
     return (
       <View className="teach">
         <Header />
-        <View className="teach-index">
+        <View className="teach-index" style="margin-top:10vh">
           <Text>轨迹名</Text>
-          <AtInput />
-          <AtButton >保存轨迹</AtButton>
+          {/* <AtInput /> */}
+          <AtButton customStyle={{background:"#55d676", color: "white",border:"1px solid #39b659"}}>保存轨迹</AtButton>
         </View>
         <View className="emergency">
             <EmergencyStopButton />

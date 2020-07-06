@@ -31,9 +31,9 @@ class DragIndex extends Component {
           <AtButton type="primary" className="teach-index-button" onClick={this.handleStartDrag}>开始拖拽</AtButton>
           <AtButton type="secondary" className="teach-index-button" onClick={this.handlePlayback}>轨迹回放</AtButton>
         </View>
-        <View className="emergency">
+        {/* <View className="emergency">
             <EmergencyStopButton />
-        </View>
+        </View> */}
         <TeachBar />
       </View>
     );
