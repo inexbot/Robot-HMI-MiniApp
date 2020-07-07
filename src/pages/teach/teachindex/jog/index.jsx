@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { TeachBar } from "../../../../component/footer";
 import { EmergencyStopButton } from "../../../../component/buttons";
 import "./index.less";
+import { sendMSGtoController } from "../../../../service/network";
 
 const mapStateToProps = state => {
   return {
@@ -41,10 +42,15 @@ function JogIndex() {
         break;
     }
   };
-  const startJog = (value,direction) => {
+  const startJog = (axis,direction) => {
+    let jogData = {
+      axis: axis,
+      direction: direction,
+    };
     jogInterval = setInterval(() => {
-      console.log(`正在点动${value}轴的${direction}方向`);
-    }, 1000);
+      console.log(`正在点动${axis}轴的${direction}方向`);
+      sendMSGtoController("JOG_OPERATION_MOVE", jogData)
+    }, 300);
     return;
   };
   const stopJog = () => {
