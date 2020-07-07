@@ -5,6 +5,7 @@ import { AtButton } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
 import "./index.less";
+import { sendMSGtoController } from "../../service/network";
 
 class Teach extends Component {
   handleClick = (value) => {
@@ -12,6 +13,7 @@ class Teach extends Component {
     Taro.navigateTo({
       url: URL,
     });
+    sendMSGtoController("SERVO_STATUS_SET",{ww:1})
     return;
   };
 

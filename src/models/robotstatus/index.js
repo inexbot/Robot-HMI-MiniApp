@@ -71,8 +71,11 @@ export default {
     maxTorque: [2, 2, 2, 2, 2, 2],
   },
   reducers: {
-    save(state, { payload }) {
-      return { ...state, ...payload };
+    onOpen(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.count++;
+      console.log(_state.count)
+      return _state;
     },
   },
 };
