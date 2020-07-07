@@ -1,5 +1,7 @@
 import Taro from "@tarojs/taro";
 import { CommandList } from "./commandlist";
+
+var getLength = require("utf8-byte-length");
 // 发送数据到控制器,command是命令字，data是要发送的数据，data为JSON格式，command为CommandList里面的元素名
 export async function sendMSGtoController(command, data) {
   let message = [];
@@ -16,7 +18,7 @@ export async function sendMSGtoController(command, data) {
     message.push(JSON.stringify(data));
   }
 
-  Taro.sendSocketMessage({ data: message.toString() });
+  Taro.sendSocketMessage({ data: message });
   console.log("发送数据到控制器", message);
 }
 
@@ -37,11 +39,11 @@ export async function sendMSGtoServer(command, data) {
     ? console.error("发送数据为空")
     : message.push(JSON.stringify(data));
 
-  Taro.sendSocketMessage({ data: message.toString() });
+  Taro.sendSocketMessage({ data: message });
   console.log("发送到服务端", message);
 }
 // 解析收到的数据，返回的值为数组，[command,data]，command为字符串，data为json
-export async function comeMessage(message) {
+export function comeMessage(message) {
   var newArray = message.data.split(",");
   //来自控制器的数据
   if (newArray[0] === "78" && newArray[1] === "102") {
@@ -58,9 +60,7 @@ export async function comeMessage(message) {
       let co = parseFloat(command).toString(16);
       let data = dataString;
       let all = [co, data];
-      return new Promise(function (resolve, reject) {
-        resolve(all);
-      });
+      return all
     } else {
       notification.error("收到数据的长度不一致");
     }

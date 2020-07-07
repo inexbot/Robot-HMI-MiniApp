@@ -71,8 +71,125 @@ export default {
     maxTorque: [2, 2, 2, 2, 2, 2],
   },
   reducers: {
-    save(state, { payload }) {
-      return { ...state, ...payload };
+    receiveCurrentRobot(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.currentRobot = action.data.robot;
+      _state.multiRobotMode = action.data.mode;
+      sendCheckCurrentRobotState(_state.currentRobot);
+      return _state;
+    },
+    receiveRobotServoState(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.multiRobotMode = action.data.mode;
+      if (action.data.robot === _state.currentRobot) {
+        _state.currentRobotServoState = action.data.status;
+      }
+      if (action.data.status === 2) {
+        console.error(`机器人${action.data.robot}伺服报错！`);
+      }
+      return _state;
+    },
+    receiveRobotRunningState(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      if (action.data.robot === _state.currentRobot) {
+        _state.currentRobotRunningState = action.data.status;
+      }
+      return _state;
+    },
+    /* 接收机器人的速度 */
+    receiveRobotSpeed(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      let speed = action.data.speed;
+      let robot = action.data.robot;
+      if (robot === _state.currentRobot) {
+        if (_state.operaMode === 0) {
+          _state.handleSpeed = speed;
+        } else {
+          _state.runningSpeed = speed;
+        }
+      } else {
+        console.info(`机器人${robot}的速度为${speed}`);
+      }
+      return _state;
+    },
+    /* 接收当前机器人的用户坐标系 */
+    receiveCurrentUser(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      let robot = action.data.robot;
+      let user = action.data.curUserNum;
+      if (_state.currentRobot === robot) {
+        _state.currentUser = user;
+      } else {
+        console.info(`机器人${robot}的用户坐标切换为${user}`);
+      }
+      return _state;
+    },
+    /* 接收当前机器人的工具坐标系 */
+    receiveCurrentTool(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      let robot = action.data.robot;
+      let tool = action.data.curToolNum;
+      if (_state.currentRobot === robot) {
+        _state.currentTool = tool;
+      } else {
+        console.info(`机器人${robot}的用户坐标切换为${tool}`);
+      }
+      return _state;
+    },
+    /* 接收当前机器人的坐标系 */
+    receiveCurrentCoordinate(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      let robot = action.data.robot;
+      let coord = action.data.coord;
+      if (_state.currentRobot === robot) {
+        _state.currentCoordinate = coord;
+      } else {
+        console.info(`机器人${robot}的坐标系切换为${coord}`);
+      }
+      return _state;
+    },
+    /* 接收当前机器人正序运行还是倒序运行 */
+    receiveCurrentForwardOrBackward(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.currentForwardOrBackward = action.data.switch;
+      return _state;
+    },
+    /* 接收伺服编码低压报警 */
+    receiveServoEncoderUnderVoltageState(state, action) {
+      if (action.data.encoderUndervoltage === true) {
+        notification.error({
+          message: `编码器低压报警！`,
+          description: `机器人${action.data.robot}编码器低压报警！`,
+          duration: 0,
+        });
+      }
+      return state;
+    },
+    /* 接收运行次数 */
+    receiveCycleCountRespond(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.count = action.data.count;
+      _state.index = action.data.index;
+      return _state;
+    },
+    /* 设置上电返回 */
+    receiveDeadmanState(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.deadmanState = action.data.deadman;
+      return _state;
+    },
+    /* 设置模式成功 */
+    receiveSetModeSuccess(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.operaMode = action.data.mode;
+      return _state;
+    },
+    /* 接收当前位置 */
+    receiveCurrentPos(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.pos = action.data.pos;
+      _state.posDeg = action.data.posDeg;
+      return _state;
     },
   },
 };

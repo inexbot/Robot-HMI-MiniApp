@@ -148,8 +148,40 @@ export default {
   },
 
   reducers: {
-    save (state, { payload }) {
-      return { ...state, ...payload }
+    receiveDhPara(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.dhPara = action.data;
+      return _state;
+    },
+    /* 接收关节参数 */
+    receiveJointPara(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      switch (action.data.Joint.AxisNum) {
+        case 1:
+          _state.jointPara.axis1 = action.data.Joint;
+          break;
+        case 2:
+          _state.jointPara.axis2 = action.data.Joint;
+          break;
+        case 3:
+          _state.jointPara.axis3 = action.data.Joint;
+          break;
+        case 4:
+          _state.jointPara.axis4 = action.data.Joint;
+          break;
+        case 5:
+          _state.jointPara.axis5 = action.data.Joint;
+          break;
+        case 6:
+          _state.jointPara.axis6 = action.data.Joint;
+          break;
+        case 7:
+          _state.jointPara.axis7 = action.data.Joint;
+          break;
+        default:
+          break;
+      }
+      return _state;
     },
   },
 

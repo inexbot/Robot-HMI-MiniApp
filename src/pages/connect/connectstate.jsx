@@ -1,7 +1,29 @@
 import React, { useState, useEffect } from "react";
-import Taro, { onSocketOpen, onSocketError } from "@tarojs/taro";
+import Taro, { onSocketOpen, onSocketError, closeSocket } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtModal } from "taro-ui";
+import {sendMSGtoController} from "../../service/network"
+
+function checkServerState  (){
+  sendMSGtoController("CONTROLLER_IP_INQUIRE", "");
+  sendMSGtoController("CONTROLLER_ID_INQUIRE", "");
+  sendMSGtoController("CURRENT_OPERATION_MODE_INQUIRE", "");
+}
+
+function checkRobotState (){
+  let curRobot = {
+    robot:1
+  }
+  sendMSGtoController("CURRENT_ROBOT_TYPE_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_SERVO_STATE_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_RUNNING_STATE_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_SPEED_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_USER_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_TOOL_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_COORD_INQUIRE", curRobot);
+  sendMSGtoController("CURRENT_ROBOT_FB_INQUIRE", "");
+  sendMSGtoController("CURRENT_ROBOT_ENCODER_STATE_INQUIRE", curRobot);
+}
 
 function ConnectState(props) {
   const [connectState, setConnectState] = useState("正在连接...");
@@ -16,9 +38,14 @@ function ConnectState(props) {
       url: IP,
     });
   }, []);
+  
+  
   onSocketOpen(() => {
     setConnectState("连接成功");
+    checkServerState();
+    checkRobotState();
     setDisplay1("block");
+
     setTimeout(() => {
       Taro.reLaunch({ url: "/pages/teach/index" });
     }, 2000);
@@ -26,6 +53,7 @@ function ConnectState(props) {
   onSocketError((erm) => {
     setErrmsg(erm.errMsg);
     setModalOpened(true);
+    closeSocket();
   });
   const modalCancel = () => {
     Taro.reLaunch({

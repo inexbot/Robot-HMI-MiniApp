@@ -7,44 +7,111 @@ import { connect } from "react-redux";
 import { TeachBar } from "../../../../component/footer";
 import { EmergencyStopButton } from "../../../../component/buttons";
 import "./index.less";
+import { sendMSGtoController } from "../../../../service/network";
 
 const mapStateToProps = state => {
   return {
-    hh: state.robotStatus.pos
+    coordinate: state.robotStatus.currentCoordinate,
+    pos:state.robotStatus.pos
   };
 };
-function JogIndex() {
-  const [coordinate, setCoordinate] = useState("关节");
+function JogIndex(props) {
+  const [coordinate, setCoordinate] = useState(0);
   const [axis,setAxis] = useState(["J1","J2","J3","J4","J5","J6"])
   const [speed,setSpeed] = useState(12)
+  const [selected,setSelected] = useState("关节")
   const coordinateRange = ["关节", "直角", "工具", "用户"];
   const changeSpeed = val => {
     setSpeed(val);
   };
+  useEffect(() => {
+    let sendInquire;
+    sendInquire = setInterval(() => {
+      let data = {
+        robot: 1,
+        coord: props.coordinate,
+      };
+      sendMSGtoController("CURRENTPOS_INQUIRE", data);
+    }, 500);
+    return () => {
+      clearInterval(sendInquire);
+    };
+  }, [props.coordinate]);
   let jogInterval;
+  useEffect(()=>{
+    let coordinate = props.coordinate
+    switch (coordinate) {
+      case 0:
+        setSelected(coordinateRange[0]);
+        setCoordinate(0);
+        setAxis(["J1","J2","J3","J4","J5","J6"])
+        break;
+      case 1:
+        setSelected(coordinateRange[1]);
+        setCoordinate(1);
+        setAxis(["X","Y","Z","A","B","C"])
+        break;
+      case 2:
+        setSelected(coordinateRange[2]);
+        setCoordinate(2);
+        setAxis(["TX","TY","TZ","TA","TB","TC"])
+        break;
+      case 3:
+        setSelected(coordinateRange[3]);
+        setCoordinate(3);
+        setAxis(["UX","UY","UZ","UA","UB","UC"])
+        break;
+      default:
+        break;
+    }
+  },[props.coordinate])
+  useEffect(()=>{
+    console.log(props.pos)
+  },[props.pos])
   const changeCoordinate = val => {
     let value = val.currentTarget.value;
     switch (value) {
       case "0":
-        setCoordinate("关节");
+        let jointData = {
+          robot: 1,
+          coord: 0
+        };
+        sendMSGtoController("COORD_MODE_SET", jointData);
         break;
       case "1":
-        setCoordinate("直角");
+        let xyzData = {
+          robot: 1,
+          coord: 1
+        };
+        sendMSGtoController("COORD_MODE_SET", xyzData);
         break;
       case "2":
-        setCoordinate("工具");
+        let toolData = {
+          robot: 1,
+          coord: 2
+        };
+        sendMSGtoController("COORD_MODE_SET", toolData);
         break;
       case "3":
-        setCoordinate("用户");
+        let userData = {
+          robot: 1,
+          coord: 3
+        };
+        sendMSGtoController("COORD_MODE_SET", userData);
         break;
       default:
         break;
     }
   };
-  const startJog = (value,direction) => {
+  const startJog = (axis,direction) => {
+    let jogData = {
+      axis: axis,
+      direction: direction,
+    };
     jogInterval = setInterval(() => {
-      console.log(`正在点动${value}轴的${direction}方向`);
-    }, 1000);
+      console.log(`正在点动${axis}轴的${direction}方向`);
+      sendMSGtoController("JOG_OPERATION_MOVE", jogData)
+    }, 300);
     return;
   };
   const stopJog = () => {
@@ -63,10 +130,10 @@ function JogIndex() {
           style="box-shadow: 0 12rpx 24rpx rgba(96, 146, 229, 0.2);
           margin: 24px 0;
           border-radius: 12px;"
+          value={coordinate}
         >
-          <Text style="background:rgba(255,255,255,0);line-height:40px;margin-left:5vw;">切换坐标系</Text>
           <AtList style="padding:5vw;font-weight:600">
-            <AtListItem extraText={coordinate}/>
+            <AtListItem extraText={selected}/>
           </AtList>
         </Picker>
         <View style="margin: 24px 5vw">
