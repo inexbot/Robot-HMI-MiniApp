@@ -30,7 +30,7 @@ export default {
     runningSpeed: 1,
     currentUser: 1,
     currentTool: 1,
-    currentCoordinate: 0,
+    currentCoordinate: 1,
     currentForwardOrBackward: false,
     pos: [
       2,
@@ -47,7 +47,7 @@ export default {
       99,
       0,
       0,
-      0
+      0,
     ],
     deg: 0,
     posDeg: [0, 0, 0, 0, 0, 0, 0],
@@ -66,11 +66,13 @@ export default {
     robot3OpenedProgram: false,
     robot3CurrentProgram: "",
     robot4OpenedProgram: false,
-    robot4CurrentProgram: ""
+    robot4CurrentProgram: "",
+    currentTorque: [1, 1, 1, 1, 1, 1],
+    maxTorque: [2, 2, 2, 2, 2, 2],
   },
   reducers: {
     save(state, { payload }) {
       return { ...state, ...payload };
-    }
-  }
+    },
+  },
 };
