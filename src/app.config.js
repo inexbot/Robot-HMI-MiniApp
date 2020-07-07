@@ -54,30 +54,12 @@ export default {
     {
       root: "pages/setup/setupindex",
       name: "设置页面",
-      pages: [
-        "about",
-        "cartesian",
-        "connect",
-        "dh",
-        "force",
-        "joint",
-        "net",
-        "safe",
-        "slave",
-      ],
+      pages: ["about", "cartesian", "connect", "dh", "force", "joint", "safe"],
     },
     {
       root: "pages/teach/teachindex",
       name: "示教页面",
-      pages: [
-        "drag/index",
-        "drag/dragprocess/draging",
-        "drag/dragprocess/pause",
-        "drag/dragprocess/save",
-        "drag/dragprocess/stop",
-        "drag/playback/index",
-        "jog/index",
-      ],
+      pages: ["drag/index", "drag/playback/index", "jog/index"],
     },
   ],
 };
