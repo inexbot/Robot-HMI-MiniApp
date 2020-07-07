@@ -21,7 +21,7 @@ class Teach extends Component {
         <Header />
         <Text className="title-top">操作</Text>
         <View style="display:flex;flew-warp:warp;">
-        <View className="teach-index1">
+        <View className="teach-index1"  >
           <AtButton
             type="secondary"
             className="teach-index-button"
