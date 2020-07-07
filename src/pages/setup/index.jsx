@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View,Text } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
@@ -22,7 +22,8 @@ class SetUp extends Component {
     return (
       <View className="setup">
         <Header />
-        <View className="setup-index">
+        <View className="setup-index" style="margin-top:10vh">
+        <Text style="line-height:2;font-weight:600;margin-left:10vw">参数设置</Text>
           <AtList>
             <AtListItem title="机器人参数" className="setup-index-list-title" />
             <AtListItem

@@ -117,6 +117,11 @@ function DragIndex() {
           background: "#55d676",
           color: "white",
           border: "1px solid #39b659",
+          width: "180px",
+          height: "180px",
+          borderRadius: 90,
+          fontSize: "18px",
+          padding: 70,
         }}
         onClick={handleContinueDrag}
       >

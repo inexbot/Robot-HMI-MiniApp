@@ -50,8 +50,8 @@ function ProjectIndex(props) {
   }, [props.projectList]);
   return (
     <ScrollView className="program-index">
-      <AtIndexes list={list} onClick={onClick.bind(this)} isVibrate={false}>
-        <View>工程列表</View>
+      <AtIndexes list={list} onClick={onClick.bind(this)} isVibrate={false} customStyle="margin-top:10vh">
+        <View style="margin-left:5vw;margin-bottom:1vh">工程列表</View>
       </AtIndexes>
     </ScrollView>
   );
