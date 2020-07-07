@@ -53,16 +53,18 @@ function JogIndex() {
   return (
     <View className="jog">
       <Header />
-      <View className="jog-index">
+      <View className="jog-index" style="margin-top:10vh">
+      {/* <Image src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/exchange.png" customStyle="width:64px;height:64px" alt="" mode='aspectFit' /> */}
         <Picker
           mode="selector"
           range={coordinateRange}
           onChange={changeCoordinate}
         >
-          <AtList>
-            <AtListItem title="坐标系" extraText={coordinate} />
+          <AtList style="padding:5vw;font-weight:600">
+            <AtListItem title="切换坐标系" extraText={coordinate} />
           </AtList>
         </Picker>
+        <View style="margin: 24px 5vw">
         <Text>速度：{speed}</Text>
         <AtSlider
           step={5}
@@ -73,6 +75,7 @@ function JogIndex() {
           blockSize={24}
           onChange={changeSpeed}
         ></AtSlider>
+        </View>
         <View className="jog-index-buttons">
           <View className="jog-index-buttons-single">
             <Button className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,1,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</Button>
@@ -108,6 +111,8 @@ function JogIndex() {
       </View>
       <View className="emergency">
         <EmergencyStopButton />
+      </View>
+      <View style="height:40px">
       </View>
       <TeachBar />
     </View>

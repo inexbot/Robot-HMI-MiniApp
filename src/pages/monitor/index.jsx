@@ -17,6 +17,7 @@ class Monitor extends Component {
     return (
       <View className="monitor">
         <Header />
+        {/* <Text className="title-top">操作</Text> */}
         <View className="monitor-buttons">
           <AtButton
             type="secondary"
