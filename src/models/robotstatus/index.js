@@ -108,7 +108,7 @@ export default {
           _state.runningSpeed = speed;
         }
       } else {
-        showMessage.info(`机器人${robot}的速度为${speed}`);
+        console.info(`机器人${robot}的速度为${speed}`);
       }
       return _state;
     },
@@ -120,7 +120,7 @@ export default {
       if (_state.currentRobot === robot) {
         _state.currentUser = user;
       } else {
-        showMessage.info(`机器人${robot}的用户坐标切换为${user}`);
+        console.info(`机器人${robot}的用户坐标切换为${user}`);
       }
       return _state;
     },
@@ -132,7 +132,7 @@ export default {
       if (_state.currentRobot === robot) {
         _state.currentTool = tool;
       } else {
-        showMessage.info(`机器人${robot}的用户坐标切换为${tool}`);
+        console.info(`机器人${robot}的用户坐标切换为${tool}`);
       }
       return _state;
     },
@@ -144,7 +144,7 @@ export default {
       if (_state.currentRobot === robot) {
         _state.currentCoordinate = coord;
       } else {
-        showMessage.info(`机器人${robot}的坐标系切换为${coord}`);
+        console.info(`机器人${robot}的坐标系切换为${coord}`);
       }
       return _state;
     },
@@ -187,8 +187,8 @@ export default {
     /* 接收当前位置 */
     receiveCurrentPos(state, action) {
       let _state = JSON.parse(JSON.stringify(state));
-      _state.robotStatus.pos = action.data.pos;
-      _state.robotStatus.posDeg = action.data.posDeg;
+      _state.pos = action.data.pos;
+      _state.posDeg = action.data.posDeg;
       return _state;
     },
   },

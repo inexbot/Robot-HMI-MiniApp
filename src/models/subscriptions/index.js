@@ -17,7 +17,7 @@ export default {
             command = data[0];
             let dataString;
             if (data[1] === undefined) {
-              showMessage.error(`接收到空数据，命令字为${command}`);
+              console.error(`接收到空数据，命令字为${command}`);
               return;
             }
             if (data[1] === "") {
@@ -183,7 +183,7 @@ export default {
                 break;
               // 如果命令字没有查询到
               default:
-                showMessage.error("接收到错误信息");
+                console.error("接收到错误信息");
                 console.error(
                   `数据格式异常。\n 完整信息：${message} \n 命令字：${command} \n 数据：${dataString}`
                 );

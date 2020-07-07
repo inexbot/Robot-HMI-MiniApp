@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Taro, { onSocketOpen, onSocketError } from "@tarojs/taro";
+import Taro, { onSocketOpen, onSocketError, closeSocket } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtModal } from "taro-ui";
 import {sendMSGtoController} from "../../service/network"
@@ -53,6 +53,7 @@ function ConnectState(props) {
   onSocketError((erm) => {
     setErrmsg(erm.errMsg);
     setModalOpened(true);
+    closeSocket();
   });
   const modalCancel = () => {
     Taro.reLaunch({

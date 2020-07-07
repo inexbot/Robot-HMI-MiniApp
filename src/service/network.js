@@ -1,5 +1,7 @@
 import Taro from "@tarojs/taro";
 import { CommandList } from "./commandlist";
+
+var getLength = require("utf8-byte-length");
 // 发送数据到控制器,command是命令字，data是要发送的数据，data为JSON格式，command为CommandList里面的元素名
 export async function sendMSGtoController(command, data) {
   let message = [];
@@ -58,9 +60,7 @@ export function comeMessage(message) {
       let co = parseFloat(command).toString(16);
       let data = dataString;
       let all = [co, data];
-      return new Promise(function (resolve, reject) {
-        resolve(all);
-      });
+      return all
     } else {
       notification.error("收到数据的长度不一致");
     }

@@ -13,7 +13,6 @@ class Teach extends Component {
     Taro.navigateTo({
       url: URL,
     });
-    sendMSGtoController("SERVO_STATUS_SET",{ww:1})
     return;
   };
 
