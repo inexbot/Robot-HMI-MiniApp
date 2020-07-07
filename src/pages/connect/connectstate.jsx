@@ -1,24 +1,55 @@
 import React, { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { onSocketOpen, onSocketError } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
+import { AtModal } from "taro-ui";
 
 function ConnectState(props) {
   const [connectState, setConnectState] = useState("正在连接...");
   const [display1, setDisplay1] = useState("none");
   const [display2, setDisplay2] = useState("none");
+  const [errmsg, setErrmsg] = useState("");
+  const [modalOpened, setModalOpened] = useState(false);
+  let IP = "ws://" + props.ip + ":" + props.port;
   useEffect(() => {
-    let IP = "ws://" + props.ip + ":" + props.port;
     console.log(IP);
     Taro.connectSocket({
       url: IP,
     });
+  }, []);
+  onSocketOpen(() => {
+    setConnectState("连接成功");
+    setDisplay1("block");
     setTimeout(() => {
       Taro.reLaunch({ url: "/pages/teach/index" });
     }, 2000);
-  }, []);
+  });
+  onSocketError((erm) => {
+    setErrmsg(erm.errMsg);
+    setModalOpened(true);
+  });
+  const modalCancel = () => {
+    Taro.reLaunch({
+      url: "/pages/index/index",
+    });
+  };
+  const modalConfirm = () => {
+    Taro.reLaunch({ url: "/pages/teach/index" });
+  };
   return (
     <View>
-      <View>{connectState}</View>
+      <AtModal
+        content={`连接失败\n${errmsg}\n是否无连接试用？`}
+        isOpened={modalOpened}
+        confirmText="试用"
+        closeOnClickOverlay={false}
+        cancelText="返回重连"
+        onCancel={modalCancel}
+        onConfirm={modalConfirm}
+      />
+      <View>
+        {connectState}
+        {IP}
+      </View>
       <View style={{ display: display1 }}>
         <Text>正在获取数据...</Text>
       </View>
