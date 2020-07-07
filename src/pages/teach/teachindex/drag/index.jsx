@@ -87,14 +87,25 @@ function DragIndex() {
 
   const Draging = (
     <View className="teach-index">
-      <AtButton
-        type="primary"
-        className="teach-index-button"
-        customStyle={{ background: "#555555", color: "white" }}
-        onClick={handlePauseButton}
-      >
-        暂停拖拽
-      </AtButton>
+      <View className="teach-circle">
+        <AtButton
+          type="primary"
+          className="teach-index-button"
+          customStyle={{
+            background: "#fff",
+            color: "#ff463d",
+            border: "1px solid #ff463d",
+            width: "180px",
+            height: "180px",
+            borderRadius: 90,
+            fontSize: "18px",
+            padding: 70,
+          }}
+          onClick={handlePauseButton}
+        >
+          暂停拖拽
+        </AtButton>
+      </View>
     </View>
   );
   const Pause = (
@@ -102,6 +113,11 @@ function DragIndex() {
       <AtButton
         type="primary"
         className="teach-index-button"
+        customStyle={{
+          background: "#55d676",
+          color: "white",
+          border: "1px solid #39b659",
+        }}
         onClick={handleContinueDrag}
       >
         继续拖拽
@@ -109,7 +125,11 @@ function DragIndex() {
       <AtButton
         type="secondary"
         className="teach-index-button"
-        customStyle={{ background: "#555555", color: "white" }}
+        customStyle={{
+          background: "#fff",
+          color: "#ff463d",
+          border: "1px solid #ff463d",
+        }}
         onClick={handleStopDrag}
       >
         停止拖拽
@@ -117,14 +137,22 @@ function DragIndex() {
     </View>
   );
   const Save = (
-    <View className="teach-index">
+    <View className="teach-index" style="margin-top:10vh">
       <Text>轨迹名</Text>
-      <AtInput />
-      <AtButton>保存轨迹</AtButton>
+      {/* <AtInput /> */}
+      <AtButton
+        customStyle={{
+          background: "#55d676",
+          color: "white",
+          border: "1px solid #39b659",
+        }}
+      >
+        保存轨迹
+      </AtButton>
     </View>
   );
   const Stop = (
-    <View className="teach-index">
+    <View className="teach-index" style="margin-top:10vh">
       <Text>速度：{speed}</Text>
       <AtSlider
         step={5}
@@ -136,8 +164,8 @@ function DragIndex() {
         onChange={changeSpeed}
       ></AtSlider>
       {/* <AtButton type="primary" className="teach-index-button" onLongPress={backPoint} >
-  回到起点（持续按住）
-  </AtButton> */}
+        回到起点（持续按住）
+        </AtButton> */}
       <Button onLongPress={backPoint} onTouchEnd={stopBackPoint}>
         回到起点（持续按住）
       </Button>
@@ -147,6 +175,11 @@ function DragIndex() {
       <AtButton
         type="primary"
         className="teach-index-button"
+        customStyle={{
+          background: "#55d676",
+          color: "white",
+          border: "1px solid #39b659",
+        }}
         onClick={saveTrajectory}
       >
         保存轨迹
@@ -154,7 +187,11 @@ function DragIndex() {
       <AtButton
         type="secondary"
         className="teach-index-button"
-        customStyle={{ background: "#555555", color: "white" }}
+        customStyle={{
+          background: "#fff",
+          color: "#ff463d",
+          border: "1px solid #ff463d",
+        }}
         onClick={giveupTrajectory}
       >
         放弃轨迹

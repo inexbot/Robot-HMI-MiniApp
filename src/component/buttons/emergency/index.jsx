@@ -7,7 +7,7 @@ function EmergencyStopButton (){
         return;
     }
     return(
-        <AtButton onClick={emergencyStop} customStyle={{background:"red"}}>紧急停止</AtButton>
+        <AtButton onClick={emergencyStop} customStyle={{background:"#ff483f",border:"1px solid #ff463d" ,width:"90vw",marginLeft:"5vw",color:"#ffffff"}}>紧急停止</AtButton>
     )
 }
 export default EmergencyStopButton
