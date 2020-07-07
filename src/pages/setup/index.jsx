@@ -4,6 +4,7 @@ import { View,Text } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
@@ -23,8 +24,7 @@ class SetUp extends Component {
       <View className="setup">
         <Header />
         <View className="setup-index" style="margin-top:10vh">
-        <Text style="line-height:2;font-weight:600;margin-left:10vw">参数设置</Text>
-          <AtList>
+          <AtList className="at-list">
             <AtListItem title="机器人参数" className="setup-index-list-title" />
             <AtListItem
               title="DH参数"
@@ -56,6 +56,8 @@ class SetUp extends Component {
               arrow="right"
               onClick={this.handleClick.bind(this, "cartesian")}
             />
+            </AtList>
+            <AtList className="at-list">
             <AtListItem title="系统" className="setup-index-list-title" />
             <AtListItem
               title="连接设置"
@@ -63,6 +65,8 @@ class SetUp extends Component {
               arrow="right"
               onClick={this.handleClick.bind(this, "connect")}
             />
+            </AtList>
+            <AtList className="at-list">
             <AtListItem
               title="关于"
               className="setup-index-list-title"

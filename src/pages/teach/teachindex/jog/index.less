@@ -1,14 +1,43 @@
-.jog-index-buttons {
-    margin-left: auto;
-    margin-right: auto;
-}
-.jog-index-buttons-single{
-    display: flex;
-    flex-flow: row;
-    margin-top: 1vh;
-   margin-bottom: 3vh;
-}
+.jog-index{
+    .at-list__item{
+        border-top: 1px solid #4088f0;
+        border-bottom: 1px solid #4088f0;
+    }
+    .at-list__item-extra{
+        width: 100vw;
+        text-align: center;
+        max-width: none;
+        line-height: 2;
+    }
 
-.jog-index-buttons-single-button{
-    line-height: 2;
+    .item-extra__info{
+        color: #4088f0;
+        // color: #fff;
+        font-size: 40px
+    }
+
+    .jog-index-buttons {
+
+        .jog-index-text {
+          line-height: 2;
+          padding: 1vh 10vw;
+          font-size: 32px;
+        }
+      
+        .jog-index-buttons-single {
+          display: flex;
+          flex-flow: row;
+          margin-top: 1vh;
+          margin-bottom: 3vh;
+          justify-content: center;
+        }
+      
+        .jog-index-buttons-single-button {
+          line-height: 2;
+          padding: 0 5vw;
+          font-size: 48px;
+          border: 1px solid #4088f0;
+          border-radius: 20px;
+        }
+      }
 }
