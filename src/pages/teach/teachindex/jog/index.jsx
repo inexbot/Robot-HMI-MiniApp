@@ -66,9 +66,13 @@ function JogIndex() {
           mode="selector"
           range={coordinateRange}
           onChange={changeCoordinate}
+          style="box-shadow: 0 12rpx 24rpx rgba(96, 146, 229, 0.2);
+          margin: 24px 0;
+          border-radius: 12px;"
         >
+          <Text style="background:rgba(255,255,255,0);line-height:40px;margin-left:5vw;">切换坐标系</Text>
           <AtList style="padding:5vw;font-weight:600">
-            <AtListItem title="切换坐标系" extraText={coordinate} />
+            <AtListItem extraText={coordinate}/>
           </AtList>
         </Picker>
         <View style="margin: 24px 5vw">
@@ -86,32 +90,32 @@ function JogIndex() {
         <View className="jog-index-buttons">
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,1,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[0]}</Text>
+            <Text className="jog-index-text">{axis[0]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,1,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,2,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[1]}</Text>
+            <Text className="jog-index-text">{axis[1]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,2,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,3,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[2]}</Text>
+            <Text className="jog-index-text">{axis[2]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,3,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,4,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[3]}</Text>
+            <Text className="jog-index-text">{axis[3]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,4,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,5,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[4]}</Text>
+            <Text className="jog-index-text">{axis[4]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,5,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
           <View className="jog-index-buttons-single">
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,6,-1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>-</View>
-            <Text>{axis[5]}</Text>
+            <Text className="jog-index-text">{axis[5]}</Text>
             <View className="jog-index-buttons-single-button" onLongPress={startJog.bind(this,6,1)} onTouchCancel={stopJog} onTouchEnd={stopJog}>+</View>
           </View>
         </View>
