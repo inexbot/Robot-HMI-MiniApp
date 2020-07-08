@@ -4,3 +4,12 @@ deploy_versions/
 .rn_temp/
 node_modules/
 .DS_Store
+document/.DS_Store
+document/Thumbs.db
+document/db.json
+document/*.log
+document/node_modules/
+document/.deploy*/
+document/themes/Acetolog/node_modules
+document/themes/Acetolog/yarn.lock
+document/themes/Acetolog/acelog.js.map
