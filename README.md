@@ -3,6 +3,8 @@
 ## 介绍
 
 专用于协作机器人的小程序。
+开发Blog在此。一些说明后面也会详细写。
+[点击这里](https://inexbot.github.io/Robot-HMI-MiniApp)
 
 ### 软件架构
 
