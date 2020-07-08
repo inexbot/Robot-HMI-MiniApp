@@ -12,6 +12,6 @@ reward: false
 
 ## 二维码
 
-<img src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/other/miniappcode.jpg" alt="二维码" width=100 height=100>
+<img src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/other/miniappcode.jpg" alt="二维码" width=100 />
 
 }
