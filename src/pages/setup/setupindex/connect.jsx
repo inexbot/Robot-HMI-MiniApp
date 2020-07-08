@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Taro from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View,Text } from "@tarojs/components";
 import Header from "../../../component/header";
 import { connect } from "react-redux";
 import "./index.less";
@@ -31,13 +31,14 @@ function ConnectPara(props) {
   return (
     <View className="setup">
       <Header />
+      <Text className="title_top1">连接设置</Text>
       <View className="setup-index">
         <AtList>
           <AtListItem title="ID" extraText={controllerID} />
           <AtListItem title="IP" extraText={connectIP} />
           <AtListItem title="端口" extraText={connectPort} />
         </AtList>
-        <AtButton onClick={closeSocket}>退出重连</AtButton>
+        <AtButton onClick={closeSocket} className="reconnect">退出重连</AtButton>
       </View>
     </View>
   );

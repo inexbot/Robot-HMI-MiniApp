@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View } from "@tarojs/components";
+import { View, Text } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { connect } from "react-redux";
 import Header from "../../../component/header";
@@ -79,6 +79,7 @@ function PositionMonitor(props) {
     <View className="monitor">
       <Header />
       <View className="monitor-index">
+        <Text className="title_top">位置</Text>
         <AtList>
           <AtListItem title={a1} extraText={one} />
           <AtListItem title={a2} extraText={two} />
