@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://mintotea.gitee.io/h5project
-root: /h5project
+url: https://inexbot.github.io/Robot-HMI-MiniApp/
+root: /Robot-HMI-MiniApp
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -23,7 +23,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: public
+public_dir: ../docs
 tag_dir: tags
 archive_dir: archives
 category_dir: categories

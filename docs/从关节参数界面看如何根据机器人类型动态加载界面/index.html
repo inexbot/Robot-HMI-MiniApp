@@ -24,7 +24,7 @@
     <meta name="description" content="前提 根据机器人类型不同，其所带的轴数也不同。关节参数界面需要根据机器人的轴数来动态渲染当前界面中的轴数。  说明 使用到了 AntD 提供的 Tabs 组件来实现轴 1-轴 7 的参数展示与修改。  思路 封装 TabPane 组件 -&gt; 通过轴的个数决定有多少个 TabPane -&gt; 每一个 TabPane 中的空间，如输入框，它们的标签都应该与轴相关  那么基于以上，我们可以确定需要使用到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从关节参数界面看如何根据机器人类型动态加载界面">
-<meta property="og:url" content="http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/">
+<meta property="og:url" content="https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/">
 <meta property="og:site_name" content="Inexbot NexDroid MiniApp">
 <meta property="og:description" content="前提 根据机器人类型不同，其所带的轴数也不同。关节参数界面需要根据机器人的轴数来动态渲染当前界面中的轴数。  说明 使用到了 AntD 提供的 Tabs 组件来实现轴 1-轴 7 的参数展示与修改。  思路 封装 TabPane 组件 -&gt; 通过轴的个数决定有多少个 TabPane -&gt; 每一个 TabPane 中的空间，如输入框，它们的标签都应该与轴相关  那么基于以上，我们可以确定需要使用到">
 <meta property="og:locale" content="zh_CN">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="二次开发">
 <meta name="twitter:card" content="summary">
     
-    <link rel="shortcut icon" href="/h5project/favicon.ico">
+    <link rel="shortcut icon" href="/Robot-HMI-MiniApp/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
@@ -52,10 +52,10 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/h5project/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/Robot-HMI-MiniApp/img/brand.jpg)">
       <div class="brand">
-        <a href="/h5project/about" class="avatar waves-effect waves-circle waves-light">
-          <img src="/h5project/img/avatar.png">
+        <a href="/Robot-HMI-MiniApp/about" class="avatar waves-effect waves-circle waves-light">
+          <img src="/Robot-HMI-MiniApp/img/avatar.png">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">inexbot</h5>
@@ -67,35 +67,35 @@
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/h5project/"  >
+              <a href="/Robot-HMI-MiniApp/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/h5project/tags"  >
+              <a href="/Robot-HMI-MiniApp/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 标签检索
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/h5project/schedule"  >
+              <a href="/Robot-HMI-MiniApp/schedule"  >
                 <i class="icon icon-lg icon-calendar"></i>
                 项目进度
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/h5project/demo"  >
+              <a href="/Robot-HMI-MiniApp/demo"  >
                 <i class="icon icon-lg icon-download"></i>
                 演示下载
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/h5project/archives"  >
+              <a href="/Robot-HMI-MiniApp/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 所有文档
               </a>
@@ -226,8 +226,8 @@
     </div>
     
     <footer>
-        <a href="http://mintotea.gitee.io/h5project">
-            <img src="/h5project/img/avatar.png" alt="inexbot">
+        <a href="https://inexbot.github.io/Robot-HMI-MiniApp">
+            <img src="/Robot-HMI-MiniApp/img/avatar.png" alt="inexbot">
             inexbot
         </a>
     </footer>
@@ -238,7 +238,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/h5project/tags/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag">二次开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/h5project/tags/%E8%AF%B4%E6%98%8E/" rel="tag">说明</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Robot-HMI-MiniApp/tags/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag">二次开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Robot-HMI-MiniApp/tags/%E8%AF%B4%E6%98%8E/" rel="tag">说明</a></li></ul>
 
 
             
@@ -248,7 +248,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&pic=http://mintotea.gitee.io/h5project/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&pic=https://inexbot.github.io/Robot-HMI-MiniApp/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -258,7 +258,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&source=前提
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&source=前提
 根据机器人类型不同，其所带的轴数也不同。关节参数界面需要根据机器人的轴数来动态渲染当前界面中的轴数。
 
 说明
@@ -267,17 +267,17 @@
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&via=http://mintotea.gitee.io/h5project" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&via=https://inexbot.github.io/Robot-HMI-MiniApp" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -302,7 +302,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/h5project/%E6%9D%83%E9%99%90%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="post-next" class="post-nav-link">
+      <a href="/Robot-HMI-MiniApp/%E6%9D%83%E9%99%90%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">权限的实现</h4>
       </a>
@@ -398,7 +398,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&pic=http://mintotea.gitee.io/h5project/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&pic=https://inexbot.github.io/Robot-HMI-MiniApp/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -408,7 +408,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&source=前提
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&title=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&source=前提
 根据机器人类型不同，其所带的轴数也不同。关节参数界面需要根据机器人的轴数来动态渲染当前界面中的轴数。
 
 说明
@@ -417,17 +417,17 @@
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&via=http://mintotea.gitee.io/h5project" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从关节参数界面看如何根据机器人类型动态加载界面》 — Inexbot NexDroid MiniApp&url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/&via=https://inexbot.github.io/Robot-HMI-MiniApp" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://mintotea.gitee.io/h5project/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://inexbot.github.io/Robot-HMI-MiniApp/%E4%BB%8E%E5%85%B3%E8%8A%82%E5%8F%82%E6%95%B0%E7%95%8C%E9%9D%A2%E7%9C%8B%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%B1%BB%E5%9E%8B%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -438,7 +438,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,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" alt="微信分享二维码">
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
 </div>
 
 
@@ -446,7 +446,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/h5project/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/Robot-HMI-MiniApp/', SHARE: true, REWARD: false };
 
 
 </script>
