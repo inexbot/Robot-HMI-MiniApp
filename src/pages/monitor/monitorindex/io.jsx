@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
 import { connect } from "react-redux";
+import "../index.less";
 
 const mapStateToProps = (state) => {
   return {
