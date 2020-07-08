@@ -78,10 +78,10 @@ function ConnectState(props) {
         {connectState}
         {IP}
       </View>
-      <View style={{ display: display1 }}>
+      <View style={{ display: display1 ,textAlign:center,marginTop:"10vh"}} >
         <Text>正在获取数据...</Text>
       </View>
-      <View style={{ display: display2 }}>
+      <View style={{ display: display2 ,textAlign:center,marginTop:"10vh"}}>
         <Text>获取成功</Text>
         <Text>正在跳转</Text>
       </View>
