@@ -3,6 +3,13 @@ import Taro, { onSocketOpen, onSocketError, closeSocket } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtModal } from "taro-ui";
 import {sendMSGtoController} from "../../service/network"
+import {connect} from "react-redux"
+
+const mapStateToProps = (state) => {
+  return {
+    connected: state.localState.connected,
+  };
+};
 
 function checkServerState  (){
   sendMSGtoController("CONTROLLER_IP_INQUIRE", "");
@@ -39,13 +46,15 @@ function ConnectState(props) {
     });
   }, []);
   
-  
   onSocketOpen(() => {
     setConnectState("连接成功");
     checkServerState();
     checkRobotState();
     setDisplay1("block");
-
+    props.dispatch({
+      type:"localState/setConnected",
+      data:1
+    });
     setTimeout(() => {
       Taro.reLaunch({ url: "/pages/teach/index" });
     }, 2000);
@@ -89,4 +98,4 @@ function ConnectState(props) {
   );
 }
 
-export default ConnectState;
+export default connect(mapStateToProps)(ConnectState);
