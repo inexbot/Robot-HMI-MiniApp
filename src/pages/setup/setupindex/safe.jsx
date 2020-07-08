@@ -28,11 +28,18 @@ function SafePara(props) {
   const [firDinSeletedNum, setFirDinSelectedNum] = useState(1);
   const [firDoutSelected, setFirDoutSelected] = useState("DOUT1-2");
   const [firDoutSeletedNum, setFirDoutSelectedNum] = useState(1);
+  const [firMaxSpeed, setFirMaxSpeed] = useState("100");
+  const [firMaxSpeedNum, setFirMaxSpeedNum] = useState(1);
+  
 
   const [secDinSelected, setSecDinSelected] = useState("DIN1-2");
   const [secDinSeletedNum, setSecDinSelectedNum] = useState(1);
   const [secDoutSelected, setSecDoutSelected] = useState("DOUT1-2");
   const [secDoutSeletedNum, setSecDoutSelectedNum] = useState(1);
+  const [secMaxSpeed, setSecMaxSpeed] = useState("100");
+  const [secMaxSpeedNum, setSecMaxSpeedNum] = useState(1);
+
+  const  maxSpeedRange = ['100', '500', '800'];
 
   useEffect(() => {
     let din = props.dinStatus;
@@ -83,9 +90,10 @@ function SafePara(props) {
   return (
     <View className="setup">
       <Header />
+      <Text className="title_top1">安全参数</Text>
       <View className="setup-index">
-        <AtForm>
-          <Text id="setup-h1">第一级减速设置</Text>
+        <AtForm className="setup-safe">
+          <Text className="title_top">第一级减速设置</Text>
           <AtSwitch title="开启" checked={firUse} />
           <Picker mode="selector" range={dinRange} value={firDinSeletedNum}>
             <AtList>
@@ -97,12 +105,14 @@ function SafePara(props) {
               <AtListItem title="生效输出DOUT" extraText={firDoutSelected} />
             </AtList>
           </Picker>
-          <AtInput name="firMaxSpeed" title="空间最大速度" confirmType="保存">
-            mm/s
-          </AtInput>
+          <Picker mode="selector" range={maxSpeedRange} value={firMaxSpeedNum}>
+            <AtList>
+              <AtListItem title="空间最大速度" extraText={firMaxSpeed} />
+            </AtList>
+          </Picker>
         </AtForm>
-        <AtForm>
-          <Text id="setup-h1">第二级减速设置</Text>
+        <AtForm className="setup-safe">
+          <Text className="title_top">第二级减速设置</Text>
           <AtSwitch title="开启" checked={secUse} />
           <Picker mode="selector" range={dinRange} value={secDinSeletedNum}>
             <AtList>
@@ -114,9 +124,11 @@ function SafePara(props) {
               <AtListItem title="生效输出DOUT" extraText={secDoutSelected} />
             </AtList>
           </Picker>
-          <AtInput name="secMaxSpeed" title="空间最大速度" confirmType="保存">
-            mm/s
-          </AtInput>
+          <Picker mode="selector" range={maxSpeedRange} value={secMaxSpeedNum}>
+            <AtList>
+              <AtListItem title="空间最大速度" extraText={secMaxSpeed} />
+            </AtList>
+          </Picker>
         </AtForm>
       </View>
     </View>
