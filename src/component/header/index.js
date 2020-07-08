@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image } from "@tarojs/components";
 import { connect } from "react-redux";
 import "./index.less";
+import { sendMSGtoController } from "../../service/network";
 const mapStateToProps = (state) => {
   return {
     connected: state.localState.connected,
@@ -37,10 +38,13 @@ function Header(props) {
         setServoStatusCircle("#dddddd");
         break;
       case 1:
-        setServoStatusCircle("green");
+        setServoStatusCircle("yellow");
         break;
       case 2:
         setServoStatusCircle("red");
+        break;
+      case 3:
+        setServoStatusCircle("green");
         break;
       default:
         break;
@@ -53,6 +57,41 @@ function Header(props) {
       setDeadmanStatusCircle("green");
     }
   }, [props.deadmanState]);
+  const clickServo = () => {
+    if (servoStatusCircle === "#dddddd") {
+      let servoData1 = {
+        robot: 1,
+        status: 1,
+      };
+      sendMSGtoController("SERVO_STATUS_SET", servoData1);
+    } else if (servoStatusCircle === "yellow") {
+      let servoData2 = {
+        robot: 1,
+        status: 0,
+      };
+      sendMSGtoController("SERVO_STATUS_SET", servoData2);
+    } else if (servoStatusCircle === "red") {
+      let servoData3 = {
+        robot: 1,
+      };
+      sendMSGtoController("FAULT_RESET", servoData3);
+    }
+  };
+  const clickDeadman = () => {
+    if (deadmanStatusCircle === "#dddddd") {
+      let deadmanData = {
+        deadman: 1,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+      setDeadmanStatusCircle("green");
+    } else if (deadmanStatusCircle === "green") {
+      let deadmanData1 = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData1);
+      setDeadmanStatusCircle("#dddddd");
+    }
+  };
   return (
     <View className="header">
       <View className="status">
@@ -69,7 +108,7 @@ function Header(props) {
             style={{ background: connectStatusCircle }}
           ></View>
         </View>
-        <View className="status-con">
+        <View className="status-con" onClick={clickServo}>
           <Image
             src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/servo.png"
             className="icon"
@@ -82,7 +121,7 @@ function Header(props) {
             style={{ background: servoStatusCircle }}
           ></View>
         </View>
-        <View className="status-con">
+        <View className="status-con" onClick={clickDeadman}>
           <Image
             src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/power.png"
             className="icon"
@@ -104,10 +143,6 @@ function Header(props) {
           />
           {/* <Text>速度</Text> */}
           <Text>30%</Text>
-          <View
-            className="circle-status"
-            style={{ background: deadmanStatusCircle }}
-          ></View>
         </View>
       </View>
     </View>
