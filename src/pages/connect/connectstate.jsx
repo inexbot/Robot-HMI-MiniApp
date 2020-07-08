@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Taro, { onSocketOpen, onSocketError, closeSocket } from "@tarojs/taro";
+import Taro from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtModal } from "taro-ui";
-import {sendMSGtoController} from "../../service/network"
-import {connect} from "react-redux"
+import { sendMSGtoController } from "../../service/network";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,16 +11,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-function checkServerState  (){
+function checkServerState() {
   sendMSGtoController("CONTROLLER_IP_INQUIRE", "");
   sendMSGtoController("CONTROLLER_ID_INQUIRE", "");
   sendMSGtoController("CURRENT_OPERATION_MODE_INQUIRE", "");
 }
 
-function checkRobotState (){
+function checkRobotState() {
   let curRobot = {
-    robot:1
-  }
+    robot: 1,
+  };
   sendMSGtoController("CURRENT_ROBOT_TYPE_INQUIRE", curRobot);
   sendMSGtoController("CURRENT_ROBOT_SERVO_STATE_INQUIRE", curRobot);
   sendMSGtoController("CURRENT_ROBOT_RUNNING_STATE_INQUIRE", curRobot);
@@ -45,24 +45,31 @@ function ConnectState(props) {
       url: IP,
     });
   }, []);
-  
-  onSocketOpen(() => {
+
+  Taro.onSocketOpen(() => {
     setConnectState("连接成功");
     checkServerState();
     checkRobotState();
     setDisplay1("block");
     props.dispatch({
-      type:"localState/setConnected",
-      data:1
+      type: "localState/setConnected",
+      data: 1,
+    });
+    props.dispatch({
+      type: "controllerConfig/setConnect",
+      data: {
+        ip: props.ip,
+        port: props.port,
+      },
     });
     setTimeout(() => {
       Taro.reLaunch({ url: "/pages/teach/index" });
     }, 2000);
   });
-  onSocketError((erm) => {
+  Taro.onSocketError((erm) => {
     setErrmsg(erm.errMsg);
     setModalOpened(true);
-    closeSocket();
+    Taro.closeSocket();
   });
   const modalCancel = () => {
     Taro.reLaunch({

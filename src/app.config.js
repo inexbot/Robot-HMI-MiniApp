@@ -54,7 +54,7 @@ export default {
     {
       root: "pages/setup/setupindex",
       name: "设置页面",
-      pages: ["about", "cartesian", "connect", "dh", "force", "joint", "safe"],
+      pages: ["about", "connect", "force", "safe"],
     },
     {
       root: "pages/teach/teachindex",

@@ -3,7 +3,6 @@ import Taro from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput, AtSlider } from "taro-ui";
 import Header from "../../../../component/header";
-import { TeachBar } from "../../../../component/footer";
 import "./index.less";
 import { EmergencyStopButton } from "../../../../component/buttons";
 
@@ -211,7 +210,6 @@ function DragIndex() {
       <View className="emergency">
         <EmergencyStopButton />
       </View>
-      <TeachBar />
     </View>
   );
 }

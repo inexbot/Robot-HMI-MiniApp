@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
 import { connect } from "react-redux";
+import Header from "../../../component/header";
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
@@ -113,37 +115,40 @@ function IOMonitor(props) {
   };
   return (
     <View className="monitor">
-      <AtTabs
-        tabList={[
-          { title: "数字输入" },
-          { title: "数字输出" },
-          { title: "模拟输入" },
-          { title: "模拟输出" },
-        ]}
-        current={tabCurrent}
-        onClick={tabClick}
-      >
-        <AtTabsPane current={tabCurrent} index={0}>
-          <View className="ioTabPane">
-            <AtList>{dinList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={1}>
-          <View className="ioTabPane">
-            <AtList>{doutList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={2}>
-          <View className="ioTabPane">
-            <AtList>{ainList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={3}>
-          <View className="ioTabPane">
-            <AtList>{aoutList}</AtList>
-          </View>
-        </AtTabsPane>
-      </AtTabs>
+      <Header />
+      <View className="monitor-index">
+        <AtTabs
+          tabList={[
+            { title: "数字输入" },
+            { title: "数字输出" },
+            { title: "模拟输入" },
+            { title: "模拟输出" },
+          ]}
+          current={tabCurrent}
+          onClick={tabClick}
+        >
+          <AtTabsPane current={tabCurrent} index={0}>
+            <View className="ioTabPane">
+              <AtList>{dinList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={1}>
+            <View className="ioTabPane">
+              <AtList>{doutList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={2}>
+            <View className="ioTabPane">
+              <AtList>{ainList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={3}>
+            <View className="ioTabPane">
+              <AtList>{aoutList}</AtList>
+            </View>
+          </AtTabsPane>
+        </AtTabs>
+      </View>
     </View>
   );
 }

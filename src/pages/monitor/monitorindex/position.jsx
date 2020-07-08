@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { connect } from "react-redux";
+import Header from "../../../component/header";
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
@@ -75,14 +77,17 @@ function PositionMonitor(props) {
 
   return (
     <View className="monitor">
-      <AtList>
-        <AtListItem title={a1} extraText={one} />
-        <AtListItem title={a2} extraText={two} />
-        <AtListItem title={a3} extraText={three} />
-        <AtListItem title={a4} extraText={four} />
-        <AtListItem title={a5} extraText={five} />
-        <AtListItem title={a6} extraText={six} />
-      </AtList>
+      <Header />
+      <View className="monitor-index">
+        <AtList>
+          <AtListItem title={a1} extraText={one} />
+          <AtListItem title={a2} extraText={two} />
+          <AtListItem title={a3} extraText={three} />
+          <AtListItem title={a4} extraText={four} />
+          <AtListItem title={a5} extraText={five} />
+          <AtListItem title={a6} extraText={six} />
+        </AtList>
+      </View>
     </View>
   );
 }

@@ -1,10 +1,11 @@
-import robotStatus from './robotstatus'
-import robotParameter from './robotparameter'
-import project from "./project"
-import program from "./program"
-import IOParameter from "./ioparameter"
-import subscriptions from "./subscriptions"
-import localState from "./localstate"
+import robotStatus from "./robotstatus";
+import robotParameter from "./robotparameter";
+import project from "./project";
+import program from "./program";
+import IOParameter from "./ioparameter";
+import subscriptions from "./subscriptions";
+import controllerConfig from "./controllerconfig";
+import localState from "./localstate";
 
 export default [
   localState,
@@ -13,5 +14,6 @@ export default [
   IOParameter,
   project,
   program,
-  subscriptions
-]
+  controllerConfig,
+  subscriptions,
+];
