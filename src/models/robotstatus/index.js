@@ -157,10 +157,10 @@ export default {
     /* 接收伺服编码低压报警 */
     receiveServoEncoderUnderVoltageState(state, action) {
       if (action.data.encoderUndervoltage === true) {
-        notification.error({
-          message: `编码器低压报警！`,
-          description: `机器人${action.data.robot}编码器低压报警！`,
-          duration: 0,
+        Taro.atMessage({
+          message: `编码器低压报警！\n 机器人${action.data.robot}编码器低压报警！`,
+          type:"error",
+          duration:5000,
         });
       }
       return state;

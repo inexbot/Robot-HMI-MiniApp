@@ -60,9 +60,13 @@ export function comeMessage(message) {
       let co = parseFloat(command).toString(16);
       let data = dataString;
       let all = [co, data];
-      return all
+      return all;
     } else {
-      notification.error("收到数据的长度不一致");
+      Taro.atMessage({
+        message: "收到数据的长度不一致",
+        type: "error",
+        duration: 1000,
+      });
     }
   }
   //来自server自己的数据（包括作业文件等）
@@ -84,7 +88,11 @@ export function comeMessage(message) {
         resolve(all);
       });
     } else {
-      notification.error("收到数据的长度不一致");
+      Taro.atMessage({
+        message: "收到数据的长度不一致",
+        type: "error",
+        duration: 1000,
+      });
     }
   }
 }

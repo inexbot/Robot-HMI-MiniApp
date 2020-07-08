@@ -21,5 +21,10 @@ export default {
       _state.connectPort = action.data.port;
       return _state;
     },
+    setID(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.controllerID = action.data.controllerID;
+      return _state;
+    },
   },
 };
