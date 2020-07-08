@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
 import { connect } from "react-redux";
-import "../index.less";
+import Header from "../../../component/header";
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,10 +14,10 @@ const mapStateToProps = (state) => {
   };
 };
 function IOMonitor(props) {
-  const [dinList, setDinList] = useState();
-  const [doutList, setDoutList] = useState();
-  const [ainList, setAinList] = useState();
-  const [aoutList, setAoutList] = useState();
+  const [dinList, setDinList] = useState([]);
+  const [doutList, setDoutList] = useState([]);
+  const [ainList, setAinList] = useState([]);
+  const [aoutList, setAoutList] = useState([]);
 
   const handleSwitchChange = (value) => {
     console.log(value);
@@ -52,11 +53,17 @@ function IOMonitor(props) {
       if (value === -1) {
         newDoutList.push(<AtListItem title="无此端口" key={key} />);
       } else {
+        let val;
+        if (value === 1) {
+          val = true;
+        } else {
+          val = false;
+        }
         newDoutList.push(
           <AtListItem
             title={`DOUT${index + 1}`}
             isSwitch
-            switchIsCheck={value}
+            switchIsCheck={val}
             onSwitchChange={handleSwitchChange}
             key={key}
           />
@@ -114,37 +121,40 @@ function IOMonitor(props) {
   };
   return (
     <View className="monitor">
-      <AtTabs
-        tabList={[
-          { title: "数字输入" },
-          { title: "数字输出" },
-          { title: "模拟输入" },
-          { title: "模拟输出" },
-        ]}
-        current={tabCurrent}
-        onClick={tabClick}
-      >
-        <AtTabsPane current={tabCurrent} index={0}>
-          <View className="ioTabPane">
-            <AtList>{dinList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={1}>
-          <View className="ioTabPane">
-            <AtList>{doutList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={2}>
-          <View className="ioTabPane">
-            <AtList>{ainList}</AtList>
-          </View>
-        </AtTabsPane>
-        <AtTabsPane current={tabCurrent} index={3}>
-          <View className="ioTabPane">
-            <AtList>{aoutList}</AtList>
-          </View>
-        </AtTabsPane>
-      </AtTabs>
+      <Header />
+      <View className="monitor-index">
+        <AtTabs
+          tabList={[
+            { title: "数字输入" },
+            { title: "数字输出" },
+            { title: "模拟输入" },
+            { title: "模拟输出" },
+          ]}
+          current={tabCurrent}
+          onClick={tabClick}
+        >
+          <AtTabsPane current={tabCurrent} index={0}>
+            <View className="ioTabPane">
+              <AtList>{dinList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={1}>
+            <View className="ioTabPane">
+              <AtList>{doutList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={2}>
+            <View className="ioTabPane">
+              <AtList>{ainList}</AtList>
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={tabCurrent} index={3}>
+            <View className="ioTabPane">
+              <AtList>{aoutList}</AtList>
+            </View>
+          </AtTabsPane>
+        </AtTabs>
+      </View>
     </View>
   );
 }

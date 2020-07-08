@@ -1,6 +1,5 @@
-import Taro, { onSocketMessage, onSocketOpen, onSocketError, onSocketClose } from "@tarojs/taro";
+import Taro from "@tarojs/taro";
 import {comeMessage} from "../../service/network"
-import { message } from "taro-ui";
 
 export default {
   namespace: "subscriptions",
@@ -8,17 +7,8 @@ export default {
     noState: "",
   },
   subscriptions: {
-    /* detectSocketOpen({dispatch}){
-      onSocketOpen(()=>{
-        console.log("连接成功");
-        dispatch({
-          type:"localState/setConnected",
-          data:1
-        })
-      });
-    }, */
     detectSocketError({dispatch}){
-      onSocketError((err)=>{
+      Taro.onSocketError((err)=>{
         console.log(`连接错误${err.errMsg}`);
         dispatch({
           type:"localState/setConnected",
@@ -27,7 +17,7 @@ export default {
       });
     },
     detectSocketClose({dispatch}){
-      onSocketClose((res)=>{
+      Taro.onSocketClose((res)=>{
         console.log(`连接断开${res.reason}`);
         dispatch({
           type:"localState/setConnected",
@@ -37,7 +27,7 @@ export default {
     },
     Websocket({ dispatch }) {
         var data = "";
-        onSocketMessage((message)=>{
+        Taro.onSocketMessage((message)=>{
             console.log(message);
             data = comeMessage(message);
             let command;

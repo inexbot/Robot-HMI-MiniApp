@@ -9,12 +9,17 @@ export default {
     num: 0,
     //   控制器ID 5303
     /* controllerID: "" */
-    controllerID: "",
+    controllerID: "NNNOOOCONTROLLERID",
+    connectIP: "11.11.11.11",
+    connectPort: "1234",
   },
 
   reducers: {
-    save(state, { payload }) {
-      return { ...state, ...payload };
+    setConnect(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.connectIP = action.data.ip;
+      _state.connectPort = action.data.port;
+      return _state;
     },
   },
 };

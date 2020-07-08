@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { connect } from "react-redux";
+import Header from "../../../component/header";
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
@@ -44,14 +46,17 @@ function PositionMonitor(props) {
 
   return (
     <View className="monitor">
-      <AtList>
-        <AtListItem title="J1" extraText={`扭矩:${T1} 最大:${MT1}`} />
-        <AtListItem title="J2" extraText={`扭矩:${T2} 最大:${MT2}`} />
-        <AtListItem title="J3" extraText={`扭矩:${T3} 最大:${MT3}`} />
-        <AtListItem title="J4" extraText={`扭矩:${T4} 最大:${MT4}`} />
-        <AtListItem title="J5" extraText={`扭矩:${T5} 最大:${MT5}`} />
-        <AtListItem title="J6" extraText={`扭矩:${T6} 最大:${MT6}`} />
-      </AtList>
+      <Header />
+      <View className="monitor-index">
+        <AtList>
+          <AtListItem title="J1" extraText={`扭矩:${T1} 最大:${MT1}`} />
+          <AtListItem title="J2" extraText={`扭矩:${T2} 最大:${MT2}`} />
+          <AtListItem title="J3" extraText={`扭矩:${T3} 最大:${MT3}`} />
+          <AtListItem title="J4" extraText={`扭矩:${T4} 最大:${MT4}`} />
+          <AtListItem title="J5" extraText={`扭矩:${T5} 最大:${MT5}`} />
+          <AtListItem title="J6" extraText={`扭矩:${T6} 最大:${MT6}`} />
+        </AtList>
+      </View>
     </View>
   );
 }

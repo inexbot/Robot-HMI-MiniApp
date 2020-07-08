@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
-import { View,Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import Header from "../../component/header";
-import { connect } from "react-redux";
 import "./index.less";
 
-const mapStateToProps = (state) => {
-  return {
-    hh: state.robotStatus.pos,
-  };
-};
 class SetUp extends Component {
   handleClick = (value) => {
     let URL = "/pages/setup/setupindex/" + value;
@@ -27,18 +21,6 @@ class SetUp extends Component {
           <AtList className="at-list">
             <AtListItem title="机器人参数" className="setup-index-list-title" />
             <AtListItem
-              title="DH参数"
-              className="setup-index-list-item"
-              arrow="right"
-              onClick={this.handleClick.bind(this, "dh")}
-            />
-            <AtListItem
-              title="关节参数"
-              className="setup-index-list-item"
-              arrow="right"
-              onClick={this.handleClick.bind(this, "joint")}
-            />
-            <AtListItem
               title="安全参数"
               className="setup-index-list-item"
               arrow="right"
@@ -50,14 +32,8 @@ class SetUp extends Component {
               arrow="right"
               onClick={this.handleClick.bind(this, "force")}
             />
-            <AtListItem
-              title="笛卡尔参数"
-              className="setup-index-list-item"
-              arrow="right"
-              onClick={this.handleClick.bind(this, "cartesian")}
-            />
-            </AtList>
-            <AtList className="at-list">
+          </AtList>
+          <AtList className="at-list">
             <AtListItem title="系统" className="setup-index-list-title" />
             <AtListItem
               title="连接设置"
@@ -65,8 +41,8 @@ class SetUp extends Component {
               arrow="right"
               onClick={this.handleClick.bind(this, "connect")}
             />
-            </AtList>
-            <AtList className="at-list">
+          </AtList>
+          <AtList className="at-list">
             <AtListItem
               title="关于"
               className="setup-index-list-title"
@@ -80,4 +56,4 @@ class SetUp extends Component {
   }
 }
 
-export default connect(mapStateToProps)(SetUp);
+export default SetUp;
