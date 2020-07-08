@@ -6,6 +6,7 @@ import IOParameter from "./ioparameter";
 import subscriptions from "./subscriptions";
 import controllerConfig from "./controllerconfig";
 import localState from "./localstate";
+import dragTrajectory from "./dragtrajectory";
 
 export default [
   localState,
@@ -15,5 +16,6 @@ export default [
   project,
   program,
   controllerConfig,
+  dragTrajectory,
   subscriptions,
 ];

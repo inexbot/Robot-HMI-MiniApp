@@ -59,7 +59,12 @@ export default {
     {
       root: "pages/teach/teachindex",
       name: "示教页面",
-      pages: ["drag/index", "drag/playback/index", "jog/index"],
+      pages: [
+        "drag/index",
+        "drag/playback/index",
+        "jog/index",
+        "drag/playback/backindex/index",
+      ],
     },
   ],
 };

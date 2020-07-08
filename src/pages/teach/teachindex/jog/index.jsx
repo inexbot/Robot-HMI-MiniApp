@@ -132,7 +132,7 @@ function JogIndex(props) {
           value={coordinate}
         >
           <AtList style="padding:5vw;font-weight:600">
-            <AtListItem title="坐标系" extraText={selected} />
+            <AtListItem extraText={selected} />
           </AtList>
         </Picker>
         <View style="margin: 24px 5vw">
