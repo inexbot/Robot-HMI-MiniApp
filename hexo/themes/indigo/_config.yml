@@ -15,7 +15,7 @@ menu:
     text: 项目进度
     url: /schedule
   download:
-    text: 演示下载
+    text: 体验版
     url: /demo
   archives:
     text: 所有文档
