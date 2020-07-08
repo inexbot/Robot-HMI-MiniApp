@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
-import { View,Text } from "@tarojs/components";
+import { View, Text } from "@tarojs/components";
 import { AtButton } from "taro-ui";
 import Header from "../../component/header";
 import { connect } from "react-redux";
@@ -22,24 +22,14 @@ class Teach extends Component {
         <Header />
         <Text className="title-top">操作</Text>
         <View style="display:flex;flew-warp:warp;">
-        <View className="teach-index1"  >
-          <AtButton
-            type="secondary"
-            className="teach-index-button"
+          <View
+            className="teach-index1"
             onClick={this.handleClick.bind(this, "drag/index")}
-          >
-            拖拽
-          </AtButton>
-          </View>
-        <View className="teach-index2">
-          <AtButton
-            type="secondary"
-            className="teach-index-button"
+          ></View>
+          <View
+            className="teach-index2"
             onClick={this.handleClick.bind(this, "jog/index")}
-          >
-            点动
-          </AtButton>
-        </View>
+          ></View>
         </View>
       </View>
     );

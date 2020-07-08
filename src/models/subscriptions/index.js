@@ -56,7 +56,7 @@ export default {
                 break;
               case "5053":
                 dispatch({
-                  type: "controllerConfig/receiveControllerID",
+                  type: "controllerConfig/setID",
                   data: dataString,
                 });
                 break;
@@ -192,10 +192,10 @@ export default {
                   break;
                 }
                 console.error(dataString.data);
-                notification.error({
-                  message: "报错！",
-                  description: dataString.data,
-                  duration: 0,
+                Taro.atMessage({
+                  message: `报错！\n${dataString.data}`,
+                  type:"error",
+                  duration: 3000,
                 });
                 break;
               // 如果命令字没有查询到
