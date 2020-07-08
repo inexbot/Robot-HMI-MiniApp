@@ -97,7 +97,7 @@ function SafePara(props) {
               <AtListItem title="生效输出DOUT" extraText={firDoutSelected} />
             </AtList>
           </Picker>
-          <AtInput name="firstMaxSpeed" title="空间最大速度" confirmType="保存">
+          <AtInput name="firMaxSpeed" title="空间最大速度" confirmType="保存">
             mm/s
           </AtInput>
         </AtForm>
@@ -114,7 +114,7 @@ function SafePara(props) {
               <AtListItem title="生效输出DOUT" extraText={secDoutSelected} />
             </AtList>
           </Picker>
-          <AtInput name="firstMaxSpeed" title="空间最大速度" confirmType="保存">
+          <AtInput name="secMaxSpeed" title="空间最大速度" confirmType="保存">
             mm/s
           </AtInput>
         </AtForm>
