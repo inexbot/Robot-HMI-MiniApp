@@ -73,9 +73,9 @@ reward: false
 
 ### 技术栈
 
-你要先学会这些才能开始进行二次开发或者继续开发：NodeJs，React，React-Router，antd, DvaJs, Electron
+你要先学会这些才能开始进行二次开发或者继续开发：NodeJs, React, Taro, Taro-UI, DvaJs
 
-最少：NodeJs，React，React-Router，antd, DvaJs
+最少：NodeJs，React,Taro, DvaJs
 
 ### 其它
 
