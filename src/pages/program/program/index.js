@@ -96,30 +96,46 @@ function Program(props) {
           <View className="instructs">
             <View className="instructs-group">
               <Text>运动控制</Text>
+              <View className="intructs-group-btn">
               <AtButton size="small">MOVJ</AtButton>
               <AtButton size="small">MOVL</AtButton>
+              </View>
+              <View className="intructs-group-btn">
               <AtButton size="small">MOVC</AtButton>
               <AtButton size="small">MOVS</AtButton>
+              </View>
             </View>
             <View className="instructs-group">
               <Text>输入输出</Text>
+              <View className="intructs-group-btn">
               <AtButton size="small">DOUT</AtButton>
               <AtButton size="small">AOUT</AtButton>
+              </View>
+              <View className="intructs-group-btn">
               <AtButton size="small">DIN</AtButton>
               <AtButton size="small">AIN</AtButton>
+              </View>
             </View>
             <View className="instructs-group">
               <Text>变量</Text>
+              <View className="intructs-group-btn">
               <AtButton size="small">SETINT</AtButton>
               <AtButton size="small">SETDOUBLE</AtButton>
+              </View>
+              <View className="intructs-group-btn">
               <AtButton size="small">SETBOOL</AtButton>
+              </View>
             </View>
             <View className="instructs-group">
               <Text>条件控制</Text>
+              <View className="intructs-group-btn">
               <AtButton size="small">IF</AtButton>
               <AtButton size="small">WHILE</AtButton>
+              </View>
+              <View className="intructs-group-btn">
               <AtButton size="small">LABEL</AtButton>
               <AtButton size="small">JUMP</AtButton>
+              </View>
             </View>
           </View>
         </AtCurtain>
