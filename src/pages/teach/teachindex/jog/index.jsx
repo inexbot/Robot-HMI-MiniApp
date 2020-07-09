@@ -34,8 +34,12 @@ function JogIndex(props) {
     }, 500);
     return () => {
       clearInterval(sendInquire);
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
     };
-  }, [props.coordinate]);
+  }, []);
   let jogInterval;
   useEffect(() => {
     let coordinate = props.coordinate;

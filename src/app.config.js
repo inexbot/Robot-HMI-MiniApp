@@ -66,5 +66,12 @@ export default {
         "drag/playback/backindex/index",
       ],
     },
+    {
+      root: "pages/program/program",
+      name: "程序界面",
+      pages: [
+        "index",
+      ],
+    },
   ],
 };
