@@ -4,7 +4,7 @@ export default {
   namespace: "program",
   state: {
     name: "program",
-    Success: true, // or false
+    success: true, // or false
     possum: 17,
     var: {
       position: [

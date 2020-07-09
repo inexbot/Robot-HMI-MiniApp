@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Taro, { onSocketOpen, onSocketError, closeSocket } from "@tarojs/taro";
-import { View, Text,Image } from "@tarojs/components";
+import Taro, {
+  onSocketOpen,
+  onSocketError,
+  closeSocket,
+  connectSocket,
+} from "@tarojs/taro";
+import { View, Text, Image } from "@tarojs/components";
 import { AtModal } from "taro-ui";
 import { sendMSGtoController } from "../../service/network";
 import { connect } from "react-redux";
@@ -39,11 +44,24 @@ function ConnectState(props) {
   const [errmsg, setErrmsg] = useState("");
   const [modalOpened, setModalOpened] = useState(false);
   let IP = "ws://" + props.ip + ":" + props.port;
+  let tt;
   useEffect(() => {
     console.log(IP);
     Taro.connectSocket({
       url: IP,
+      complete: () => {
+        tt = setTimeout(() => {
+          if (connectState === "正在连接...") {
+            setErrmsg("连接超时");
+            setModalOpened(true);
+            Taro.closeSocket();
+          }
+        });
+      },
     });
+    return () => {
+      clearTimeout();
+    };
   }, []);
 
   Taro.onSocketOpen(() => {
@@ -90,15 +108,18 @@ function ConnectState(props) {
         onCancel={modalCancel}
         onConfirm={modalConfirm}
       />
-        <Image src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/loading.gif" style="width:100px;height:100px;" />
+      <Image
+        src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/loading.gif"
+        style="width:100px;height:100px;"
+      />
       <View style="margin-top:6vh;color:#999;">
         {connectState}
         {IP}
       </View>
-      <View style={{ display: display1}}>
+      <View style={{ display: display1 }}>
         <Text>正在获取数据...</Text>
       </View>
-      <View style={{ display: display2}}>
+      <View style={{ display: display2 }}>
         <Text>获取成功</Text>
         <Text>正在跳转</Text>
       </View>
