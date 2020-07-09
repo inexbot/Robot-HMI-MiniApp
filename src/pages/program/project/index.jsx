@@ -33,7 +33,7 @@ function ProjectIndex(props) {
   const openMenu = () => {
     setFabButton(menuButton);
   };
-  function onClick(value){
+  function onClick(value) {
     selectedProgram = value.name;
     selectedProject = value.projectName;
     setFabButton(singleButton);
