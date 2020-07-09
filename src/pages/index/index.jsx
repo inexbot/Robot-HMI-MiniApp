@@ -5,9 +5,9 @@ import { AtButton, AtInput, AtMessage, AtFloatLayout } from "taro-ui";
 import "./index.less";
 
 function Start() {
-  const [ip, setIp] = useState("");
+  const [ip, setIp] = useState("192.168.0.");
   const [queOpened, setQueOpened] = useState(false);
-  const [port, setPort] = useState("8443");
+  const [port, setPort] = useState("9000");
   const changeIP = (IP) => {
     setIp(IP);
   };
@@ -32,11 +32,14 @@ function Start() {
   const clickQue = () => {
     setQueOpened(true);
   };
+  const closeFloat = () => {
+    setQueOpened(false);
+  };
 
   return (
     <View className="index">
       <AtMessage />
-      <AtFloatLayout isOpened={queOpened} title="连接问题">
+      <AtFloatLayout isOpened={queOpened} title="连接问题" onClose={closeFloat}>
         您的手机需要与控制器在同一个局域网内。 IP输入控制器的IP。
         端口为服务端的端口，默认为9000。
       </AtFloatLayout>
@@ -59,7 +62,7 @@ function Start() {
       <AtInput
         name="port"
         title="Port"
-        placeholder="默认8443"
+        placeholder="默认9000"
         onChange={changePort}
         className="index-index-input log_port"
         value={port}

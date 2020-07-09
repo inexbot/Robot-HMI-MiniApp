@@ -3,7 +3,7 @@ import Taro from "@tarojs/taro";
 export default {
   namespace: "localState",
   state: {
-    connected:0
+    connected: 0,
   },
 
   reducers: {

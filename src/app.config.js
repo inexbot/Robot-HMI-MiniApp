@@ -73,5 +73,12 @@ export default {
         "index",
       ],
     },
+    {
+      root: "pages/program/running",
+      name: "运行界面",
+      pages: [
+        "index",
+      ],
+    },
   ],
 };

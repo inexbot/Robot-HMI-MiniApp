@@ -84,9 +84,7 @@ export function comeMessage(message) {
       let co = parseFloat(command).toString(16);
       let data = dataString;
       let all = [co, data];
-      return new Promise(function (resolve, reject) {
-        resolve(all);
-      });
+      return all;
     } else {
       Taro.atMessage({
         message: "收到数据的长度不一致",

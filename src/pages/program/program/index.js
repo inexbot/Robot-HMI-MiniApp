@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
   return {
     programName: state.program.name,
     instruct: state.program.instruct,
+    success: state.program.success,
   };
 };
 
@@ -35,25 +36,34 @@ function Program(props) {
     setFabButton(singleButton);
   };
   useEffect(() => {
-    let instruct = props.instruct;
-    let newList = [];
-    let num = 1;
-    instruct.forEach((value, index, array) => {
-      let name = value.name;
-      newList.push({
-        name: name,
-        num: num,
+    let success = props.success;
+    if (success === false) {
+      return;
+    } else {
+      let instruct = props.instruct;
+      let newList = [];
+      let num = 1;
+      instruct.forEach((value, index, array) => {
+        if (index === 0) {
+          console.log("开始");
+        } else {
+          let name = value.name;
+          newList.push({
+            name: name,
+            num: num,
+          });
+          num++;
+        }
       });
-      num++;
-    });
-    let lis = [
-      {
-        title: "轨迹",
-        key: "instruct",
-        items: newList,
-      },
-    ];
-    setInstructList(lis);
+      let lis = [
+        {
+          title: "指令",
+          key: "instruct",
+          items: newList,
+        },
+      ];
+      setInstructList(lis);
+    }
   }, [props.instruct]);
   const openMenu = () => {
     setFabButton(menuButton);

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Taro from "@tarojs/taro"
+import Taro from "@tarojs/taro";
 import { View, ScrollView, Text } from "@tarojs/components";
 import { AtIndexes, AtFab } from "taro-ui";
+import { sendMSGtoServer } from "../../../service/network";
 import { connect } from "react-redux";
-import "./index.less"
+import "./index.less";
 
 const mapStateToProps = (state) => {
   return {
-    projectList: state.project,
+    projectList: state.project.project,
   };
 };
 function ProjectIndex(props) {
+  let selectedProgram;
+  let selectedProject;
   const [list, setList] = useState([
     {
       title: "无工程",
@@ -23,34 +26,61 @@ function ProjectIndex(props) {
       ],
     },
   ]);
+  useEffect(() => {
+    sendMSGtoServer("Project", { robot: 1 });
+  }, []);
+
   const openMenu = () => {
-    setFabButton(menuButton)
-  }
-  const onClick = (value) => {
-    console.log(value);
-    setFabButton(singleButton)
+    setFabButton(menuButton);
   };
+  function onClick(value){
+    selectedProgram = value.name;
+    selectedProject = value.projectName;
+    setFabButton(singleButton);
+  }
+
   const openProgram = () => {
-    setFabButton();
+    console.log(selectedProgram);
+    const openprogram = {
+      robot: 1,
+      project: selectedProject,
+      jobname: selectedProgram,
+    };
+    sendMSGtoServer("openProgram", openprogram);
+    setFabButton(newPButton);
     Taro.navigateTo({
-      url:"/pages/program/program/index"
-    })
-  }
+      url: "/pages/program/program/index",
+    });
+  };
+  const newProgram = () => {
+    console.log("新建程序");
+  };
+  const newPButton = <AtFab onClick={newProgram}>新建</AtFab>;
+  const [fabButton, setFabButton] = useState(newPButton);
   const deleteProgram = () => {
-    setFabButton()
-  }
-  const [fabButton, setFabButton] = useState();
+    setFabButton(newPButton);
+  };
   const singleButton = (
-    <AtFab onClick={openMenu}>
-      <Text className="at-fab__icon at-icon at-icon-menu"></Text>
-    </AtFab>
+    <View>
+      <AtFab onClick={openProgram}>打开</AtFab>
+      <AtFab onClick={newProgram}>新建</AtFab>
+      <AtFab onClick={openMenu}>
+        <Text className="at-fab__icon at-icon at-icon-menu"></Text>
+      </AtFab>
+    </View>
   );
+  const backToSingle = () => {
+    setFabButton(singleButton);
+  };
   const menuButton = (
     <View className="projectMenu">
-      <AtFab onClick={openProgram}>打开</AtFab>
+      <AtFab onClick={backToSingle}>
+        <Text className="at-fab__icon at-icon at-icon-chevron-left"></Text>
+      </AtFab>
       <AtFab onClick={deleteProgram}>删除</AtFab>
     </View>
   );
+
   useEffect(() => {
     let newList = [];
     let pl = props.projectList;
@@ -63,6 +93,7 @@ function ProjectIndex(props) {
       for (let ix = 0; ix < pll; ix++) {
         innerList.push({
           name: ppl[ix].name,
+          projectName: pl[i].name,
         });
       }
       innerObject = {
@@ -79,7 +110,7 @@ function ProjectIndex(props) {
     <ScrollView className="program-index">
       <AtIndexes
         list={list}
-        onClick={onClick.bind(this)}
+        onClick={onClick}
         isVibrate={false}
         customStyle="margin-top:10vh"
       >

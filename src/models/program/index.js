@@ -26,8 +26,10 @@ export default {
   },
 
   reducers: {
-    save(state, { payload }) {
-      return { ...state, ...payload };
+    receiveProgram(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state = action.data.program;
+      return _state;
     },
   },
 };
