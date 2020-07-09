@@ -30,6 +30,7 @@ export default {
         Taro.onSocketMessage((message)=>{
             console.log(message);
             data = comeMessage(message);
+            console.log(data)
             let command;
             command = data[0];
             let dataString;
