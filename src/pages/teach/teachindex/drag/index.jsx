@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Taro from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { AtForm, AtButton, AtInput, AtSlider } from "taro-ui";
@@ -7,6 +7,15 @@ import "./index.less";
 import { EmergencyStopButton } from "../../../../component/buttons";
 
 function DragIndex() {
+  useEffect(()=>{
+    console.log("拖拽页面")
+    return()=>{
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+    }
+  },[])
   const handleStartDrag = () => {
     console.log("开始拖拽");
     switchDragView(Draging);

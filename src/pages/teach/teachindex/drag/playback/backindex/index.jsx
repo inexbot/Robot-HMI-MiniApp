@@ -14,6 +14,15 @@ const mapStateToProps = (state) => {
 
 function BackIndex(params) {
   const [speed, setSpeed] = useState(5);
+  useEffect(()=>{
+    console.log("拖拽回放");
+    return()=>{
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+    }
+  },[])
   const changeSpeed = (val) => {
     setSpeed(val);
   };
