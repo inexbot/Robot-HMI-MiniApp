@@ -179,12 +179,14 @@ function DragIndex() {
       {/* <AtButton type="primary" className="teach-index-button" onLongPress={backPoint} >
         回到起点（持续按住）
         </AtButton> */}
-      <Button onLongPress={backPoint} onTouchEnd={stopBackPoint}>
-        回到起点（持续按住）
+        <View style="display:flex;flex-flow:row;margin-bottom:20px">
+      <Button onLongPress={backPoint} onTouchEnd={stopBackPoint} className="back1">
+        回到起点
       </Button>
-      <Button onLongPress={backTrajectory} onTouchEnd={stopBackTrajectory}>
-        回放轨迹（持续按住）
+      <Button onLongPress={backTrajectory} onTouchEnd={stopBackTrajectory} className="back2">
+        回放轨迹
       </Button>
+      </View>
       <AtButton
         type="primary"
         className="teach-index-button"

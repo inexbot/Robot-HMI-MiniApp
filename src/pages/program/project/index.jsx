@@ -61,7 +61,7 @@ function ProjectIndex(props) {
     setFabButton(newPButton);
   };
   const singleButton = (
-    <View>
+    <View className="projectMenu">
       <AtFab onClick={openProgram}>打开</AtFab>
       <AtFab onClick={newProgram}>新建</AtFab>
       <AtFab onClick={openMenu}>
@@ -112,8 +112,7 @@ function ProjectIndex(props) {
         list={list}
         onClick={onClick}
         isVibrate={false}
-        customStyle="margin-top:10vh"
-      >
+        customStyle="margin-top:10vh;height: 80vh;">
         <View style="margin-left:5vw;margin-bottom:1vh">工程列表</View>
       </AtIndexes>
       <View className="projectFabButton">{fabButton}</View>
