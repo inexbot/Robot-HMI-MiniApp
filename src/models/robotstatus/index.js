@@ -159,8 +159,8 @@ export default {
       if (action.data.encoderUndervoltage === true) {
         Taro.atMessage({
           message: `编码器低压报警！\n 机器人${action.data.robot}编码器低压报警！`,
-          type:"error",
-          duration:5000,
+          type: "error",
+          duration: 5000,
         });
       }
       return state;
@@ -189,6 +189,12 @@ export default {
       let _state = JSON.parse(JSON.stringify(state));
       _state.pos = action.data.pos;
       _state.posDeg = action.data.posDeg;
+      return _state;
+    },
+    receiveTorque(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.currentTorque = action.data.torq;
+      _state.maxTorque = action.data.maxTorq;
       return _state;
     },
   },

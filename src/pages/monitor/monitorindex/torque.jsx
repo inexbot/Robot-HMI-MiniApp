@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { connect } from "react-redux";
+import { sendMSGtoController } from "../../../service/network";
 import Header from "../../../component/header";
 import "./index.less";
 
@@ -26,6 +27,23 @@ function PositionMonitor(props) {
   const [MT6, SMT6] = useState(0);
 
   useEffect(() => {
+    let sendInquire;
+    sendInquire = setInterval(() => {
+      let data = {
+        robot: 1,
+      };
+      sendMSGtoController("CURRENTTORQ_INQUIRE", data);
+    }, 500);
+    return () => {
+      clearInterval(sendInquire);
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+    };
+  }, []);
+
+  useEffect(() => {
     let tor = props.torque;
     ST1(tor[0]);
     ST2(tor[1]);
@@ -48,7 +66,7 @@ function PositionMonitor(props) {
     <View className="monitor">
       <Header />
       <View className="monitor-index">
-      <Text className="title_top">力矩</Text>
+        <Text className="title_top">力矩</Text>
         <AtList>
           <AtListItem title="J1" extraText={`扭矩:${T1} 最大:${MT1}`} />
           <AtListItem title="J2" extraText={`扭矩:${T2} 最大:${MT2}`} />

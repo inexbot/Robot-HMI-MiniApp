@@ -26,6 +26,24 @@ function PositionMonitor(props) {
   const [a6, setA6] = useState("J6");
 
   useEffect(() => {
+    let sendInquire;
+    sendInquire = setInterval(() => {
+      let data = {
+        robot: 1,
+        coord: props.coordinate,
+      };
+      sendMSGtoController("CURRENTPOS_INQUIRE", data);
+    }, 500);
+    return () => {
+      clearInterval(sendInquire);
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+    };
+  }, []);
+
+  useEffect(() => {
     let pos = props.position;
     setOne(pos[0]);
     setTwo(pos[1]);

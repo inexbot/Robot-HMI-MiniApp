@@ -35,9 +35,9 @@ export const CommandList = {
   data:{
     line:12
   } */
-  COPYPROGRAM_COMMAND:0x1117,//复制程序
-  AMENDWORK_COMMAND:0X1118,//修改作业文件名
-  AMEND_COMMAND:0x1124,//批量修改
+  COPYPROGRAM_COMMAND: 0x1117, //复制程序
+  AMENDWORK_COMMAND: 0x1118, //修改作业文件名
+  AMEND_COMMAND: 0x1124, //批量修改
   // {
   //   "selectlines":[2,5,11,12,20]   //选中那些行
   //   "VJ":10,
@@ -46,8 +46,8 @@ export const CommandList = {
   //   "PL":1,
   //   }
   DELETE_COMMAND: 0x1121,
-  MOVE_COMMAND:0x1122,//移动
-  COPY_COMMAND: 0x1123,// 批量复制
+  MOVE_COMMAND: 0x1122, //移动
+  COPY_COMMAND: 0x1123, // 批量复制
   CheckState: 0x1000, // 查询Server端的启动状态
   JOG_OPERATION_MOVE: 0x2901, // 点动开始
   JOG_OPERATION_STOP: 0x2902, // 点动结束
@@ -143,6 +143,13 @@ export const CommandList = {
   DOUT_NAME_INQUIRE: 0x2f4b, // 获取数字输出端口的注释名
   AIN_NAME_INQUIRE: 0x2f4e, // 获取模拟输入端口的注释名
   AOUT_NAME_INQUIRE: 0x2f51, // 获取模拟输出端口的注释名
+  GPIO_DOUT_SET: 0x3601, // 设置DOUT状态
+  GPIO_DOUT_INQUIRE: 0x3602, // 获取DOUT状态
+  GPIO_DIN_INQUIRE: 0x3605, // 获取DIN状态
+  ANALOG_OUT_SET: 0x3607, // 设置AOUT状态
+  ANALOG_OUT_INQUIRE: 0x3608, // 获取AOUT状态
+  ANALOG_IN_INQUIRE: 0x360A, // 获取AIN状态
+  CURRENTTORQ_INQUIRE: 0x2a07, // 获取机器人扭矩
   CURRENTPOS_INQUIRE: 0x2a02, // 获取机器人当前位置
   // 机器人参数
   /* 设置DH参数
@@ -188,274 +195,273 @@ export const CommandList = {
   JOINTPARAMETER_SET: 0x3b01,
   JOINTPARAMETER_INQUIRE: 0x3b02,
   SLAVETYPE_LIST_INQUIRE: 0x2e0e, // 发送查询从站列表
-  SLAVETYPE_LIST_RESPOND:0x2e0f, // 收到从站列表
+  SLAVETYPE_LIST_RESPOND: 0x2e0f, // 收到从站列表
 
-  UPGRADE_COMMAND: 0x2111,// 升级系统
-
+  UPGRADE_COMMAND: 0x2111, // 升级系统
 
   //传送带跟踪
-    //设置传送带参数
-    SET_THE_CONVEYOR_PARAMETERS:0x4801,
-    // {
-    //   "robot":1,
-    //   "conveyorID":1,
-    //   "conveyor":
-    //   {
-    //   "maxEncoderVal":60000,    //double
-    //   "minEncoderVal": -60000,
-    //   "encoderDirection": 1,      //1：正向；-1：反向
-    //   "encoderResolution":44.33,  //double
-    //   "userCoord":1             	//1~9
-    //   "checkSpeed":1      //传送带停止，机器人：0-立即结束；1-继续运行
-    //   },
-    //   "compensation":
-    //   {
-    //   "time":10,
-    //   "encoderVal":0
-    //   }
-    //   }
+  //设置传送带参数
+  SET_THE_CONVEYOR_PARAMETERS: 0x4801,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1,
+  //   "conveyor":
+  //   {
+  //   "maxEncoderVal":60000,    //double
+  //   "minEncoderVal": -60000,
+  //   "encoderDirection": 1,      //1：正向；-1：反向
+  //   "encoderResolution":44.33,  //double
+  //   "userCoord":1             	//1~9
+  //   "checkSpeed":1      //传送带停止，机器人：0-立即结束；1-继续运行
+  //   },
+  //   "compensation":
+  //   {
+  //   "time":10,
+  //   "encoderVal":0
+  //   }
+  //   }
 
-    //查询传送带参数
-    TRACK_CONVEYOR_CONVEYORPARAM_INQUIRE:0x4802,
-    // {
-    //   "robot":1,
-    //   "conveyorID":1  工艺号
-    // }
+  //查询传送带参数
+  TRACK_CONVEYOR_CONVEYORPARAM_INQUIRE: 0x4802,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1  工艺号
+  // }
 
-    //返回传送带参数
-    TRACK_CONVEYOR_CONVEYORPARAM_RESPOND:0x4803,
-    // {
-    //   "robot":1,
-    //   "conveyorID":1,
-    //   "conveyor":
-    //   {
-    //   "maxEncoderVal":60000,    
-    //   "minEncoderVal": -60000,
-    //   "encoderDirection": 1,      //1：正向；-1：反向
-    //   "encoderResolution":44.33,   //double
-    //   "encoderValue":333221123,  //double
-    //   "speed":100,        //double
-    //   "userCoord":1，       	//1~9
-    //   "checkSpeed":1      //传送带停止，机器人：0-立即结束；1-继续运行
-    //   },
-    //   "compensation":
-    //   {
-    //   "time":10,
-    //   "encoderVal":0
-    //   }
-    // }
+  //返回传送带参数
+  TRACK_CONVEYOR_CONVEYORPARAM_RESPOND: 0x4803,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1,
+  //   "conveyor":
+  //   {
+  //   "maxEncoderVal":60000,
+  //   "minEncoderVal": -60000,
+  //   "encoderDirection": 1,      //1：正向；-1：反向
+  //   "encoderResolution":44.33,   //double
+  //   "encoderValue":333221123,  //double
+  //   "speed":100,        //double
+  //   "userCoord":1，       	//1~9
+  //   "checkSpeed":1      //传送带停止，机器人：0-立即结束；1-继续运行
+  //   },
+  //   "compensation":
+  //   {
+  //   "time":10,
+  //   "encoderVal":0
+  //   }
+  // }
 
-    // 设置工件识别参数
-    TRACK_CONVEYOR_POSCHECKPARAM_SET:0x4804,
-    // {
-    //   "robot":1,
-    //   "conveyorID":1,
-    //   "detectSrc":
-    //   {
-    //   "type":0,    //0-视觉；1-IO；2-全局变量
-    //   "visionID":1,
-    //   "DI_capturePos":0,
-    //   "globalVar":"GA001"
-    //   },
-    //   "identification":
-    //   {
-    //   "type":0,    //0-视觉；1-传感器
-    //   "communication":0    //0-以太网；1-Modbus
-    //   "sensorTrg":1     //0-低电平触发， 1-高电平触发
-    //   }
-    // }
+  // 设置工件识别参数
+  TRACK_CONVEYOR_POSCHECKPARAM_SET: 0x4804,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1,
+  //   "detectSrc":
+  //   {
+  //   "type":0,    //0-视觉；1-IO；2-全局变量
+  //   "visionID":1,
+  //   "DI_capturePos":0,
+  //   "globalVar":"GA001"
+  //   },
+  //   "identification":
+  //   {
+  //   "type":0,    //0-视觉；1-传感器
+  //   "communication":0    //0-以太网；1-Modbus
+  //   "sensorTrg":1     //0-低电平触发， 1-高电平触发
+  //   }
+  // }
 
-    //查询工件识别参数
-    TRACK_CONVEYOR_POSCHECKPARAM_INQUIRE:0x4805,
-    // {
-    //   "robot":1,	
-    //   "conveyorID":1 // 工艺号
-    // }
+  //查询工件识别参数
+  TRACK_CONVEYOR_POSCHECKPARAM_INQUIRE: 0x4805,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1 // 工艺号
+  // }
 
-    // 返回工件识别参数
-    TRACK_CONVEYOR_POSCHECKPARAM_RESPOND:0x4806,
-    //数据与4804是一致的
-    // {
-    //   "robot":1,
-    //   "conveyorID":1,
-    //   "detectSrc":
-    //   {
-    //   "type":0,    //0-视觉；1-IO；2-全局变量
-    //   "visionID":1,
-    //   "DI_capturePos":0,
-    //   "globalVar":"GA001"
-    //   },
-    //   "identification":
-    //   {
-    //   "type":0,    //0-视觉；1-传感器
-    //   "communication":0    //0-以太网；1-Modbus
-    //   "sensorTrg":1     //0-低电平触发， 1-高电平触发
-    //   }
-    // }
-  
-    // 实时查询编码器值和传送带速度
-    TRACK_CONVEYOR_REALTIME_INQUIRE:0x4807,
-    // {
-    //   "robot":1,
-    //   "conveyorID":1
-    // }
+  // 返回工件识别参数
+  TRACK_CONVEYOR_POSCHECKPARAM_RESPOND: 0x4806,
+  //数据与4804是一致的
+  // {
+  //   "robot":1,
+  //   "conveyorID":1,
+  //   "detectSrc":
+  //   {
+  //   "type":0,    //0-视觉；1-IO；2-全局变量
+  //   "visionID":1,
+  //   "DI_capturePos":0,
+  //   "globalVar":"GA001"
+  //   },
+  //   "identification":
+  //   {
+  //   "type":0,    //0-视觉；1-传感器
+  //   "communication":0    //0-以太网；1-Modbus
+  //   "sensorTrg":1     //0-低电平触发， 1-高电平触发
+  //   }
+  // }
 
-    // 响应实时查询
-    TRACK_CONVEYOR_REALTIME_RESPOND:0x4808,
+  // 实时查询编码器值和传送带速度
+  TRACK_CONVEYOR_REALTIME_INQUIRE: 0x4807,
+  // {
+  //   "robot":1,
+  //   "conveyorID":1
+  // }
+
+  // 响应实时查询
+  TRACK_CONVEYOR_REALTIME_RESPOND: 0x4808,
 
   // 传送带坐标系标定
-    // 计算用户坐标系
-    TRACK_CONVEYOR_USERCOORD_CALCULATE:0x4810,
-    // 标定取坐标
-    TRACK_CONVEYOR_USERCOORD_CALIBRATION:0x4811,
+  // 计算用户坐标系
+  TRACK_CONVEYOR_USERCOORD_CALCULATE: 0x4810,
+  // 标定取坐标
+  TRACK_CONVEYOR_USERCOORD_CALIBRATION: 0x4811,
 
-    // 查询已标定的点坐标
-    RACK_CONVEYOR_CALIBRATION_INQUIRE:0x4812,
+  // 查询已标定的点坐标
+  RACK_CONVEYOR_CALIBRATION_INQUIRE: 0x4812,
 
-    // 返回标定的点坐标
-    TRACK_CONVEYOR_CALIBRATION_RESPOND:0x4813,
-    // 清空标定值
-    TRACK_CONVEYOR_CALIBRATION_CLEAR:0x4814,
-    // 取消标定
-    TRACK_CONVEYOR_CALIBRATION_CANCEL:0x4815,
+  // 返回标定的点坐标
+  TRACK_CONVEYOR_CALIBRATION_RESPOND: 0x4813,
+  // 清空标定值
+  TRACK_CONVEYOR_CALIBRATION_CLEAR: 0x4814,
+  // 取消标定
+  TRACK_CONVEYOR_CALIBRATION_CANCEL: 0x4815,
   // 传感器位置标定
-    // 传感器位置查询
-    TRACK_CONVEYOR_SENSORPOS_INQUIRE:0x4816,
-    // 响应传感器位置查询
-    TRACK_CONVEYOR_SENSORPOS_RESPOND:0x4817,
+  // 传感器位置查询
+  TRACK_CONVEYOR_SENSORPOS_INQUIRE: 0x4816,
+  // 响应传感器位置查询
+  TRACK_CONVEYOR_SENSORPOS_RESPOND: 0x4817,
 
-    // 传感器位置开始标定及参数查询
-    TRACK_CONVEYOR_SENSORPOS_CALIBRATION_INQUIRE:0x4818,
+  // 传感器位置开始标定及参数查询
+  TRACK_CONVEYOR_SENSORPOS_CALIBRATION_INQUIRE: 0x4818,
 
-    // 响应传感器位置标定参数查询
-    TRACK_CONVEYOR_SENSORPOS_CALIBRATION_RESPOND:0x4819,
+  // 响应传感器位置标定参数查询
+  TRACK_CONVEYOR_SENSORPOS_CALIBRATION_RESPOND: 0x4819,
 
-    // 传感器位置参数标定
-    TRACK_CONVEYOR_SENSORPOS_CALIBRATE:0x481A,
+  // 传感器位置参数标定
+  TRACK_CONVEYOR_SENSORPOS_CALIBRATE: 0x481a,
 
-    // 响应传感器位置参数标定
-    // 返回 0x4819
+  // 响应传感器位置参数标定
+  // 返回 0x4819
 
-    // 传感器跟踪抓取姿态参数查询
-    TRACK_CONVEYOR_SENSOR_GRABGESTURE_INQUIRE:0x481C,
+  // 传感器跟踪抓取姿态参数查询
+  TRACK_CONVEYOR_SENSOR_GRABGESTURE_INQUIRE: 0x481c,
 
-    // 响应传感器跟踪抓取姿态查询
-    TRACK_CONVEYOR_SENSOR_GRABGESTURE_RESPOND:0x481D,
+  // 响应传感器跟踪抓取姿态查询
+  TRACK_CONVEYOR_SENSOR_GRABGESTURE_RESPOND: 0x481d,
 
-    // 传感器跟踪抓取姿态标定
-    TRACK_CONVEYOR_SENSOR_GRABGESTURE_CALIBRATE:0x481E,
+  // 传感器跟踪抓取姿态标定
+  TRACK_CONVEYOR_SENSOR_GRABGESTURE_CALIBRATE: 0x481e,
 
-    // 响应传感器跟踪抓取姿态标定
-    // 返回 0x481D
+  // 响应传感器跟踪抓取姿态标定
+  // 返回 0x481D
 
-    // 清空标定值
-    TRACK_CONVEYOR_SENSORPOS_CALIBRATION_CLEAR:0x4820,
+  // 清空标定值
+  TRACK_CONVEYOR_SENSORPOS_CALIBRATION_CLEAR: 0x4820,
 
-    // 取消标定
-    TRACK_CONVEYOR_SENSORPOS_CALIBRATION_CANCEL:0x4821,
+  // 取消标定
+  TRACK_CONVEYOR_SENSORPOS_CALIBRATION_CANCEL: 0x4821,
 
-    // 计算传感器位置
-    TRACK_CONVEYOR_SENSORPOS_CALCULATE:0x4822  ,
+  // 计算传感器位置
+  TRACK_CONVEYOR_SENSORPOS_CALCULATE: 0x4822,
 
-    // 设置传送带跟踪位置参数
-    TRACK_CONVEYOR_POSITION_SET:0x4830,
+  // 设置传送带跟踪位置参数
+  TRACK_CONVEYOR_POSITION_SET: 0x4830,
 
-    // 查询传送带跟踪位置参数
-    TRACK_CONVEYOR_POSITION_INQUIRE:0x4831,
+  // 查询传送带跟踪位置参数
+  TRACK_CONVEYOR_POSITION_INQUIRE: 0x4831,
 
-    // 返回传送带跟踪位置参数
-    TRACK_CONVEYOR_POSITION_RESPOND:0x4832,
-    // data：同0x4150
+  // 返回传送带跟踪位置参数
+  TRACK_CONVEYOR_POSITION_RESPOND: 0x4832,
+  // data：同0x4150
 
-    // 标定位置
-    TRACK_CONVEYOR_POSITION_CALIBRATION:0x4833,
+  // 标定位置
+  TRACK_CONVEYOR_POSITION_CALIBRATION: 0x4833,
 
-    // 返回标定位置
-    TRACK_CONVEYOR_POSITION_CALIBRATION_RESPOND:0x4834,
+  // 返回标定位置
+  TRACK_CONVEYOR_POSITION_CALIBRATION_RESPOND: 0x4834,
 
-    // 运动到指定的位置
-    TRACK_CONVEYOR_POSITION_TO_MOVE:0x4837,
+  // 运动到指定的位置
+  TRACK_CONVEYOR_POSITION_TO_MOVE: 0x4837,
 
-    // 复制传送带参数
-    TRACK_CONVEYOR_PARAM_COPY:0x4835,
+  // 复制传送带参数
+  TRACK_CONVEYOR_PARAM_COPY: 0x4835,
 
-    //清空传送带参数
-    TRACK_CONVEYOR_PARAM_CLEAR:0x4836,
+  //清空传送带参数
+  TRACK_CONVEYOR_PARAM_CLEAR: 0x4836,
 
-    // 视觉参数
-    // 设置视觉参数
-    VISION_PARAMETER_SET:0x4101,
+  // 视觉参数
+  // 设置视觉参数
+  VISION_PARAMETER_SET: 0x4101,
 
-    // 视觉参数查询
-    VISION_PARAMETER_INQUIRE:0x4102,
+  // 视觉参数查询
+  VISION_PARAMETER_INQUIRE: 0x4102,
 
-    // 查询返回
-    VISION_PARAMETER_RESPOND:0x4103,
+  // 查询返回
+  VISION_PARAMETER_RESPOND: 0x4103,
 
-    // 修改视觉位置参数
-    VISION_POS_PARAMETER_SET:0x4104 ,
-    
-    // 查询视觉位置参数
-    VISION_POS_PARAMETER_INQUIRE:0x4105,
+  // 修改视觉位置参数
+  VISION_POS_PARAMETER_SET: 0x4104,
 
-    // 返回视觉位置参数
-    VISION_POS_PARAMETER_RESPOND:0x4106,
+  // 查询视觉位置参数
+  VISION_POS_PARAMETER_INQUIRE: 0x4105,
 
-    // 查询位置调试参数
-    VISION_DEBUGGING_POS_INQUIRE:0x4107,
- 
-    // 返回位置调试参数
-    VISION_DEBUGGING_POS_RESPOND:0x4108,
+  // 返回视觉位置参数
+  VISION_POS_PARAMETER_RESPOND: 0x4106,
 
-    // 清空视觉参数点位列表
-    ISION_DEBUGGING_POS_CLEAR:0x4109,
+  // 查询位置调试参数
+  VISION_DEBUGGING_POS_INQUIRE: 0x4107,
 
-    // 视觉位置参数标定抓取姿态
-    VISION_GESTURE_CALIBRATION_SET:0x4110,
+  // 返回位置调试参数
+  VISION_DEBUGGING_POS_RESPOND: 0x4108,
 
-    // 获取视觉位置参数标定抓取姿态
-    VISION_GESTURE_CALIBRATION_RESPOND:0x4111,
+  // 清空视觉参数点位列表
+  ISION_DEBUGGING_POS_CLEAR: 0x4109,
 
-    // 视觉位置参数试拍照
-    VISION_TRY_TAKE_PICTURE:0x4112,
+  // 视觉位置参数标定抓取姿态
+  VISION_GESTURE_CALIBRATION_SET: 0x4110,
 
-    // 返回视觉位置参数拍照
-    VISION_TAKE_PICTURE_RESPOND:0x4113,
+  // 获取视觉位置参数标定抓取姿态
+  VISION_GESTURE_CALIBRATION_RESPOND: 0x4111,
 
-    // 拍照
-    VISION_DEBUGGING_TAKE_PICTURE:0x410A,
+  // 视觉位置参数试拍照
+  VISION_TRY_TAKE_PICTURE: 0x4112,
 
-    // 计算便宜
-    VISION_DEBUGGING_CALCULATE:0x410B,
+  // 返回视觉位置参数拍照
+  VISION_TAKE_PICTURE_RESPOND: 0x4113,
 
-    // 查询视觉范围参数
-    VISION_RANGE_INQUIRE:0x3F05,
+  // 拍照
+  VISION_DEBUGGING_TAKE_PICTURE: 0x410a,
 
-    // 视觉范围参数
-    VISION_RANGE_RESPOND:0x3F06,
+  // 计算便宜
+  VISION_DEBUGGING_CALCULATE: 0x410b,
 
-    // 视觉范围参数修改
-    VISION_RANGE_SET:0x3F04,
-    
-    // 位置调试移动至此
-    VISION_DEBUGGING_POS_MOVE:0x410C,
-    
-    // 从站配置查询机器人轴数
-    ROBOTTYPE_AXISMAP_INQUIRE:0x2e15,
+  // 查询视觉范围参数
+  VISION_RANGE_INQUIRE: 0x3f05,
 
-    // 返回从站配置查询机器人轴数
-    ROBOTTYPE_AXISMAP_RESPOND:2e16,
+  // 视觉范围参数
+  VISION_RANGE_RESPOND: 0x3f06,
 
-    // 版本号查询
-    VERSIONNUM_INQUIRE:0x3402 ,
-    VERSIONNUM_RESPOND:0x3403 ,
+  // 视觉范围参数修改
+  VISION_RANGE_SET: 0x3f04,
 
-    // 向服务端发送上传文件信息   客户端向服务端发送上传控制器程序
-    INQUIRE_UPGRADE_SYSTEM:0x2111,
+  // 位置调试移动至此
+  VISION_DEBUGGING_POS_MOVE: 0x410c,
 
-    // 服务端回复是否同意上传
-    REPLAY_UPGRADE_SYSTEM:0x2112,
+  // 从站配置查询机器人轴数
+  ROBOTTYPE_AXISMAP_INQUIRE: 0x2e15,
 
-    // 服务端同意上传，向服务端发送数据
-    UPLOADING_UPGRADE_SYSTEM:0x2113
+  // 返回从站配置查询机器人轴数
+  ROBOTTYPE_AXISMAP_RESPOND: 2e16,
+
+  // 版本号查询
+  VERSIONNUM_INQUIRE: 0x3402,
+  VERSIONNUM_RESPOND: 0x3403,
+
+  // 向服务端发送上传文件信息   客户端向服务端发送上传控制器程序
+  INQUIRE_UPGRADE_SYSTEM: 0x2111,
+
+  // 服务端回复是否同意上传
+  REPLAY_UPGRADE_SYSTEM: 0x2112,
+
+  // 服务端同意上传，向服务端发送数据
+  UPLOADING_UPGRADE_SYSTEM: 0x2113,
 };

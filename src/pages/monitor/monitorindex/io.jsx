@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
+import { sendMSGtoController } from "../../../service/network";
 import { connect } from "react-redux";
 import Header from "../../../component/header";
 import "./index.less";
@@ -19,10 +20,59 @@ function IOMonitor(props) {
   const [ainList, setAinList] = useState([]);
   const [aoutList, setAoutList] = useState([]);
 
-  const handleSwitchChange = (value) => {
-    console.log(value);
-    return;
+  function consDF(val) {
+    return (value) => {
+      console.log(value);
+      let st;
+
+      if (value.detail.value === true) {
+        st = 1;
+      } else {
+        st = 0;
+      }
+
+      let data = {
+        port: val,
+        status: st,
+      };
+      sendMSGtoController("GPIO_DOUT_SET", data);
+    };
+  }
+  const handleSwitchChange = {
+    Dout1: consDF(1),
+    Dout2: consDF(2),
+    Dout3: consDF(3),
+    Dout4: consDF(4),
+    Dout5: consDF(5),
+    Dout6: consDF(6),
+    Dout7: consDF(7),
+    Dout8: consDF(8),
+    Dout9: consDF(9),
+    Dout10: consDF(10),
+    Dout11: consDF(11),
+    Dout12: consDF(12),
+    Dout13: consDF(13),
+    Dout14: consDF(14),
+    Dout15: consDF(15),
+    Dout16: consDF(16),
   };
+
+  useEffect(() => {
+    let sendInquire;
+    sendInquire = setInterval(() => {
+      sendMSGtoController("GPIO_DOUT_INQUIRE", "");
+      sendMSGtoController("GPIO_DIN_INQUIRE", "");
+      sendMSGtoController("ANALOG_OUT_INQUIRE", "");
+      sendMSGtoController("ANALOG_IN_INQUIRE", "");
+    }, 1000);
+    return () => {
+      clearInterval(sendInquire);
+      let deadmanData = {
+        deadman: 0,
+      };
+      sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
+    };
+  }, []);
 
   useEffect(() => {
     let din = props.dinStatus;
@@ -64,8 +114,9 @@ function IOMonitor(props) {
             title={`DOUT${index + 1}`}
             isSwitch
             switchIsCheck={val}
-            onSwitchChange={handleSwitchChange}
+            onSwitchChange={handleSwitchChange[`Dout${key}`]}
             key={key}
+            id={`dout${key}`}
           />
         );
       }

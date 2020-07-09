@@ -10,8 +10,25 @@ export default {
   },
 
   reducers: {
-    save(state, { payload }) {
-      return { ...state, ...payload };
+    receiveDout(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.doutStatus = action.data.status;
+      return _state;
+    },
+    receiveDin(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.dinStatus = action.data.status;
+      return _state;
+    },
+    receiveAout(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.aoutStatus = action.data.value;
+      return _state;
+    },
+    receiveAin(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.ainStatus = action.data.value;
+      return _state;
     },
   },
 };

@@ -151,6 +151,36 @@ export default {
                   data: dataString,
                 });
                 break;
+              case "3603":
+                dispatch({
+                  type: "IOParameter/receiveDout",
+                  data: dataString,
+                });
+                break;
+              case "3606":
+                dispatch({
+                  type: "IOParameter/receiveDin",
+                  data: dataString,
+                });
+                break;
+              case "3609":
+                dispatch({
+                  type: "IOParameter/receiveAout",
+                  data: dataString,
+                });
+                break;
+              case "360B":
+                dispatch({
+                  type: "IOParameter/receiveAin",
+                  data: dataString,
+                });
+                break;
+              case "2a07":
+                dispatch({
+                  type: "robotStatus/receiveTorque",
+                  data: dataString,
+                });
+                break;
               case "3a03":
                 dispatch({
                   type: "robotParameter/receiveDhPara",
