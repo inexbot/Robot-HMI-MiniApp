@@ -89,6 +89,7 @@ function ConnectState(props) {
         cancelText="返回重连"
         onCancel={modalCancel}
         onConfirm={modalConfirm}
+        style="color:#ff4343;"
       />
         <Image src="https://forinexbotweb.oss-cn-shanghai.aliyuncs.com/uploads/202007/loading.gif" style="width:100px;height:100px;" />
       <View style="margin-top:6vh;color:#999;">
