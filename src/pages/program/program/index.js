@@ -101,7 +101,7 @@ function Program(props) {
     <AtFab onClick={insertInstruct}>插入</AtFab>
   );
   const singleButton = (
-    <View>
+    <View className="programMenu">
       <AtFab onClick={insertInstruct}>插入</AtFab>
       <AtFab onClick={openMenu}>
         <Text className="at-fab__icon at-icon at-icon-menu"></Text>
@@ -109,7 +109,7 @@ function Program(props) {
     </View>
   );
   const menuButton = (
-    <View className="projectMenu">
+    <View className="programMenu">
       <AtFab onClick={changeInstruct}>修改</AtFab>
       <AtFab onClick={deleteInstruct}>删除</AtFab>
       <AtFab onClick={backToSingle}>
@@ -136,7 +136,7 @@ function Program(props) {
         >
           <View className="instructs">
             <View className="instructs-group">
-              <Text>运动控制</Text>
+              <Text className="intructs-group-tit">运动控制</Text>
               <View className="intructs-group-btn">
                 <AtButton
                   size="small"
@@ -167,7 +167,7 @@ function Program(props) {
               </View>
             </View>
             <View className="instructs-group">
-              <Text>输入输出</Text>
+              <Text className="intructs-group-tit">输入输出</Text>
               <View className="intructs-group-btn">
                 <AtButton
                   size="small"
@@ -198,7 +198,7 @@ function Program(props) {
               </View>
             </View>
             <View className="instructs-group">
-              <Text>变量</Text>
+              <Text className="intructs-group-tit">变量</Text>
               <View className="intructs-group-btn">
                 <AtButton size="small">SETINT</AtButton>
                 <AtButton size="small">SETDOUBLE</AtButton>
@@ -208,7 +208,7 @@ function Program(props) {
               </View>
             </View>
             <View className="instructs-group">
-              <Text>条件控制</Text>
+              <Text className="intructs-group-tit">条件控制</Text>
               <View className="intructs-group-btn">
                 <AtButton size="small">IF</AtButton>
                 <AtButton size="small">WHILE</AtButton>

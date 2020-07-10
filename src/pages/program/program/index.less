@@ -1,3 +1,9 @@
+.program{
+    .at-curtain__container{
+        height: 95%;
+    }
+}
+
 .program-index{
     margin-top: 10vh;
 
@@ -5,12 +11,16 @@
         background-color: #fff;
 
         .instructs-group{
-            margin: 20px;
-               
+            padding: 20px 20px 0 20px;
 
+            .intructs-group-tit{
+                line-height: 2;
+            }
+            
             .intructs-group-btn{
                 display: flex;
                 flex-flow: row; 
+                justify-content:center;
             }
 
             // .small{
@@ -22,8 +32,20 @@
             .at-button--small {
                 width: 36vw;
                 margin: 0 10px 10px 0;
-                height: none;
+                height: 0;
+                line-height: 6vh;
+                height: 6vh;
             }
         }
+    }
+}
+
+.programMenu{
+    position: absolute;
+    bottom: 7vh;
+    left: 77vw;
+
+    .at-fab{
+        margin-bottom: 10px;
     }
 }
