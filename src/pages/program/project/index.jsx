@@ -55,7 +55,10 @@ function ProjectIndex(props) {
   const newProgram = () => {
     console.log("新建程序");
   };
-  const newPButton = <AtFab onClick={newProgram}>新建</AtFab>;
+  const newPButton = (
+    <View className="projectMenu">
+      <AtFab onClick={newProgram}>新建</AtFab>
+    </View>);
   const [fabButton, setFabButton] = useState(newPButton);
   const deleteProgram = () => {
     setFabButton(newPButton);

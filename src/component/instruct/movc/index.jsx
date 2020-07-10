@@ -154,8 +154,8 @@ function Movc(props) {
     props.closeInstruct(false);
   };
   return (
-    <View>
-      <Text>MOVC</Text>
+    <View className="instructs">
+      <Text className="intructs-group-tit">MOVC</Text>
       <Picker
         mode="selector"
         range={pRange}
@@ -163,14 +163,14 @@ function Movc(props) {
         onChange={changePos}
       >
         <AtList>
-          <AtListItem title="位置" extraText={POS} />
+          <AtListItem title="选择位置" extraText={POS} />
         </AtList>
       </Picker>
       <AtInput title="V" name="V" value={V} onChange={changeV} />
       <AtInput title="PL" name="PL" value={PL} onChange={changePL} />
       <AtInput title="ACC" name="ACC" value={ACC} onChange={changeACC} />
       <AtInput title="DEC" name="DEC" value={DEC} onChange={changeDEC} />
-      <AtButton onClick={clickFinish}>确定</AtButton>
+      <AtButton className="intructs-group-btn instructs-group-ok" onClick={clickFinish}>确定</AtButton>
     </View>
   );
 }

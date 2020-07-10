@@ -154,23 +154,23 @@ function Movj(props) {
     props.closeInstruct(false);
   };
   return (
-    <View>
-      <Text>MOVJ</Text>
-      <Picker
-        mode="selector"
-        range={pRange}
-        value={POSNum}
-        onChange={changePos}
-      >
-        <AtList>
-          <AtListItem title="位置" extraText={POS} />
-        </AtList>
-      </Picker>
-      <AtInput title="VJ" name="VJ" value={VJ} onChange={changeVJ} />
-      <AtInput title="PL" name="PL" value={PL} onChange={changePL} />
-      <AtInput title="ACC" name="ACC" value={ACC} onChange={changeACC} />
-      <AtInput title="DEC" name="DEC" value={DEC} onChange={changeDEC} />
-      <AtButton onClick={clickFinish}>确定</AtButton>
+    <View className="instructs">
+        <Text className="intructs-group-tit">MOVJ</Text>
+        <Picker
+          mode="selector"
+          range={pRange}
+          value={POSNum}
+          onChange={changePos}
+        >
+          <AtList>
+            <AtListItem title="位置" extraText={POS} />
+          </AtList>
+        </Picker>
+        <AtInput title="VJ" name="VJ" value={VJ} onChange={changeVJ} />
+        <AtInput title="PL" name="PL" value={PL} onChange={changePL} />
+        <AtInput title="ACC" name="ACC" value={ACC} onChange={changeACC} />
+        <AtInput title="DEC" name="DEC" value={DEC} onChange={changeDEC} />
+        <AtButton className="intructs-group-btn" onClick={clickFinish}>确定</AtButton>
     </View>
   );
 }

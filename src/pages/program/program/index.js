@@ -17,7 +17,6 @@ const mapStateToProps = (state) => {
 };
 
 function Program(props) {
-  const [selectedIns, setSelectedIns] = useState();
   const [selectedRow, setSelectedRow] = useState(1);
   const [instruct, setInstruct] = useState("");
   const [instructOpened, setInstructOpened] = useState(false);
@@ -40,7 +39,7 @@ function Program(props) {
 
   const clickListItem = (value) => {
     setSelectedRow(value.num);
-    setSelectedIns(value.name);
+    setInstruct(value.name);
     setFabButton(singleButton);
   };
 
@@ -89,7 +88,7 @@ function Program(props) {
   const changeInstruct = () => {
     setInsertOrChange("change");
     setFabButton(singleButton);
-    setInstructOpened(true);
+    setInstructParaOpened(true);
   };
   const deleteInstruct = () => {
     setFabButton(singleButton);
@@ -98,11 +97,14 @@ function Program(props) {
     setInstructOpened(false);
   };
   const [fabButton, setFabButton] = useState(
-    <AtFab onClick={insertInstruct}>插入</AtFab>
+    <View className="programMenu">
+      <AtFab onClick={insertInstruct}>插入</AtFab>
+    </View>
   );
   const singleButton = (
     <View className="programMenu">
       <AtFab onClick={insertInstruct}>插入</AtFab>
+      <AtFab onClick={changeInstruct}>修改</AtFab>
       <AtFab onClick={openMenu}>
         <Text className="at-fab__icon at-icon at-icon-menu"></Text>
       </AtFab>
@@ -110,7 +112,6 @@ function Program(props) {
   );
   const menuButton = (
     <View className="programMenu">
-      <AtFab onClick={changeInstruct}>修改</AtFab>
       <AtFab onClick={deleteInstruct}>删除</AtFab>
       <AtFab onClick={backToSingle}>
         <Text className="at-fab__icon at-icon at-icon-chevron-left"></Text>
