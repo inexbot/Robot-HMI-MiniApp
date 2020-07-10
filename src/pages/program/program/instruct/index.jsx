@@ -41,11 +41,9 @@ function Instruct(props) {
 
     default:
       return (
-        <Movj
-          row={props.row}
-          insertOrChange={props.insertOrChange}
-          closeInstruct={props.closeInstruct}
-        />
+        <div>
+          指令行{props.row}，指令名{props.name}没有修改界面
+        </div>
       );
   }
 }

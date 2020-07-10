@@ -126,6 +126,7 @@ function Program(props) {
   const closeInstructPara = () => {
     setInstructParaOpened(false);
   };
+
   return (
     <View className="program">
       <Header />
@@ -224,7 +225,7 @@ function Program(props) {
         <AtCurtain isOpened={instructParaOpened} onClose={closeInstructPara}>
           <Instruct
             instruct={instruct}
-            row={selectedRow}
+            row={selectedRow+1}
             insertOrChange={insertOrChange}
             closeInstruct={closeInstructPara}
           />

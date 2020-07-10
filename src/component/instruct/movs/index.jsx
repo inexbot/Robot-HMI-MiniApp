@@ -76,7 +76,7 @@ function Movs(props) {
     } else {
       let row = props.row;
       let para = props.instruct[row].para;
-      let posnum = indexOf(pRange, para.POS);
+      let posnum = pRange.indexOf(para.POS);
       value = {
         POSNum: posnum,
         POS: para.POS,
