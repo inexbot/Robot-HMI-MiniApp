@@ -49,7 +49,7 @@ function ProjectIndex(props) {
     sendMSGtoServer("openProgram", openprogram);
     setFabButton(newPButton);
     Taro.navigateTo({
-      url: "/pages/program/program/index",
+      url: "/pages/program/program/index?name="+selectedProgram,
     });
   };
   const newProgram = () => {

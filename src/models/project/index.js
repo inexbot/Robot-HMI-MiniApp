@@ -5,12 +5,23 @@ export default {
   state: {
     project: [
       {
-        name: "333",
-        program: [{ name: "21", date: "44" }],
+        name: "工程1",
+        program: [
+          { name: "程序a.JBR", date: "2020-07-10" },
+          { name: "程序b.JBR", date: "2020-07-10" },
+          { name: "程序c.JBR", date: "2020-07-10" },
+          { name: "程序d.JBR", date: "2020-07-10" },
+        ],
       },
       {
-        name: "444",
-        program: [{ name: "33", date: "55" }],
+        name: "工程2",
+        program: [
+          { name: "工程1.JBR", date: "2020-07-11" },
+          { name: "工程2.JBR", date: "2020-07-11" },
+          { name: "工程3.JBR", date: "2020-07-11" },
+          { name: "工程4.JBR", date: "2020-07-11" },
+          { name: "工程5.JBR", date: "2020-07-11" },
+        ],
       },
     ],
   },

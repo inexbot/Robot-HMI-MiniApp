@@ -44,7 +44,7 @@ function ConnectState(props) {
   const [errmsg, setErrmsg] = useState("");
   const [modalOpened, setModalOpened] = useState(false);
   let IP = "ws://" + props.ip + ":" + props.port;
-  let tt;
+
   useEffect(() => {
     console.log(IP);
     Taro.connectSocket({

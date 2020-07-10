@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View } from "@tarojs/components";
+import { getCurrentInstance } from "@tarojs/taro";
 import Header from "../../../component/header";
 import { AtIndexes, AtFab, AtList, AtCurtain, AtButton } from "taro-ui";
 import { connect } from "react-redux";
@@ -26,6 +27,9 @@ function Running(props) {
       ],
     },
   ]);
+
+  let programName = getCurrentInstance().router.params.name;
+
   useEffect(() => {
     let instruct = props.instruct;
     let newList = [];
@@ -54,7 +58,7 @@ function Running(props) {
       <View className="running-index">
         <AtIndexes list={instructList} isShowToast={false} />
       </View>
-      <RunningBar />
+      <RunningBar name={programName} />
     </View>
   );
 }

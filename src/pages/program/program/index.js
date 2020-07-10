@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import { getCurrentInstance } from "@tarojs/taro";
 import { View, ScrollView, Text } from "@tarojs/components";
 import Header from "../../../component/header";
-import { AtIndexes, AtFab, AtList, AtCurtain, AtButton } from "taro-ui";
+import { AtIndexes, AtFab, AtCurtain, AtButton } from "taro-ui";
 import { connect } from "react-redux";
 import { ProgramBar } from "../../../component/footer";
 import "./index.less";
+import Instruct from "./instruct";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,8 +18,11 @@ const mapStateToProps = (state) => {
 
 function Program(props) {
   const [selectedIns, setSelectedIns] = useState();
-  const [selectedNum, setSelectedNum] = useState();
+  const [selectedRow, setSelectedRow] = useState(1);
+  const [instruct, setInstruct] = useState("");
   const [instructOpened, setInstructOpened] = useState(false);
+  const [instructParaOpened, setInstructParaOpened] = useState(false);
+  const [insertOrChange, setInsertOrChange] = useState("insert");
   const [instructList, setInstructList] = useState([
     {
       title: "指令",
@@ -31,10 +35,15 @@ function Program(props) {
       ],
     },
   ]);
+
+  let programName = getCurrentInstance().router.params.name;
+
   const clickListItem = (value) => {
-    console.log(value);
+    setSelectedRow(value.num);
+    setSelectedIns(value.name);
     setFabButton(singleButton);
   };
+
   useEffect(() => {
     let success = props.success;
     if (success === false) {
@@ -51,6 +60,7 @@ function Program(props) {
           newList.push({
             name: name,
             num: num,
+            key: num + 101,
           });
           num++;
         }
@@ -68,32 +78,53 @@ function Program(props) {
   const openMenu = () => {
     setFabButton(menuButton);
   };
+  const backToSingle = () => {
+    setFabButton(singleButton);
+  };
   const insertInstruct = () => {
-    setFabButton();
+    setInsertOrChange("insert");
+    setFabButton(singleButton);
     setInstructOpened(true);
   };
   const changeInstruct = () => {
-    setFabButton();
+    setInsertOrChange("change");
+    setFabButton(singleButton);
+    setInstructOpened(true);
   };
   const deleteInstruct = () => {
-    setFabButton();
+    setFabButton(singleButton);
   };
   const closeInstructGroup = () => {
     setInstructOpened(false);
   };
-  const [fabButton, setFabButton] = useState();
+  const [fabButton, setFabButton] = useState(
+    <AtFab onClick={insertInstruct}>插入</AtFab>
+  );
   const singleButton = (
-    <AtFab onClick={openMenu}>
-      <Text className="at-fab__icon at-icon at-icon-menu"></Text>
-    </AtFab>
+    <View>
+      <AtFab onClick={insertInstruct}>插入</AtFab>
+      <AtFab onClick={openMenu}>
+        <Text className="at-fab__icon at-icon at-icon-menu"></Text>
+      </AtFab>
+    </View>
   );
   const menuButton = (
     <View className="projectMenu">
-      <AtFab onClick={insertInstruct}>插入</AtFab>
       <AtFab onClick={changeInstruct}>修改</AtFab>
       <AtFab onClick={deleteInstruct}>删除</AtFab>
+      <AtFab onClick={backToSingle}>
+        <Text className="at-fab__icon at-icon at-icon-chevron-left"></Text>
+      </AtFab>
     </View>
   );
+  const openInstructPara = (value) => {
+    setInstruct(value);
+    setInstructOpened(false);
+    setInstructParaOpened(true);
+  };
+  const closeInstructPara = () => {
+    setInstructParaOpened(false);
+  };
   return (
     <View className="program">
       <Header />
@@ -107,23 +138,63 @@ function Program(props) {
             <View className="instructs-group">
               <Text>运动控制</Text>
               <View className="intructs-group-btn">
-                <AtButton size="small">MOVJ</AtButton>
-                <AtButton size="small">MOVL</AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "MOVJ")}
+                >
+                  MOVJ
+                </AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "MOVL")}
+                >
+                  MOVL
+                </AtButton>
               </View>
               <View className="intructs-group-btn">
-                <AtButton size="small">MOVC</AtButton>
-                <AtButton size="small">MOVS</AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "MOVC")}
+                >
+                  MOVC
+                </AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "MOVS")}
+                >
+                  MOVS
+                </AtButton>
               </View>
             </View>
             <View className="instructs-group">
               <Text>输入输出</Text>
               <View className="intructs-group-btn">
-                <AtButton size="small">DOUT</AtButton>
-                <AtButton size="small">AOUT</AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "Dout")}
+                >
+                  DOUT
+                </AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "Aout")}
+                >
+                  AOUT
+                </AtButton>
               </View>
               <View className="intructs-group-btn">
-                <AtButton size="small">DIN</AtButton>
-                <AtButton size="small">AIN</AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "Din")}
+                >
+                  DIN
+                </AtButton>
+                <AtButton
+                  size="small"
+                  onClick={openInstructPara.bind(this, "Ain")}
+                >
+                  AIN
+                </AtButton>
               </View>
             </View>
             <View className="instructs-group">
@@ -149,6 +220,14 @@ function Program(props) {
             </View>
           </View>
         </AtCurtain>
+        <AtCurtain isOpened={instructParaOpened} onClose={closeInstructPara}>
+          <Instruct
+            instruct={instruct}
+            row={selectedRow}
+            insertOrChange={insertOrChange}
+            closeInstruct={closeInstructPara}
+          />
+        </AtCurtain>
         <AtIndexes
           list={instructList}
           onClick={clickListItem}
@@ -156,7 +235,7 @@ function Program(props) {
         />
       </View>
       <View className="program-menu">{fabButton}</View>
-      <ProgramBar />
+      <ProgramBar name={programName} />
     </View>
   );
 }
