@@ -25,8 +25,9 @@ export default {
     multiRobotMode: 0,
     currentRobotServoState: 0,
     deadmanState: 0,
+    teachType: 0,
     currentRobotRunningState: 0,
-    handleSpeed: 1,
+    handleSpeed: 14,
     runningSpeed: 1,
     currentUser: 1,
     currentTool: 1,
@@ -182,6 +183,11 @@ export default {
     receiveSetModeSuccess(state, action) {
       let _state = JSON.parse(JSON.stringify(state));
       _state.operaMode = action.data.mode;
+      return _state;
+    },
+    receiveTeachType(state, action) {
+      let _state = JSON.parse(JSON.stringify(state));
+      _state.teachType = action.data.teachType;
       return _state;
     },
     /* 接收当前位置 */

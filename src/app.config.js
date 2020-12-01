@@ -26,12 +26,6 @@ export default {
         text: "示教",
       },
       {
-        pagePath: "pages/program/index",
-        iconPath: "./assets/tab-bar/program.png",
-        selectedIconPath: "./assets/tab-bar/programActived.png",
-        text: "程序",
-      },
-      {
         pagePath: "pages/monitor/index",
         iconPath: "./assets/tab-bar/monitor.png",
         selectedIconPath: "./assets/tab-bar/monitorActived.png",
@@ -64,13 +58,6 @@ export default {
         "drag/playback/index",
         "jog/index",
         "drag/playback/backindex/index",
-      ],
-    },
-    {
-      root: "pages/program/program",
-      name: "程序界面",
-      pages: [
-        "index",
       ],
     },
     {

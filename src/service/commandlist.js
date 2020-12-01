@@ -148,7 +148,7 @@ export const CommandList = {
   GPIO_DIN_INQUIRE: 0x3605, // 获取DIN状态
   ANALOG_OUT_SET: 0x3607, // 设置AOUT状态
   ANALOG_OUT_INQUIRE: 0x3608, // 获取AOUT状态
-  ANALOG_IN_INQUIRE: 0x360A, // 获取AIN状态
+  ANALOG_IN_INQUIRE: 0x360a, // 获取AIN状态
   CURRENTTORQ_INQUIRE: 0x2a07, // 获取机器人扭矩
   CURRENTPOS_INQUIRE: 0x2a02, // 获取机器人当前位置
   // 机器人参数
@@ -464,4 +464,6 @@ export const CommandList = {
 
   // 服务端同意上传，向服务端发送数据
   UPLOADING_UPGRADE_SYSTEM: 0x2113,
+  TEACHTYPE_SET: 0x2001,
+  DRAG_TRAJ_PARAM_SET: 0x7507,
 };

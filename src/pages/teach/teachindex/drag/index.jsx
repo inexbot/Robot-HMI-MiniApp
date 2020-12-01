@@ -1,25 +1,53 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import Taro from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
-import { AtForm, AtButton, AtInput, AtSlider } from "taro-ui";
+import {
+  AtForm,
+  AtButton,
+  AtInput,
+  AtSlider,
+  AtModal,
+  AtModalHeader,
+  AtModalContent,
+  AtModalAction,
+} from "taro-ui";
 import Header from "../../../../component/header";
 import "./index.less";
 import { EmergencyStopButton } from "../../../../component/buttons";
-
-function DragIndex() {
-  useEffect(()=>{
-    console.log("拖拽页面")
-    return()=>{
+import { sendMSGtoController } from "../../../../service/network";
+const mapStateToProps = (state) => {
+  return {
+    currentRobotServoState: state.robotStatus.currentRobotServoState,
+    deadmanState: state.robotStatus.deadmanState,
+  };
+};
+function DragIndex(props) {
+  const [modalOpened, setModalOpened] = useState(false);
+  const [tName, setTName] = useState("");
+  useEffect(() => {
+    return () => {
       let deadmanData = {
         deadman: 0,
       };
       sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
-    }
-  },[])
+    };
+  }, []);
   const handleStartDrag = () => {
     console.log("开始拖拽");
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
     switchDragView(Draging);
   };
+  useEffect(() => {
+    if (props.deadmanState === 1 && props.currentRobotServoState === 3) {
+      sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
+        SamplingInterval: 0.03,
+        MaxSamplingNum: 2000,
+        Start: true,
+      });
+      switchDragView(Draging);
+    }
+  }, [props.deadmanState, props.currentRobotServoState]);
   const handlePlayback = () => {
     Taro.navigateTo({
       url: "/pages/teach/teachindex/drag/playback/index",
@@ -29,7 +57,17 @@ function DragIndex() {
     <View className="teach-index">
       <AtButton
         type="primary"
-        className="teach-index-button"
+        customStyle={{
+          color: "white",
+          backgroundColor: "rgb(97, 144, 232)",
+          // border: "1px solid #ff463d",
+          width: "180px",
+          height: "180px",
+          borderRadius: 90,
+          fontSize: "18px",
+          marginBottom: "5vh",
+          padding: 70,
+        }}
         onClick={handleStartDrag}
       >
         开始拖拽
@@ -48,49 +86,38 @@ function DragIndex() {
   const changeSpeed = (val) => {
     setSpeed(val);
   };
-  let backPointInterval;
-  let backTrajectoryInterval;
-  const backPoint = () => {
-    backPointInterval = setInterval(() => {
-      console.log("回到起点");
-    }, 1000);
-    return;
-  };
-  const stopBackPoint = () => {
-    console.log("停止回到起点");
-    clearInterval(backPointInterval);
-  };
   const backTrajectory = () => {
-    backTrajectoryInterval = setInterval(() => {
-      console.log("回到轨迹");
-    }, 1000);
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
+    sendMSGtoController("DRAG_TRAJ_PLAYBACK", {
+      mode: 1,
+      vel: 100,
+      trajName: "",
+    });
     return;
-  };
-  const stopBackTrajectory = () => {
-    console.log("停止回到轨迹");
-    clearInterval(backTrajectoryInterval);
   };
   const saveTrajectory = () => {
-    console.log("保存轨迹");
-    switchDragView(Dragst);
+    setModalOpened(true);
     return;
   };
   const giveupTrajectory = () => {
-    console.log("放弃轨迹");
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 0 });
+    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: "" });
     switchDragView(Dragst);
     return;
   };
-  const handlePauseButton = () => {
-    console.log("暂停拖拽");
-    switchDragView(Pause);
-  };
-  const handleContinueDrag = () => {
-    console.log("继续拖拽");
-    switchDragView(Draging);
-  };
   const handleStopDrag = () => {
-    console.log("停止拖拽");
+    sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
+      SamplingInterval: 0.03,
+      MaxSamplingNum: 2000,
+      Start: false,
+    });
     switchDragView(Stop);
+  };
+  const handleSaveT = () => {
+    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: tName });
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 0 });
+    setModalOpened(false);
+    switchDragView(Dragst);
   };
 
   const Draging = (
@@ -109,44 +136,11 @@ function DragIndex() {
             fontSize: "18px",
             padding: 70,
           }}
-          onClick={handlePauseButton}
+          onClick={handleStopDrag}
         >
-          暂停拖拽
+          停止拖拽
         </AtButton>
       </View>
-    </View>
-  );
-  const Pause = (
-    <View className="teach-index">
-      <AtButton
-        type="primary"
-        className="teach-index-button"
-        customStyle={{
-          background: "#55d676",
-          color: "white",
-          border: "1px solid #39b659",
-          width: "180px",
-          height: "180px",
-          borderRadius: 90,
-          fontSize: "18px",
-          padding: 70,
-        }}
-        onClick={handleContinueDrag}
-      >
-        继续拖拽
-      </AtButton>
-      <AtButton
-        type="secondary"
-        className="teach-index-button"
-        customStyle={{
-          background: "#fff",
-          color: "#ff463d",
-          border: "1px solid #ff463d",
-        }}
-        onClick={handleStopDrag}
-      >
-        停止拖拽
-      </AtButton>
     </View>
   );
   const Save = (
@@ -179,14 +173,18 @@ function DragIndex() {
       {/* <AtButton type="primary" className="teach-index-button" onLongPress={backPoint} >
         回到起点（持续按住）
         </AtButton> */}
-        <View style="display:flex;flex-flow:row;margin-bottom:20px">
-      <Button onLongPress={backPoint} onTouchEnd={stopBackPoint} className="back1">
-        回到起点
-      </Button>
-      <Button onLongPress={backTrajectory} onTouchEnd={stopBackTrajectory} className="back2">
+      {/* <View style="display:flex;flex-flow:row;margin-bottom:20px">
+        <Button
+          onLongPress={backPoint}
+          onTouchEnd={stopBackPoint}
+          className="back1"
+        >
+          回到起点
+        </Button>
+      </View> */}
+      <Button onClick={backTrajectory} className="back2">
         回放轨迹
       </Button>
-      </View>
       <AtButton
         type="primary"
         className="teach-index-button"
@@ -217,6 +215,21 @@ function DragIndex() {
   return (
     <View className="teach">
       <Header />
+      <AtModal isOpened={modalOpened} closeOnClickOverlay={false}>
+        <AtModalHeader>轨迹命名</AtModalHeader>
+        <AtModalContent>
+          <AtInput
+            value={tName}
+            onChange={(value) => {
+              setTName(value);
+            }}
+          />
+        </AtModalContent>
+        <AtModalAction>
+          <Button>取消</Button>
+          <Button onClick={handleSaveT}>确定</Button>
+        </AtModalAction>
+      </AtModal>
       {dragView}
       <View className="emergency">
         <EmergencyStopButton />
@@ -225,4 +238,4 @@ function DragIndex() {
   );
 }
 
-export default DragIndex;
+export default connect(mapStateToProps)(DragIndex);

@@ -11,29 +11,29 @@ import { sendMSGtoController } from "../../../../service/network";
 const mapStateToProps = (state) => {
   return {
     coordinate: state.robotStatus.currentCoordinate,
+    handleSpeed: state.robotStatus.handleSpeed,
     pos: state.robotStatus.pos,
   };
 };
 function JogIndex(props) {
   const [coordinate, setCoordinate] = useState(0);
   const [axis, setAxis] = useState(["J1", "J2", "J3", "J4", "J5", "J6"]);
-  const [speed, setSpeed] = useState(12);
   const [selected, setSelected] = useState("关节");
   const coordinateRange = ["关节", "直角", "工具", "用户"];
   const changeSpeed = (val) => {
-    setSpeed(val);
+    sendMSGtoController("SPEED_SET", { robot: 1, speed: parseInt(val) });
   };
   useEffect(() => {
-    let sendInquire;
-    sendInquire = setInterval(() => {
-      let data = {
-        robot: 1,
-        coord: props.coordinate,
-      };
-      sendMSGtoController("CURRENTPOS_INQUIRE", data);
-    }, 500);
+    // let sendInquire;
+    // sendInquire = setInterval(() => {
+    //   let data = {
+    //     robot: 1,
+    //     coord: props.coordinate,
+    //   };
+    //   sendMSGtoController("CURRENTPOS_INQUIRE", data);
+    // }, 500);
     return () => {
-      clearInterval(sendInquire);
+      // clearInterval(sendInquire);
       let deadmanData = {
         deadman: 0,
       };
@@ -140,10 +140,10 @@ function JogIndex(props) {
           </AtList>
         </Picker>
         <View style="margin: 24px 5vw">
-          <Text>速度：{speed}</Text>
+          <Text>速度：{props.handleSpeed}</Text>
           <AtSlider
             step={5}
-            value={speed}
+            value={props.handleSpeed}
             activeColor="#4285F4"
             backgroundColor="#BDBDBD"
             blockColor="#4285F4"

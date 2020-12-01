@@ -49,16 +49,13 @@ function ConnectState(props) {
     console.log(IP);
     Taro.connectSocket({
       url: IP,
-      complete: () => {
-        tt = setTimeout(() => {
-          if (connectState === "正在连接...") {
-            setErrmsg("连接超时");
-            setModalOpened(true);
-            Taro.closeSocket();
-          }
-        });
-      },
     });
+    setTimeout(() => {
+      if (connectState === "正在连接...") {
+        setErrmsg("连接超时");
+        setModalOpened(true);
+      }
+    }, 2000);
     return () => {
       clearTimeout();
     };
@@ -90,6 +87,7 @@ function ConnectState(props) {
     Taro.closeSocket();
   });
   const modalCancel = () => {
+    Taro.closeSocket();
     Taro.reLaunch({
       url: "/pages/index/index",
     });
