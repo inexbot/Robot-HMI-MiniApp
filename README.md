@@ -10,7 +10,7 @@
 
 #### 当前已应用
 
-NodeJs,React,[Taro@3.0.0](https://taro.jd.com/),[Taro UI 3.0.0](https://taro-ui.jd.com/),[Dvajs](https://dvajs.com/)
+NodeJs,React,[Taro@3.0.10](https://taro.jd.com/),[Taro UI 3.0.0](https://taro-ui.jd.com/),[Dvajs](https://dvajs.com/)
 
 ### 使用
 
