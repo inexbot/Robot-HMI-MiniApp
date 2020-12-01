@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image } from "@tarojs/components";
-import { AtButton, AtInput, AtMessage, AtFloatLayout } from "taro-ui";
+import { AtButton, AtInput, AtFloatLayout } from "taro-ui";
 import "./index.less";
 
 function Start() {
@@ -38,7 +38,6 @@ function Start() {
 
   return (
     <View className="index">
-      <AtMessage />
       <AtFloatLayout isOpened={queOpened} title="连接问题" onClose={closeFloat}>
         您的手机需要与控制器在同一个局域网内。 IP输入控制器的IP。
         端口为服务端的端口，默认为9000。

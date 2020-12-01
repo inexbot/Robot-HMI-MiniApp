@@ -17,7 +17,6 @@ export async function sendMSGtoController(command, data) {
   if (data !== "") {
     message.push(JSON.stringify(data));
   }
-
   Taro.sendSocketMessage({ data: message });
   console.log("发送数据到控制器", message);
 }
