@@ -7,7 +7,7 @@ import "./index.less";
 function Start() {
   const [ip, setIp] = useState("192.168.0.");
   const [queOpened, setQueOpened] = useState(false);
-  const [port, setPort] = useState("9000");
+  const [port, setPort] = useState("6000");
   const changeIP = (IP) => {
     setIp(IP);
   };
@@ -62,7 +62,7 @@ function Start() {
       <AtInput
         name="port"
         title="Port"
-        placeholder="默认9000"
+        placeholder="默认6000"
         onChange={changePort}
         className="index-index-input log_port"
         value={port}

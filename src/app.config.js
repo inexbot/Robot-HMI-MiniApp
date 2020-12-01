@@ -3,8 +3,7 @@ export default {
     "pages/index/index",
     "pages/connect/index",
     "pages/teach/index",
-    "pages/program/index",
-    "pages/monitor/index",
+    "pages/trajectory/index",
     "pages/setup/index",
   ],
   window: {
@@ -26,10 +25,10 @@ export default {
         text: "示教",
       },
       {
-        pagePath: "pages/monitor/index",
+        pagePath: "pages/trajectory/index",
         iconPath: "./assets/tab-bar/monitor.png",
         selectedIconPath: "./assets/tab-bar/monitorActived.png",
-        text: "监控",
+        text: "轨迹",
       },
       {
         pagePath: "pages/setup/index",
@@ -41,14 +40,14 @@ export default {
   },
   subPackages: [
     {
-      root: "pages/monitor/monitorindex",
-      name: "监控页面",
-      pages: ["io", "position", "torque"],
-    },
-    {
       root: "pages/setup/setupindex",
       name: "设置页面",
       pages: ["about", "connect", "force", "safe"],
+    },
+    {
+      root: "pages/trajectory/playback",
+      name: "轨迹回放",
+      pages: ["index"],
     },
     {
       root: "pages/teach/teachindex",
@@ -58,13 +57,6 @@ export default {
         "drag/playback/index",
         "jog/index",
         "drag/playback/backindex/index",
-      ],
-    },
-    {
-      root: "pages/program/running",
-      name: "运行界面",
-      pages: [
-        "index",
       ],
     },
   ],
