@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Taro from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import {
-  AtForm,
   AtButton,
   AtInput,
   AtSlider,
@@ -16,15 +15,18 @@ import Header from "../../../../component/header";
 import "./index.less";
 import { EmergencyStopButton } from "../../../../component/buttons";
 import { sendMSGtoController } from "../../../../service/network";
+import { WaitEnable } from "../../../../component/wait";
 const mapStateToProps = (state) => {
   return {
-    currentRobotServoState: state.robotStatus.currentRobotServoState,
+    connected: state.localState.connected,
+    servoState: state.robotStatus.currentRobotServoState,
     deadmanState: state.robotStatus.deadmanState,
   };
 };
 function DragIndex(props) {
   const [modalOpened, setModalOpened] = useState(false);
   const [tName, setTName] = useState("");
+  const [waitOpened, setWaitOpened] = useState(false);
   useEffect(() => {
     return () => {
       let deadmanData = {
@@ -33,21 +35,10 @@ function DragIndex(props) {
       sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
     };
   }, []);
-  const handleStartDrag = () => {
-    console.log("开始拖拽");
-    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
-    switchDragView(Draging);
-  };
   useEffect(() => {
-    if (props.deadmanState === 1 && props.currentRobotServoState === 3) {
-      sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
-        SamplingInterval: 0.03,
-        MaxSamplingNum: 2000,
-        Start: true,
-      });
-      switchDragView(Draging);
-    }
-  }, [props.deadmanState, props.currentRobotServoState]);
+    console.log("1212:", props.deadmanState, props.servoState);
+  }, [props.deadmanState, props.servoState]);
+
   const handlePlayback = () => {
     Taro.navigateTo({
       url: "/pages/teach/teachindex/drag/playback/index",
@@ -83,16 +74,49 @@ function DragIndex(props) {
   );
   const [dragView, switchDragView] = useState(Dragst);
   const [speed, setSpeed] = useState(5);
+  function wait() {
+    setTimeout(() => {
+      // if (props.deadmanState === 1 && props.servoState === 3) {
+      sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
+        SamplingInterval: 0.03,
+        MaxSamplingNum: 2000,
+        Start: true,
+      });
+      setWaitOpened(false);
+      switchDragView(Draging);
+      // } else {
+      //   wait();
+      // }
+    }, 1000);
+  }
+  function handleStartDrag() {
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
+    setWaitOpened(true);
+    wait();
+  }
   const changeSpeed = (val) => {
     setSpeed(val);
   };
   const backTrajectory = () => {
-    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
-    sendMSGtoController("DRAG_TRAJ_PLAYBACK", {
-      mode: 1,
-      vel: 100,
-      trajName: "",
+    function wait() {
+      setTimeout(() => {
+        // if (props.deadmanState === 1 && props.currentRobotServoState === 3) {
+        sendMSGtoController("DRAG_TRAJ_PLAYBACK", {
+          mode: 1,
+          vel: 100,
+          trajName: "",
+        });
+        setWaitOpened(false);
+        // } else {
+        //   wait();
+        // }
+      }, 500);
+    }
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 }).then(() => {
+      setWaitOpened(true);
+      wait();
     });
+
     return;
   };
   const saveTrajectory = () => {
@@ -215,6 +239,7 @@ function DragIndex(props) {
   return (
     <View className="teach">
       <Header />
+      <WaitEnable isOpened={waitOpened} />
       <AtModal isOpened={modalOpened} closeOnClickOverlay={false}>
         <AtModalHeader>轨迹命名</AtModalHeader>
         <AtModalContent>
