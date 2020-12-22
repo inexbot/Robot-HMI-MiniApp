@@ -9,7 +9,7 @@ function Teach() {
   function handleClick(value) {
     if (value === "drag/index") {
       sendMSGtoController("TEACHTYPE_SET", { teachType: 1 });
-      sendMSGtoController("SERVO_STATUS_SET", { robot: 1, status: 1 });
+      // sendMSGtoController("SERVO_STATUS_SET", { robot: 1, status: 1 });
     } else {
       sendMSGtoController("TEACHTYPE_SET", { teachType: 0 });
       sendMSGtoController("SERVO_STATUS_SET", { robot: 1, status: 1 });

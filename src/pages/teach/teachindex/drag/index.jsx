@@ -21,12 +21,53 @@ const mapStateToProps = (state) => {
     connected: state.localState.connected,
     servoState: state.robotStatus.currentRobotServoState,
     deadmanState: state.robotStatus.deadmanState,
+    DragBtnType: state.dragTrajectory.DragBtnType,
   };
 };
 function DragIndex(props) {
   const [modalOpened, setModalOpened] = useState(false);
   const [tName, setTName] = useState("");
   const [waitOpened, setWaitOpened] = useState(false);
+  const [eleBtnType, setEleBtnType] = useState(0); // 0: 无状态  1: 点击开始拖拽/停止拖拽  2：点击回放轨迹 
+  const [dragView, switchDragView] = useState(
+  <View className="teach-index">
+    <AtButton
+      type="primary"
+      customStyle={{
+        color: "white",
+        backgroundColor: "rgb(97, 144, 232)",
+        // border: "1px solid #ff463d",
+        width: "180px",
+        height: "180px",
+        borderRadius: 90,
+        fontSize: "18px",
+        marginBottom: "5vh",
+        padding: 70,
+      }}
+      onClick={handleStartDrag}
+    >
+      开始拖拽
+    </AtButton>
+    <AtButton
+      type="secondary"
+      className="teach-index-button"
+      onClick={handlePlayback}
+    >
+      轨迹回放
+    </AtButton>
+  </View>);
+
+  // 修改拖拽示教记录开始按钮状态
+  const changesetDragType = value => {
+    props.dispatch({
+      type: 'dragTrajectory/changeDragBtnType',
+      data: {
+        MaxSamplingNum: 2000,
+        SamplingInterval: 0.03,
+        Start: value,
+      },
+    });
+  };
   useEffect(() => {
     return () => {
       let deadmanData = {
@@ -35,113 +76,32 @@ function DragIndex(props) {
       sendMSGtoController("DEADMAN_STATUS_SET", deadmanData);
     };
   }, []);
-  useEffect(() => {
-    console.log("1212:", props.deadmanState, props.servoState);
-  }, [props.deadmanState, props.servoState]);
 
-  const handlePlayback = () => {
-    Taro.navigateTo({
-      url: "/pages/teach/teachindex/drag/playback/index",
-    });
-  };
-  const Dragst = (
-    <View className="teach-index">
-      <AtButton
-        type="primary"
-        customStyle={{
-          color: "white",
-          backgroundColor: "rgb(97, 144, 232)",
-          // border: "1px solid #ff463d",
-          width: "180px",
-          height: "180px",
-          borderRadius: 90,
-          fontSize: "18px",
-          marginBottom: "5vh",
-          padding: 70,
-        }}
-        onClick={handleStartDrag}
-      >
-        开始拖拽
-      </AtButton>
-      <AtButton
-        type="secondary"
-        className="teach-index-button"
-        onClick={handlePlayback}
-      >
-        轨迹回放
-      </AtButton>
-    </View>
-  );
-  const [dragView, switchDragView] = useState(Dragst);
-  const [speed, setSpeed] = useState(5);
-  function wait() {
-    setTimeout(() => {
-      // if (props.deadmanState === 1 && props.servoState === 3) {
-      sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
-        SamplingInterval: 0.03,
-        MaxSamplingNum: 2000,
-        Start: true,
-      });
-      setWaitOpened(false);
-      switchDragView(Draging);
-      // } else {
-      //   wait();
-      // }
-    }, 1000);
-  }
-  function handleStartDrag() {
-    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
-    setWaitOpened(true);
-    wait();
-  }
-  const changeSpeed = (val) => {
-    setSpeed(val);
-  };
-  const backTrajectory = () => {
-    function wait() {
-      setTimeout(() => {
-        // if (props.deadmanState === 1 && props.currentRobotServoState === 3) {
-        sendMSGtoController("DRAG_TRAJ_PLAYBACK", {
-          mode: 1,
-          vel: 100,
-          trajName: "",
-        });
-        setWaitOpened(false);
-        // } else {
-        //   wait();
-        // }
-      }, 500);
-    }
-    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 }).then(() => {
-      setWaitOpened(true);
-      wait();
-    });
-
-    return;
-  };
-  const saveTrajectory = () => {
-    setModalOpened(true);
-    return;
-  };
-  const giveupTrajectory = () => {
-    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 0 });
-    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: "" });
-    switchDragView(Dragst);
-    return;
-  };
   const handleStopDrag = () => {
     sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
       SamplingInterval: 0.03,
       MaxSamplingNum: 2000,
       Start: false,
     });
-    switchDragView(Stop);
+    // switchDragView(Stop);
   };
-  const handleSaveT = () => {
-    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: tName });
+
+  const backTrajectory = () => {
+    setEleBtnType(2);
+    return;
+  };
+
+  const giveupTrajectory = () => {
     sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 0 });
-    setModalOpened(false);
+    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: "" });
     switchDragView(Dragst);
+    changesetDragType(true);
+    return;
+  };
+
+  const saveTrajectory = () => {
+    setModalOpened(true);
+    return;
   };
 
   const Draging = (
@@ -167,18 +127,32 @@ function DragIndex(props) {
       </View>
     </View>
   );
-  const Save = (
-    <View className="teach-index" style="margin-top:10vh">
-      <Text>轨迹名</Text>
-      {/* <AtInput /> */}
+
+  const Dragst = (
+    <View className="teach-index">
       <AtButton
+        type="primary"
         customStyle={{
-          background: "#55d676",
           color: "white",
-          border: "1px solid #39b659",
+          backgroundColor: "rgb(97, 144, 232)",
+          // border: "1px solid #ff463d",
+          width: "180px",
+          height: "180px",
+          borderRadius: 90,
+          fontSize: "18px",
+          marginBottom: "5vh",
+          padding: 70,
         }}
+        onClick={handleStartDrag}
       >
-        保存轨迹
+        开始拖拽
+      </AtButton>
+      <AtButton
+        type="secondary"
+        className="teach-index-button"
+        onClick={handlePlayback}
+      >
+        轨迹回放
       </AtButton>
     </View>
   );
@@ -236,6 +210,84 @@ function DragIndex(props) {
     </View>
   );
 
+  useEffect(() => {
+    function wait() {
+      sendMSGtoController("DRAG_TRAJ_PARAM_SET", {
+        SamplingInterval: 0.03,
+        MaxSamplingNum: 2000,
+        Start: true,
+      });
+      setWaitOpened(false);
+      switchDragView(Draging);
+    }
+    if (props.deadmanState === 1 && props.servoState === 3){
+      if(eleBtnType === 1){
+        setWaitOpened(true);
+        wait();
+        setEleBtnType(3);
+      }else if( eleBtnType === 2 ){
+        sendMSGtoController("DRAG_TRAJ_PLAYBACK", {
+          mode: 1,
+          vel: 100,
+          trajName: "",
+        });
+        setWaitOpened(false);
+        // sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 }).then(() => {
+          // setWaitOpened(true);
+          // wait();
+        // });
+      }
+    }
+  }, [props.deadmanState, props.servoState,eleBtnType]);
+  const handlePlayback = () => {
+    Taro.navigateTo({
+      url: "/pages/teach/teachindex/drag/playback/index",
+    });
+  };
+  
+  function handleStartDrag() {
+    setEleBtnType(1);
+    changesetDragType(true);
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 1 });
+  }
+  const [speed, setSpeed] = useState(5);
+  const changeSpeed = (val) => {
+    setSpeed(val);
+  };
+
+  const handleSaveT = () => {
+    sendMSGtoController("DRAG_TRAJ_SAVE", { TrajName: tName });
+    sendMSGtoController("DEADMAN_STATUS_SET", { deadman: 0 });
+    setModalOpened(false);
+    switchDragView(Dragst);
+    changesetDragType(true);
+  };
+
+  useEffect(()=>{
+    if( eleBtnType === 3 ){
+      if( props.DragBtnType === true ){
+        switchDragView(Stop);
+      }
+    }
+  },[props.DragBtnType,eleBtnType])
+
+  const Save = (
+    <View className="teach-index" style="margin-top:10vh">
+      <Text>轨迹名</Text>
+      {/* <AtInput /> */}
+      <AtButton
+        customStyle={{
+          background: "#55d676",
+          color: "white",
+          border: "1px solid #39b659",
+        }}
+      >
+        保存轨迹
+      </AtButton>
+    </View>
+  );
+
+
   return (
     <View className="teach">
       <Header />
@@ -251,7 +303,7 @@ function DragIndex(props) {
           />
         </AtModalContent>
         <AtModalAction>
-          <Button>取消</Button>
+          <Button onClick={()=>{setModalOpened(false)}}>取消</Button>
           <Button onClick={handleSaveT}>确定</Button>
         </AtModalAction>
       </AtModal>

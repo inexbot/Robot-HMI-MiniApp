@@ -12,7 +12,7 @@ export const CommandList = {
   /* 设置操作模式
   data:{
     "mode":0  //0示教，1远程，2运行
-  } */
+  } */   
   OPERATION_MODE_SET: 0x2101,
   CURRENT_OPERATION_MODE_INQUIRE: 0x2102, // 获取当前机器人的操作模式
   /* 设置坐标系

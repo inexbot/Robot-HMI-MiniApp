@@ -217,6 +217,12 @@ export default {
               data: dataString,
             });
             break;
+          case '7509':
+            dispatch({
+              type: 'dragTrajectory/changeDragBtnType',
+              data: dataString,
+            });
+            break;
           // 接收到报错信息
           case "2b03":
             if (dataString.data === "unInitFinish") {

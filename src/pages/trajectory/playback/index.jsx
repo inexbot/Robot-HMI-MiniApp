@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { getCurrentInstance } from "@tarojs/taro";
 import { AtButton } from "taro-ui";
 import { EmergencyStopButton } from "../../../component/buttons";
 import { sendMSGtoController } from "../../../service/network";
+import Header from "../../../component/header";
+import "./index.module.less";
 
 function PlaybackT(props) {
   const [trajName, setTrajName] = useState("无");
@@ -23,13 +26,20 @@ function PlaybackT(props) {
   }
   function handleDeleteTraj() {
     sendMSGtoController("DRAG_TRAJ_DELETE", { TrajName: trajName });
+    sendMSGtoController("DRAG_TRAJ_INQUIRE", "");
+    Taro.navigateBack({
+      url: `/pages/trajectory/playback`,
+    });
   }
   return (
     <View>
-      <Text>{trajName}</Text>
-      <AtButton onClick={handleClickPlayback}>回放</AtButton>
-      <AtButton onClick={handleDeleteTraj}>删除轨迹</AtButton>
-      <EmergencyStopButton />
+      <Header />
+      <View className="playback_content" >
+        <Text className="playback_content_txt">{trajName}</Text>
+        <AtButton className="playback_content_playback" onClick={handleClickPlayback}>回放</AtButton>
+        <AtButton className="playback_content_playback" onClick={handleDeleteTraj}>删除轨迹</AtButton>
+        <EmergencyStopButton className="playback_content_playback" />
+      </View>
     </View>
   );
 }
