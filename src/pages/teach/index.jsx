@@ -21,7 +21,6 @@ function Teach() {
     });
     return;
   }
-
   return (
     <View className="teach">
       <Header />

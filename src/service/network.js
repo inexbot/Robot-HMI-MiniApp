@@ -17,7 +17,12 @@ export async function sendMSGtoController(command, data) {
   if (data !== "") {
     message.push(JSON.stringify(data));
   }
-  Taro.sendSocketMessage({ data: message });
+  Taro.sendSocketMessage({
+    data: message.toString(),
+    fail: (res) => {
+      console.error(res);
+    },
+  });
   console.log("发送数据到控制器", message);
 }
 
@@ -38,7 +43,12 @@ export async function sendMSGtoServer(command, data) {
     ? console.error("发送数据为空")
     : message.push(JSON.stringify(data));
 
-  Taro.sendSocketMessage({ data: message });
+  Taro.sendSocketMessage({
+    data: message.toString(),
+    fail: (res) => {
+      console.error(res);
+    },
+  });
   console.log("发送到服务端", message);
 }
 // 解析收到的数据，返回的值为数组，[command,data]，command为字符串，data为json

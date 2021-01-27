@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Taro from "@tarojs/taro";
+import React, { useEffect, useState } from "react";
+import Taro, { getConnectedWifi } from "@tarojs/taro";
 import { View, Image } from "@tarojs/components";
 import { AtButton, AtInput, AtFloatLayout } from "taro-ui";
 import "./index.less";
@@ -14,6 +14,24 @@ function Start() {
   const changePort = (PORT) => {
     setPort(PORT);
   };
+  useEffect(() => {
+    Taro.getStorage({
+      key: "ip",
+      success: (res) => {
+        if (res.data) {
+          setIp(res.data);
+        }
+      },
+    });
+    Taro.getStorage({
+      key: "port",
+      success: (res) => {
+        if (res.data) {
+          setPort(res.data);
+        }
+      },
+    });
+  }, []);
   const onSubmit = (event) => {
     let exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
     let reg = ip.match(exp);

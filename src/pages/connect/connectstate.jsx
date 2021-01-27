@@ -63,6 +63,8 @@ function ConnectState(props) {
 
   Taro.onSocketOpen(() => {
     setConnectState("连接成功");
+    Taro.setStorage({ key: "ip", data: props.ip });
+    Taro.setStorage({ key: "port", data: props.port });
     checkServerState();
     checkRobotState();
     setDisplay1("block");
