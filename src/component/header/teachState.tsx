@@ -1,5 +1,4 @@
 import { View, Text } from "@tarojs/components";
-import { TCPSocket } from "@tarojs/taro";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { RobotStatus, Command } from "../../lib/nexdroid";

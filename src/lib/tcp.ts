@@ -10,17 +10,18 @@ export interface Message {
 }
 
 export default class Tcp {
-  Tcp: TCPSocket = Taro.createTCPSocket();
-  bufferPool: Bf.Buffer = Buffer.alloc(0);
-  connected: boolean;
-  onMessageCallback: Function;
-  onConnectedCallback: Function;
-  onCloseCallback: Function;
-  onErrorCallback: Function;
-  heartBeatInterval: NodeJS.Timer | null;
-  resetHeartBeatTimer: NodeJS.Timeout | null;
+  private Tcp: TCPSocket = Taro.createTCPSocket();
+  private bufferPool: Bf.Buffer = Buffer.alloc(0);
+  private connected: boolean;
+  private onMessageCallback: Function;
+  private onConnectedCallback: Function;
+  private onCloseCallback: Function;
+  private onErrorCallback: Function;
+  private heartBeatInterval: NodeJS.Timer | null;
+  private resetHeartBeatTimer: NodeJS.Timeout | null;
+
   static instance: Tcp;
-  constructor() {
+  private constructor() {
     this.Tcp.onConnect(() => {
       if (this.onConnectedCallback) {
         this.onConnectedCallback();
@@ -31,6 +32,7 @@ export default class Tcp {
     this.Tcp.onClose(() => {
       this.stopHeartBeat();
       this.connected = false;
+      this.onCloseCallback();
     });
     this.Tcp.onError((result: TCPSocket.onError.CallbackResult) => {
       if (this.onErrorCallback) {
@@ -54,13 +56,13 @@ export default class Tcp {
       console.log("OffMessage");
     });
   }
-  static getInstance() {
+  static getInstance(): Tcp {
     if (!this.instance) {
       this.instance = new Tcp();
     }
     return this.instance;
   }
-  public connect(ip: string, port: number) {
+  public connect(ip: string, port: number): void {
     this.Tcp.connect({ address: ip, port: port });
   }
   public setCallback(
@@ -68,7 +70,7 @@ export default class Tcp {
     onConnectedCallback?,
     onCloseCallback?,
     onErrorCallback?
-  ) {
+  ): void {
     this.onMessageCallback = onMessageCallback;
     if (onConnectedCallback) {
       this.onConnectedCallback = onConnectedCallback;
@@ -91,9 +93,9 @@ export default class Tcp {
       }
     }
     this.resetHeartBeat();
-    return;
+    return { result: true, errMsg: "" };
   }
-  encodeMessage(command: number, msg: Object): Bf.Buffer | null {
+  private encodeMessage(command: number, msg: Object): Bf.Buffer | null {
     try {
       const dataString = JSON.stringify(msg);
       const dataBuffer = Buffer.from(
@@ -120,12 +122,12 @@ export default class Tcp {
       return null;
     }
   }
-  receiveBuffer(buffer: ArrayBuffer) {
+  private receiveBuffer(buffer: ArrayBuffer): void {
     const newBuffer = Buffer.from(buffer);
     this.bufferPool = Buffer.concat([this.bufferPool, newBuffer]);
     this.handleBuffer();
   }
-  handleBuffer() {
+  private handleBuffer(): void {
     const index = this.bufferPool.indexOf("Nf");
     if (index < 0) {
       return;
@@ -141,7 +143,7 @@ export default class Tcp {
     this.handleMessage(decodedMessage);
     this.handleBuffer();
   }
-  decodeMessage(buffer: Bf.Buffer): Message {
+  private decodeMessage(buffer: Bf.Buffer): Message {
     const commandBuffer = buffer.slice(4, 6);
     const dataBuffer = buffer.slice(6, buffer.length - 4);
     const command = commandBuffer.readUIntBE(0, 2);
@@ -153,21 +155,21 @@ export default class Tcp {
     };
     return message;
   }
-  handleMessage(message: Message) {
+  private handleMessage(message: Message): void {
     this.onMessageCallback(message);
   }
-  heartBeat() {
+  private heartBeat(): void {
     this.heartBeatInterval = setInterval(() => {
       this.sendMessage(0x7266, { time: new Date().getTime() });
     }, 1000);
   }
-  stopHeartBeat() {
+  private stopHeartBeat(): void {
     if (this.heartBeatInterval) {
       clearInterval(this.heartBeatInterval);
       this.heartBeatInterval = null;
     }
   }
-  resetHeartBeat() {
+  private resetHeartBeat(): void {
     if (this.heartBeatInterval) {
       this.stopHeartBeat();
     }

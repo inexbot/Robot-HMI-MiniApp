@@ -2,9 +2,10 @@ import Taro from "@tarojs/taro";
 import { Button, Input, View } from "@tarojs/components";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { AtMessage, AtModal, AtModalAction, AtModalContent } from "taro-ui";
+import IndexHeader from "../../component/indexheader";
 import Tcp from "../../lib/tcp";
 import "./index.less";
-import { AtMessage } from "taro-ui";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +18,7 @@ function Index(props) {
   const [ip, setIp] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   const tcp = Tcp.getInstance();
   useEffect(() => {
     if (props.connected) {
@@ -28,8 +30,7 @@ function Index(props) {
         message: "连接失败，请检查控制器和手机是否在同一个局域网段！",
         type: "error",
       });
-      setLoading(false);
-      setDisabled(false);
+      setModalOpened(true);
     }
   }, [props.connected, props.error]);
   function connectTcp() {
@@ -44,7 +45,7 @@ function Index(props) {
       });
       return;
     }
-    tcp.connect(ip, 6020);
+    tcp.connect(ip, 6001);
     setLoading(true);
     setDisabled(true);
   }
@@ -52,6 +53,30 @@ function Index(props) {
   return (
     <View className="loginPage">
       <AtMessage />
+      <AtModal isOpened={modalOpened}>
+        <AtModalContent>连接失败，是否离线试用？</AtModalContent>
+        <AtModalAction>
+          <Button
+            onClick={() => {
+              setLoading(false);
+              setDisabled(false);
+              setModalOpened(false);
+            }}
+          >
+            否
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => {
+              setModalOpened(false);
+              Taro.redirectTo({ url: "/pages/teach/index" });
+            }}
+          >
+            试用
+          </Button>
+        </AtModalAction>
+      </AtModal>
+      <IndexHeader />
       <Input
         type="text"
         placeholder="IP地址,例:192.168.1.13"
@@ -67,7 +92,7 @@ function Index(props) {
         disabled={disabled}
         className="submit"
       >
-        提交
+        连接
       </Button>
     </View>
   );

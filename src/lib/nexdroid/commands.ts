@@ -27,4 +27,10 @@ export enum Command {
   RobotNumberSwitch = 0x5001,
   RobotNumberGet = 0x5002,
   RobotNumberRes = 0x5003,
+  ToolCoordSet = 0x380a,
+  ToolCoordGet = 0x380b,
+  ToolCoordRes = 0x380c,
+  UserCoordSet = 0x3c0a,
+  UserCoordGet = 0x3c0b,
+  UserCoordRes = 0x3c0c,
 }
