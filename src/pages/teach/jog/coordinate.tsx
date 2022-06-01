@@ -122,7 +122,6 @@ function SpeedState({ coordinate, userCoord, toolCoord }) {
       <View className="tool">
         <Text>工具</Text>
         <AtInput
-          type="number"
           confirmType="切换"
           value={toolCoordValue}
           adjustPosition={false}
