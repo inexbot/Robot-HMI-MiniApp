@@ -1,7 +1,7 @@
 export enum OperaMode {
   Teach = 0,
   Circle = 1,
-  Repeat = 2,
+  Remote = 2,
 }
 export interface OperaModeGetInterface {}
 export interface OperaModeSetInterface {
@@ -64,8 +64,7 @@ export interface EmergencyStopInterface {
 }
 export interface SpeedSet {
   robot: number;
-  teachspeed: number;
-  runspeed: number;
+  speed: number;
 }
 export interface SpeedGet {
   robot: number;

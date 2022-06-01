@@ -59,8 +59,7 @@ export default {
     handleSpeed(state, action) {
       let _state = JSON.parse(JSON.stringify(state));
       let res: RobotStatus.SpeedRes = action.data;
-      _state.teachSpeed = res.teachspeed;
-      _state.runSpeed = res.runspeed;
+      _state.teachSpeed = res.speed;
       return _state;
     },
     handlePos(state, action) {

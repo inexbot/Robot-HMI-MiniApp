@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
 function Jog({ coordinate, pos }) {
   const [name, setName] = useState(["", "", "", "", "", ""]);
-  let jogInterval: NodeJS.Timer;
+
   useEffect(() => {
     let getPosInterval = setInterval(() => {
       let data: RobotStatus.PosGet = { robot: 1, coord: coordinate };
@@ -46,133 +46,55 @@ function Jog({ coordinate, pos }) {
         break;
     }
   }, [coordinate]);
-  function beginJog(axis: number, direction: Operation.Direction) {
-    jogInterval = setInterval(() => {
-      let data: Operation.JogStart = { axis: axis, direction: direction };
-      tcp.sendMessage(Command.JogStart, data);
-    }, 200);
-  }
-  function stopJog(axis: number) {
-    clearInterval(jogInterval);
-    let data: Operation.JogStop = { axis: axis };
-    tcp.sendMessage(Command.JogStop, data);
-  }
+
+  const JogItem = (axis) => {
+    let jogInterval: NodeJS.Timer;
+    function beginJog(direction: Operation.Direction) {
+      if (jogInterval) {
+        clearInterval(jogInterval);
+      }
+      jogInterval = setInterval(() => {
+        let data: Operation.JogStart = { axis: axis + 1, direction: direction };
+        tcp.sendMessage(Command.JogStart, data);
+        console.log(axis);
+      }, 200);
+    }
+    function stopJog() {
+      clearInterval(jogInterval);
+      console.log(axis + "stop");
+      let data: Operation.JogStop = { axis: axis + 1 };
+      tcp.sendMessage(Command.JogStop, data);
+    }
+
+    return (
+      <View className="jogModule">
+        <View
+          onTouchEnd={stopJog}
+          onTouchStart={beginJog.bind(this, Operation.Direction.Reverse)}
+          onTouchCancel={stopJog}
+          onTouchMove={stopJog}
+          className="jogButton"
+        >
+          <Text>{name[axis]}-</Text>
+        </View>
+        <Text className="jogText">{pos[axis]}</Text>
+        <View
+          className="jogButton"
+          onTouchEnd={stopJog}
+          onTouchStart={beginJog.bind(this, Operation.Direction.Forward)}
+          onTouchCancel={stopJog}
+          onTouchMove={stopJog}
+        >
+          <Text>{name[axis]}+</Text>
+        </View>
+      </View>
+    );
+  };
   return (
     <View className="jog">
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 1)}
-          onTouchStart={beginJog.bind(this, 1, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 1)}
-          className="jogButton"
-        >
-          <Text>{name[0]}-</Text>
-        </View>
-        <Text className="jogText">{pos[0]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 1)}
-          onTouchStart={beginJog.bind(this, 1, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 1)}
-        >
-          <Text>{name[0]}+</Text>
-        </View>
-      </View>
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 2)}
-          onTouchStart={beginJog.bind(this, 2, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 2)}
-          className="jogButton"
-        >
-          <Text>{name[1]}-</Text>
-        </View>
-        <Text className="jogText">{pos[1]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 2)}
-          onTouchStart={beginJog.bind(this, 2, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 2)}
-        >
-          <Text>{name[1]}+</Text>
-        </View>
-      </View>
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 3)}
-          onTouchStart={beginJog.bind(this, 3, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 3)}
-          className="jogButton"
-        >
-          <Text>{name[2]}-</Text>
-        </View>
-        <Text className="jogText">{pos[2]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 3)}
-          onTouchStart={beginJog.bind(this, 3, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 3)}
-        >
-          <Text>{name[2]}+</Text>
-        </View>
-      </View>
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 4)}
-          onTouchStart={beginJog.bind(this, 4, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 4)}
-          className="jogButton"
-        >
-          <Text>{name[3]}-</Text>
-        </View>
-        <Text className="jogText">{pos[3]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 4)}
-          onTouchStart={beginJog.bind(this, 4, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 4)}
-        >
-          <Text>{name[3]}+</Text>
-        </View>
-      </View>
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 5)}
-          onTouchStart={beginJog.bind(this, 5, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 5)}
-          className="jogButton"
-        >
-          <Text>{name[4]}-</Text>
-        </View>
-        <Text className="jogText">{pos[4]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 5)}
-          onTouchStart={beginJog.bind(this, 5, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 5)}
-        >
-          <Text>{name[4]}+</Text>
-        </View>
-      </View>
-      <View className="jogModule">
-        <View
-          onTouchEnd={stopJog.bind(this, 6)}
-          onTouchStart={beginJog.bind(this, 6, Operation.Direction.Reverse)}
-          onTouchCancel={stopJog.bind(this, 6)}
-          className="jogButton"
-        >
-          <Text>{name[5]}-</Text>
-        </View>
-        <Text className="jogText">{pos[5]}</Text>
-        <View
-          className="jogButton"
-          onTouchEnd={stopJog.bind(this, 6)}
-          onTouchStart={beginJog.bind(this, 6, Operation.Direction.Forward)}
-          onTouchCancel={stopJog.bind(this, 6)}
-        >
-          <Text>{name[5]}+</Text>
-        </View>
-      </View>
+      {name.map((v, i) => {
+        return JogItem(i);
+      })}
     </View>
   );
 }

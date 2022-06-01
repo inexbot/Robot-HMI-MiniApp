@@ -1,11 +1,12 @@
 import Taro from "@tarojs/taro";
-import { Button, Input, View } from "@tarojs/components";
+import { Button, Input, View, Text } from "@tarojs/components";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AtMessage, AtModal, AtModalAction, AtModalContent } from "taro-ui";
 import IndexHeader from "../../component/indexheader";
 import Tcp from "../../lib/tcp";
 import "./index.less";
+import PackageData from "../../../package.json";
 
 const mapStateToProps = (state) => {
   return {
@@ -94,6 +95,9 @@ function Index(props) {
       >
         连接
       </Button>
+      <View className="version">
+        <Text>{PackageData.version}</Text>
+      </View>
     </View>
   );
 }

@@ -55,24 +55,24 @@ function SpeedState({ coordinate, userCoord, toolCoord }) {
     setUserCoordValue(userCoord);
   }, [toolCoord, userCoord]);
   function changeToolCoordValue(e) {
-    setToolCoordValue(e.value);
+    setToolCoordValue(e);
   }
   function confirmToolCoordValue(e) {
     let data: RobotStatus.ToolCoordSet = {
       robot: 1,
-      curToolNum: Number(e.value),
+      curToolNum: Number(e),
     };
-    if (!e.value) {
+    if (!e) {
       return;
     }
     tcp.sendMessage(Command.ToolCoordSet, data);
   }
   function changeUserCoordValue(e) {
-    setToolCoordValue(e.value);
+    setToolCoordValue(e);
   }
   function confirmUserCoordValue(e) {
-    let data: RobotStatus.UserCoordSet = { robot: 1, userNum: Number(e.value) };
-    if (!e.value) {
+    let data: RobotStatus.UserCoordSet = { robot: 1, userNum: Number(e) };
+    if (!e) {
       return;
     }
     tcp.sendMessage(Command.ToolCoordSet, data);
@@ -133,7 +133,6 @@ function SpeedState({ coordinate, userCoord, toolCoord }) {
       <View className="user">
         <Text>用户</Text>
         <AtInput
-          type="number"
           confirmType="切换"
           value={userCoordValue}
           adjustPosition={false}

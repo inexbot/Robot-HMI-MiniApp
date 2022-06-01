@@ -23,8 +23,7 @@ function Speed({ teachSpeed }) {
   function changeSpeed(value) {
     let setSpeedData: RobotStatus.SpeedSet = {
       robot: 1,
-      teachspeed: value,
-      runspeed: value,
+      speed:value
     };
     tcp.sendMessage(Command.SpeedSet, setSpeedData);
   }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { View, Text, Image } from "@tarojs/components";
 
@@ -15,16 +15,19 @@ const mapStateToProps = (state) => {
 };
 
 function DeadmanState({ deadman, className }) {
+  const [deadmanState, setDeadmanState] = useState(deadman);
   let getDeadmanData: RobotStatus.DeadmanGetInterface = {};
   useEffect(() => {
     tcp.sendMessage(Command.DeadmanGet, getDeadmanData);
   }, []);
   function switchDeadman() {
     let data: RobotStatus.DeadmanSetInterface;
-    if (deadman) {
-      data = { deadman: RobotStatus.Deadman.disable };
-    } else {
+    if (deadmanState == RobotStatus.Deadman.disable) {
       data = { deadman: RobotStatus.Deadman.enable };
+      setDeadmanState(RobotStatus.Deadman.enable);
+    } else {
+      data = { deadman: RobotStatus.Deadman.disable };
+      setDeadmanState(RobotStatus.Deadman.disable);
     }
     tcp.sendMessage(Command.DeadmanSet, data);
   }
@@ -35,10 +38,12 @@ function DeadmanState({ deadman, className }) {
       </View>
       <View
         className="spot"
-        style={{ background: deadman ? "rgb(58,247,165)" : "rgb(247,58,58)" }}
+        style={{
+          background: deadmanState ? "rgb(58,247,165)" : "rgb(247,58,58)",
+        }}
       ></View>
 
-      <Text>{deadman ? "已使能" : "未使能"}</Text>
+      <Text>{deadmanState ? "已使能" : "未使能"}</Text>
     </View>
   );
 }
